@@ -1,2 +1,5 @@
 # tmp MacOS file
 *.DS_Store
+
+# Files in vscode
+*.vscode
