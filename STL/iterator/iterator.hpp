@@ -1,11 +1,23 @@
 #ifndef FT_ITERATOR
 # define FT_ITERATOR
 
-typedef long int ptrdiff_t;  // Разница между двумя указателями
 
-#include "iterator_tag.hpp"
-#include "iterator_category.hpp"
-#include "iterator_traits.hpp"
+
+# include "iterator_tag.hpp"
+# include "iterator_category.hpp"
+# include "iterator_traits.hpp"
+# include "iter_cat.hpp"
+# include "Val_type.hpp"
+# include "iter_swap.hpp"
+# include "Dist_type.hpp"
+# include "iter_advance.hpp"
+# include "iter_distance.hpp"
+
+
+namespace ft
+{
+	typedef long int ptrdiff_t;  // Разница между двумя указателями
+};
 
 /* Page 43 */
 /* Описание итераторов */
