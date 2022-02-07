@@ -12,6 +12,7 @@
 # include "Dist_type.hpp"
 # include "iter_advance.hpp"
 # include "iter_distance.hpp"
+# include "reverse_iterator.hpp"
 
 
 namespace ft
