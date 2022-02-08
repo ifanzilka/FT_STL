@@ -2,6 +2,8 @@
 # define FT_REVERSE_ITERATOR
 # include "iterator.hpp"
 
+
+/* При увелечении итреатора идет пошагово назад */
 namespace ft
 {
 	template<class RanIt>
