@@ -8,7 +8,7 @@ namespace ft
 	{
 		T tmp = *x;
 		*x = *y;
-		*y = Tmp;
+		*y = tmp;
 	}
 	
 	/* меняем мсетами */

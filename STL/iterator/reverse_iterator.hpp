@@ -8,11 +8,11 @@ namespace ft
 {
 	template<class RanIt>
 	class reverse_iterator : public iterator<
-		typename ft::iterator_traits<Ranit>::iterator_category,
-		typename ft::iterator_traits<Ranit>::value_type,
-		typename ft::iterator_traits<Ranit>::difference_type,
-		typename ft::iterator_traits<Ranit>::pointer,
-		typename ft::iterator_traits<Ranit>::reference>
+		typename ft::iterator_traits<RanIt>::iterator_category,
+		typename ft::iterator_traits<RanIt>::value_type,
+		typename ft::iterator_traits<RanIt>::difference_type,
+		typename ft::iterator_traits<RanIt>::pointer,
+		typename ft::iterator_traits<RanIt>::reference>
 	{
 	public:
 		typedef reverse_iterator<RanIt> 							Myt;
@@ -45,7 +45,7 @@ namespace ft
 		}
 
 
-
+		/* Разыменование */
 		Ref operator*() const
 		{
 			RanIt tmp = current;
@@ -57,12 +57,14 @@ namespace ft
 			return (&**this);
 		}
 
+		/* ++RevIt */
 		Myt& operator ++ ()
 		{
 			--current;
 			return (*this);
 		}
 
+		/* RevIt++ */
 		Myt operator ++ (int)
 		{
 			Myt Tmp = *this;
@@ -70,11 +72,14 @@ namespace ft
 			return (Tmp);
 		}
 
+		/* --RevIt */
 		Myt& operator -- ()
 		{
 			++current;
 			return (*this);
 		}
+
+		/* RevIt-- */
 		Myt operator -- (int)
 		{
 			Myt Tmp = *this;
@@ -104,7 +109,7 @@ namespace ft
 			return (*this);
 		}
 
-		Rt operator [] (D N) const
+		Ref operator [] (D N) const
 		{
 			return (*(*this + N));
 		}

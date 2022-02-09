@@ -88,20 +88,71 @@ void takes_ran_tag_ft()
 	Ptraits::pointer 			ptr_ptr = (char*)0;
 	Ptraits::reference 			ptr_ref = chs;
 	
-	// const char *pc = "abcdefg";
-	// ft::advance(pc, 4);
-	// assert(*pc == 'e');
-	// ft::advance(pc, -1);
-	// assert(*pc == 'd');
+	const char *pc = "abcdefg";
+	/* Сдвигаем итератор */
+	ft::advance(pc, 4);
+	assert(*pc == 'e');
+	ft::advance(pc, -1);
+	assert(*pc == 'd');
 
-	// assert(ft::distance(pc, pc + 3) == 3);
+	assert(ft::distance(pc, pc + 3) == 3);
+
+}
+
+typedef ft::reverse_iterator<PtrIt> RevIt;
+class MyrevIt : public RevIt
+{
+public:
+	MyrevIt (RevIt::iterator_type p) : RevIt(p)
+	{
+
+	}
+
+	RevIt::iterator_type get_current() const 
+	{
+		return (current);
+	};
+
+};
+
+void test_revit_ft()
+{ 
+	char *pc = (char*)"abcdefg" + 3;
+	PtrIt pcit(pc);
+	RevIt::iterator_type *p_iter = (PtrIt *)0;
+	
+
+	RevIt rit0;
+	
+	/*  Создаем итератор на основе другого итератора */
+	RevIt rit(pcit);
+
+	assert(rit.base() == pcit);
+	assert(*rit == 'c');
+	assert(*++rit == 'b');
+	
+	assert(*rit++ == 'b' && *rit == 'a');
+	assert(*--rit == 'b');
+	assert(*rit-- == 'b' && *rit == 'c');
+	
+	assert(*(rit +=2) == 'a');
+	assert(*(rit -= 2) == 'c');
+	assert(*(rit + 2) == 'a' && *rit == 'c');
+	assert(*(rit - 2) == 'e' && *rit == 'c');
+	assert(rit[2] == 'a');
+	assert(rit == rit);
+	assert(!(rit < rit) && rit < rit + 1);
+	assert((rit + 2) - rit == 2);
+
+	MyrevIt myrit(pc);
+	assert(myrit.get_current() == pcit);
 
 }
 
 void test_iterator()
 {
 	takes_ran_tag_ft();
-
+	test_revit_ft();
 }
 
 int main()

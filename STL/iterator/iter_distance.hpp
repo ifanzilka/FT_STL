@@ -50,6 +50,7 @@ namespace ft
 	template <class InIt, class D> inline
 	void Distance2(InIt F, InIt L, D & N, random_access_iterator_tag)
 	{
+		//std::cout << "Tyt\n";
 		N += L - F;
 	}
 	
