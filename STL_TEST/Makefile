@@ -20,3 +20,12 @@ $(MEMORY):
 start_memory: $(MEMORY)
 			@./$(MEMORY)
 			@rm $(MEMORY)
+
+VECTOR		= vector_test
+
+$(VECTOR):
+	$(CXX) $(CXXFLAGS) test_vector.cpp -o $(VECTOR)
+
+start_vector: $(VECTOR)
+			@./$(VECTOR)
+			@rm $(VECTOR)

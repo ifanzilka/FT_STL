@@ -1,7 +1,7 @@
 #ifndef FT_ALGORITHM
 # define FT_ALGORITHM
 
-# include "../STL/utility/utility.hpp"
+# include "../utility/utility.hpp"
 
 # include "copy.hpp"
 # include "mismatch.hpp"

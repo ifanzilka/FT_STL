@@ -39,6 +39,12 @@ namespace ft
 	{
 		
 	};
+
+	/* Для того чтобы аонимать что пришел стандартный тип */
+	struct Int_iterator_tag
+	{
+
+	};
 	
 	template <class It>
 	struct iterator_traits;

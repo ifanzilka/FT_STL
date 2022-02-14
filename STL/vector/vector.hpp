@@ -13,6 +13,7 @@
 
 #include "../iterator/iterator.hpp"
 
+#include "../algorithm/algorithm.hpp"
 
 namespace ft
 {
@@ -32,7 +33,7 @@ namespace ft
         //   rebind<T>::other Alty;
         //Alty Alval;
         
-        typedef ft::allocator<T> allocator_type;
+        typedef std::allocator<T> allocator_type;
         allocator_type Alval;
     
         /*  Use function : 
@@ -44,7 +45,7 @@ namespace ft
 	};
     
     /* T - > тип данных в векторе All -> аллокатор  для выдеения памяти*/
-    template<class T, class Alloc = ft::allocator<T> > 
+    template<class T, class Alloc = std::allocator<T> > 
     class vector : public Vector_val <T, Alloc> 
     {
     public:
@@ -123,15 +124,29 @@ namespace ft
 		template<class It>
 		vector(It F, It L): _base()
         {
-			Construct_EnableIf(F, L, &F);
+            Construct(F, L, ft:Iter_cat(F));
+			//Construct_EnableIf(F, L, &F);
 		}
 		
         template<class It>
 		vector(It F, It L, const allocator_type& Al): _base(Al)
         {
-			Construct_EnableIf(F, L, &F);
+            Construct(F, L, ft:Iter_cat(F));
+			//Construct_EnableIf(F, L, &F);
 		}
 		
+        template <class It>
+        void Construct(It F, It L, Int_iterator_tag)
+        {
+            // TO_DO
+        }
+
+        template <class It>
+        void Construct(It F, It L, Int_iterator_tag)
+        {
+            //TO_DO
+        }
+
         /* Деструктор */
         ~vector()
         {
@@ -560,7 +575,7 @@ namespace ft
         /* Вызывается этот конструктор если пришли числа */
         /* enable_if <True, T> */
         template <class It>
-		void Construct_EnableIf(It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type * = nullptr)
+		void Construct_EnableIf(It F, It L, typename std::enable_if<std::is_integral<It>::value, It>::type * = nullptr)
         {
 			size_type N = (size_type)F;
 			if (Allocate_zero(N))
@@ -570,7 +585,7 @@ namespace ft
         /* Вызывается этот конструктор если пришли итераторы */
         /* enable_if <false, T> */
 		template <class It>
-        void Construct_EnableIf(It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type * = nullptr)
+        void Construct_EnableIf(It F, It L, typename std::enable_if<!std::is_integral<It>::value, It>::type * = nullptr)
         {
 			Allocate_zero(0);
 			insert(begin(), F, L);
@@ -586,14 +601,14 @@ namespace ft
 
         /* Вставление элементов из последовтельности [F,L) если пришли числа */
         template <class It> 
-		void Inset_EnableIf(iterator P, It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type * = nullptr)
+		void Inset_EnableIf(iterator P, It F, It L, typename std::enable_if<std::is_integral<It>::value, It>::type * = nullptr)
         {
 		    insert(P, (size_type)F, (T)L);
 		}
 
         /* Вставление элементов из последовтельности [F,L) если пришли итераторы  */
 		template <class It> 
-		void Inset_EnableIf(iterator P, It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type * = nullptr)
+		void Inset_EnableIf(iterator P, It F, It L, typename std::enable_if<!std::is_integral<It>::value, It>::type * = nullptr)
         {
 		    Insert(P, F, L, Iter_cat(F));
 		}
