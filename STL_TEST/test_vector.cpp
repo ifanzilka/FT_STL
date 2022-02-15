@@ -156,7 +156,7 @@ void test_vector()
 
 int main()
 {
-    test_vector();
+    //test_vector();
 	std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;
 
     //std::vector<int> v1(8, 10);

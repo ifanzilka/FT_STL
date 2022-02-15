@@ -124,27 +124,28 @@ namespace ft
 		template<class It>
 		vector(It F, It L): _base()
         {
-            Construct(F, L, ft:Iter_cat(F));
-			//Construct_EnableIf(F, L, &F);
+            Construct(F, L, ft::Iter_cat(F));
 		}
 		
         template<class It>
 		vector(It F, It L, const allocator_type& Al): _base(Al)
         {
-            Construct(F, L, ft:Iter_cat(F));
-			//Construct_EnableIf(F, L, &F);
+            Construct(F, L, ft::Iter_cat(F));
 		}
 		
         template <class It>
         void Construct(It F, It L, Int_iterator_tag)
         {
-            // TO_DO
+            size_type N = (size_type)F;
+			if (Allocate_zero(N))
+			    Last = Call_construct(First, N, (T)L);
         }
 
         template <class It>
-        void Construct(It F, It L, Int_iterator_tag)
+        void Construct(It F, It L, input_iterator_tag)
         {
-            //TO_DO
+            Allocate_zero(0);
+			insert(begin(), F, L);
         }
 
         /* Деструктор */
@@ -159,21 +160,30 @@ namespace ft
 		    if (this == &X)
                 ;
 		    else if (X.size() == 0)
-		    	Clear();
+            {
+                Clear();
+            }
 		    else if (X.size() <= size())
             {
                 /* Если наш вектор больше чем тот откуда присваивание */
+		    	Clear();
+
 		    	pointer Q = ItCopy(X.begin(), X.end(), First);
-		    	Destroy(Q, Last);
+		    	
+                Destroy(Q, Last);
 		    	Last = First + X.size();
 		    }
 		    else
             {
                 /* Если размер нового ветора больше */
 		    	Destroy(First, Last);
-		    	_base::Alval.deallocate(First, End - First);
-		    	if(Allocate_zero(X.size()))
+		    	
+                _base::Alval.deallocate(First, End - First);
+		    	
+                if (Allocate_zero(X.size()))
+                {
 		    		Last = ItCopy(X.begin(), X.end(), First);
+                }
 		    }
 		    return (*this);
         }
@@ -268,7 +278,7 @@ namespace ft
 			resize(N, T());
 		}
 
-        /* Возвращаемый размер выделенной емкости хранилища */
+        /* Возвращаемый размер выделенной памяти */
         size_type capacity() const
         {
 		    if (First == 0)
@@ -380,11 +390,25 @@ namespace ft
         template <class It>
 		void assign(It F, It L)
         {
-            erase(begin(), end());
-			Insert(begin(), F, L, Iter_cat(L));
+            //Assign(F, L, ft::Iter_cat(F));
+            //erase(begin(), end());
+			//Insert(begin(), F, L, Iter_cat(L));
             //Assign_EnableIf(F, L, &F);
 		}
         
+        template <class It>
+        void Assign(It F, It L, Int_iterator_tag)
+        {
+            assign((size_type)F, (T)L);
+        }
+
+        template <class It>
+        void Assign(It F, It L, input_iterator_tag)
+        {
+            erase(begin(), end());
+            insert(begin(), F, L); 
+        }
+
         void assign(size_type N, const T& X)
         {
             T Tx = X;
@@ -502,12 +526,34 @@ namespace ft
 			}   
 		}
         
-        /* Вставление элементов из последовательности [F, L) */
-		template <class It>
+        template <class It>
 		void insert (iterator P, It F, It L)
         {
-            Inset_EnableIf(P, F, L, &F);
+            Insert(P, F, L, Iter_cat(F));
 		}
+        
+        /* Вставление элементов из последовательности [F, L) */
+        template <class It>
+		void Insert (iterator P, It F, It L, Int_iterator_tag)
+        {
+            insert(P, (size_type)F, (T)L);
+		}
+
+        template <class It>
+		void Insert (iterator P, It F, It L, input_iterator_tag)
+        {
+            for (; F != L; ++F, ++P)
+            {
+                P = insert(P, *F);
+            }
+		}
+
+        template <class It>
+		void Insert (iterator P, It F, It L, forward_iterator_tag)
+        {
+            
+		}
+        
 
         /***********/
         /* Erase   */
@@ -572,46 +618,7 @@ namespace ft
 
         protected:
 
-        /* Вызывается этот конструктор если пришли числа */
-        /* enable_if <True, T> */
-        template <class It>
-		void Construct_EnableIf(It F, It L, typename std::enable_if<std::is_integral<It>::value, It>::type * = nullptr)
-        {
-			size_type N = (size_type)F;
-			if (Allocate_zero(N))
-			    Last = Call_construct(First, N, (T)L);
-		}
-
-        /* Вызывается этот конструктор если пришли итераторы */
-        /* enable_if <false, T> */
-		template <class It>
-        void Construct_EnableIf(It F, It L, typename std::enable_if<!std::is_integral<It>::value, It>::type * = nullptr)
-        {
-			Allocate_zero(0);
-			insert(begin(), F, L);
-		}
-
-        /* Вставление элементов из последовтельности [F,L) */
-        template<class It>
-		void Insert(iterator P, It F, It L, input_iterator_tag)
-        {
-			for(; F != L; ++F, ++P)
-				P = insert(P, *F);
-		}
-
-        /* Вставление элементов из последовтельности [F,L) если пришли числа */
-        template <class It> 
-		void Inset_EnableIf(iterator P, It F, It L, typename std::enable_if<std::is_integral<It>::value, It>::type * = nullptr)
-        {
-		    insert(P, (size_type)F, (T)L);
-		}
-
-        /* Вставление элементов из последовтельности [F,L) если пришли итераторы  */
-		template <class It> 
-		void Inset_EnableIf(iterator P, It F, It L, typename std::enable_if<!std::is_integral<It>::value, It>::type * = nullptr)
-        {
-		    Insert(P, F, L, Iter_cat(F));
-		}
+        
 
         /* Выделяем память и заполянем нулями и инициализируем указатели*/
         bool Allocate_zero(size_type N)
