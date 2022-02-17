@@ -11,13 +11,21 @@
 
 namespace ft
 {
-	template<class C, class T, class Dist> inline
-	C Iter_cat (const ft::iterator<C, T, Dist> &)
+	// template<class C, class T, class Dist> inline
+	// C Iter_cat (const ft::iterator<C, T, Dist> &)
+	// {
+	// 	C x;
+	// 	return (x);
+	// }
+
+
+	template <class It>
+	typename iterator_traits<It>::iterator_category Iter_cat(It)
 	{
-		C x;
+		typename iterator_traits<It>::iterator_category x;
+
 		return (x);
 	}
-
 	template <class T> inline
 	ft::random_access_iterator_tag Iter_cat(const T*)
 	{

@@ -548,6 +548,16 @@ namespace ft
             }
 		}
 
+
+        // template <class It>
+		// void Insert (iterator P, It F, It L, random_access_iterator_tag)
+        // {
+        //     for (; F != L; ++F, ++P)
+        //     {
+        //         P = insert(P, *F);
+        //     }
+		// }
+
         template <class It>
 		void Insert (iterator P, It F, It L, forward_iterator_tag)
         {

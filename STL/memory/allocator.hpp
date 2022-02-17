@@ -20,7 +20,7 @@ namespace ft
 	// 	return ((T FARQ *) operator new(N * sizeof(T))));
 	// }
 
-	/* Шаблонная функция Allocate */
+	/* Шасв блонная функция Allocate */
 	template <class T> inline    
 	/* Выделяю память */
 	T*  Allocate(SIZT N, T*)

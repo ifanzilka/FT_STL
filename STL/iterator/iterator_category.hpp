@@ -18,7 +18,7 @@ namespace ft
 
 	
 	template<typename _Category, typename _Tp, typename _Distance = ptrdiff_t,typename _Pointer = _Tp*, typename _Reference = _Tp&>
-    struct iterator
+    struct iterator 
     {
 		/*
 		** One of the @link iterator_tags tag types@endlink.
