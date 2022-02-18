@@ -19,13 +19,14 @@ namespace ft
 	// }
 
 
-	template <class It>
+	template <class It> inline
 	typename iterator_traits<It>::iterator_category Iter_cat(It)
 	{
 		typename iterator_traits<It>::iterator_category x;
 
 		return (x);
 	}
+
 	template <class T> inline
 	ft::random_access_iterator_tag Iter_cat(const T*)
 	{
