@@ -264,7 +264,7 @@ namespace ft
 		    return (_base::Alval.max_size());
 		}
 
-        /* Изменение размера контейнера чтобы он содержал n элементов !!!!*/
+            
     	void resize(size_type N, T X)
         {
             if (size() < N)

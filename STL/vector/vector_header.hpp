@@ -166,8 +166,29 @@ namespace ft
         /******************************************************/
         /*                 Element access                    */
         /*****************************************************/
+        
+        /* Пеоеопределение операторов */
+        const_reference operator[] (size_type N) const;
 
+        reference operator[] (size_type N);
 
+        /* N element , отличие от [] тем что проверяется диапозон и выкидыаетя исключение out_of_range */
+        const_reference at(size_type N) const;
+
+        /* N element , отличие от [] тем что проверяется диапозон и выкидыаетя исключение out_of_range */
+        reference at(size_type N);
+        
+        /* Возращает первый элемент */
+        reference front();
+
+        /* Возращает первый элемент */
+        const_reference front() const;
+
+        /* Возвращает последний элемент */
+        reference back();
+
+        /* Возвращает последний элемент */
+        const_reference back() const;
 
     protected:
 
