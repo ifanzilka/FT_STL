@@ -64,9 +64,8 @@ namespace ft
     template<class It>
     vector<T, Alloc>::vector (It First, It Last, const allocator_type& Al) : _base(Al)
     {
-        Construct(First, Last, ft::Iter_cat(F));
+        Construct(First, Last, ft::Iter_cat(First));
     }
-
 
     /* Деструктор */
     template<class T,  class Alloc>

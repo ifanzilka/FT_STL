@@ -108,11 +108,66 @@ namespace ft
         template<class It>
         vector(It F, It L, const allocator_type& Al);
 
+        /* Деструктор */
+        ~vector();
+
+
         /* Переопределение оператора = */
         vector& operator = (const vector& X);
 
-        /* Деструктор */
-        ~vector();
+        /* Получаем аллокатор */
+        allocator_type get_allocator() const;
+
+
+        /*****************************************************/
+        /*                      Iterators                    */
+        /*****************************************************/
+
+        iterator begin();
+
+        const_iterator begin() const;
+
+        iterator end();
+
+        const_iterator end() const;
+
+        reverse_iterator rbegin();
+
+        const_reverse_iterator rbegin() const;
+
+        reverse_iterator rend();
+
+        const_reverse_iterator rend() const;
+
+        /*****************************************************/
+        /*                      Capacity                     */
+        /*****************************************************/
+
+        /* Возвращает размер вектора */
+        size_type size() const;
+
+        /* Возвращет максимальный размер аллоцированной памяти */
+        size_type max_size() const;
+
+        /* Изменение размера контейнера чтобы он содержал n элементов !!!!*/
+    	void resize(size_type N, T X);
+
+        void resize(size_type N);
+
+        /* Возвращаемый размер выделенной памяти */
+        size_type capacity() const;
+
+        /* Проверяет, является ли вектор пустым */
+        bool empty() const;
+
+        /* Запросить изменение вместимости */
+    	void reserve(size_type N);
+
+        /******************************************************/
+        /*                 Element access                    */
+        /*****************************************************/
+
+
 
     protected:
 
@@ -142,6 +197,10 @@ namespace ft
         
         /* Вызываю деструкторы и очищаю память */
 		void Clear();
+
+
+        /* Указатель на T .На начало , на полседний элемент , на конец */
+        pointer First, Last, End;
 
     };
 }

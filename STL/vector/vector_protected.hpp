@@ -5,7 +5,7 @@
 
 namespace ft
 {
-        /* Выделяем память и заполянем нулями и инициализируем указатели*/
+    /* Выделяем память и заполянем нулями и инициализируем указатели*/
     template<class T,  class Alloc>
     bool vector<T, Alloc>::Allocate_zero(size_type N)
     {
