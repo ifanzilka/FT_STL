@@ -108,6 +108,9 @@ namespace ft
         template<class It>
         vector(It F, It L, const allocator_type& Al);
 
+        /* Переопределение оператора = */
+        vector& operator = (const vector& X);
+
         /* Деструктор */
         ~vector();
 
