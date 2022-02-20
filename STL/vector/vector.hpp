@@ -548,7 +548,12 @@ namespace ft
             }
 		}
 
-
+        template <class It>
+		void Insert (iterator P, It F, It L, forward_iterator_tag)
+        {
+            
+		}
+        
         // template <class It>
 		// void Insert (iterator P, It F, It L, random_access_iterator_tag)
         // {
@@ -558,11 +563,7 @@ namespace ft
         //     }
 		// }
 
-        template <class It>
-		void Insert (iterator P, It F, It L, forward_iterator_tag)
-        {
-            
-		}
+
         
 
         /***********/

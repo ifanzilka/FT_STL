@@ -190,6 +190,44 @@ namespace ft
         /* Возвращает последний элемент */
         const_reference back() const;
 
+        /*****************************************************/
+        /*                    Modifiers                      */
+        /*****************************************************/
+        
+        /* Присваивает вектору новое содержимое, заменяя его текущее содержимое и соответствующим образом изменяя его размер. */
+        template <class It>
+		void assign(It F, It L);
+
+        void assign(size_type N, const T& X);
+
+        /* Добавить элемент в конeц */
+        void push_back(const T& X);
+
+        /* Удалить последний элемент */
+        void pop_back();
+
+        /* Вставление элемента X перед итератором P (возвращаю итератор на вставленный элемент) */
+		iterator insert(iterator P, const T& X);
+
+        /* Вставление элемента X перед итератором P  (M раз) (возвращаю итератор на вставленный элемент) */
+        void insert(iterator P, size_type M, const T& X);
+
+        template <class It>
+		void insert (iterator P, It F, It L);
+
+        /* Стирание элемента P по итератору или в промежутке */
+	    iterator erase(iterator P);
+
+        /* Стирание элемента P по итератору или в промежутке */
+        iterator erase(iterator F, iterator L);
+
+        /* Поменять местами содержимое */
+        void swap(vector &X);
+
+        /* Очищаем */
+        void clear();
+
+
     protected:
 
         /***************/
@@ -218,7 +256,7 @@ namespace ft
         
         /* Вызываю деструкторы и очищаю память */
 		void Clear();
-
+        
 
         /* Указатель на T .На начало , на полседний элемент , на конец */
         pointer First, Last, End;
