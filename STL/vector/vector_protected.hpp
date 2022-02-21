@@ -50,7 +50,9 @@ namespace ft
         try
         {
             for(; First != Last; ++Ptr, ++First)
+            {
                 _base::Alval.construct(Ptr, *First); // *Firts -> значение
+            }
         }
         catch (...)
         {
@@ -114,14 +116,85 @@ namespace ft
         //std::cout<<"2\n";
     }
 
-    /* Вставление элементов из последовательности [F, L) */
+    /* Вставление элементов из последовательности [F, L) в  итератор P */
     template<class T,  class Alloc>
     template <class It>
     void vector<T, Alloc>::Insert(iterator P, It F, It L, forward_iterator_tag)
     {
-        //std::cout<<"2\n";
+        /* P -> begin() */
+        size_type M = 0;
 
-        //TO DO
+        /* Меняем М до (F - L) */
+        ft::Distance(F, L, M);
+        size_type N = capacity();
+        
+        if (M == 0)
+            ;
+        else if (max_size() - size() < M)
+        {
+            std::cout << "Error(Xlen)\n";
+        }
+        else if (N < size() + M) /* Если не хватает места под новые M элементов*/
+        {
+            if ((max_size() - N / 2) < N)
+                N = 0;
+            else
+                N = N + N / 2;
+            
+            if (N < size() + M)
+                N = size() + M;
+
+            pointer S = _base::Alval.allocate(N, (void *) 0);
+            pointer Q;
+            try
+            {
+                Q = ItCopy(begin(), P, S); /* Вставляю новые элементы в новую аллоцированную память */
+                Q = ItCopy(F, L, Q); /* Копирую остальную часть */
+                ItCopy(P, end(), Q);
+            }
+            catch (...)
+            {
+                Destroy(S, Q);
+                _base::Alval.deallocate(S, N);
+                throw ;
+            }
+            if (First != 0)
+            {
+                /* Вызываю деструторы */
+                Destroy(First, Last);
+                /* Очищаю */
+                _base::Alval.deallocate(First, End - First);
+            }
+            End = S + N;
+            Last = S + size() + M;
+            First = S;
+        }
+        else if ((size_type)(end() - P) < M) /* Если нужно увеличить размер вектора (не переаллацируя!!! (то есть памяти хватает)) */
+        {            
+            /* Последние элементы смещаю назад*/
+            ItCopy(P, end(), P.base() + M);
+            It Mid = F;
+            advance(Mid, end() - P);
+
+            try
+            {
+                ItCopy(Mid, L, Last);
+            }
+            catch (...)
+            {
+                Destroy(P.base() + M, Last + M);
+                throw;
+            }
+            Last += M;
+            copy(F, Mid, P);
+        }
+        else if (0 < M)
+        {
+            iterator Oend = end();
+            Last = ItCopy(Oend - M, Oend, Last);
+            ft::copy_backward(P, Oend - M, Oend);
+            copy(F, L, P);
+        }
     }
 }
 
