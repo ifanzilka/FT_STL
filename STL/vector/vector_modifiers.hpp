@@ -16,7 +16,10 @@ namespace ft
     template <class T, class Alloc>
     void vector<T, Alloc>::assign(size_type N, const T& X)
     {
-
+        T Tx = X;
+		
+        erase(begin(), end());
+		insert(begin(), N, Tx);
     }
 
     /* Добавить элемент в конeц */
@@ -54,32 +57,54 @@ namespace ft
 
     }
 
-    /* Стирание элемента P по итератору или в промежутке */
+    /* Стирание элемента P по итератору */
     template <class T, class Alloc>
 	vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator P)
     {
-
+        /* копируем элементы с позции P + 1 (грубо говоря смещаем на одну позцицию)*/
+        ft::copy(P + 1, end(), P);
+        Destroy(Last - 1, Last);
+        --Last;
+        return (P);
     }
 
-    /* Стирание элемента P по итератору или в промежутке */
+    /* Стирание элемента в промежутке */
     template <class T, class Alloc>
     vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator F, iterator L)
     {
-
+        if (F != L)
+        {
+            pointer S  = ft::copy(L, end(), F.base());
+            Destroy(S, Last);
+            Last = S;
+        }
+        return (F);
     }
 
     /* Поменять местами содержимое */
     template <class T, class Alloc>
     void vector<T, Alloc>::swap(vector &X)
     {
-
+        /* Если совпали алокаторы*/
+        if (_base::Alval == X.Alval)
+        {
+            // ДОДЕЛАТЬ!
+            //ft::swap(First, X.First);
+            //ft::swap(Last, X.Last);
+            //ft::swap(End, X.End);
+        }
+        else
+        {
+            vector Tmp = *this;
+            *this = X, X = Tmp;
+        }
     }
 
     /* Очищаем */
     template <class T, class Alloc>
     void vector<T, Alloc>::clear()
     {
-
+        erase(begin(), end());
     }
 }
 

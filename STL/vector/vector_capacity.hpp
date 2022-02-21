@@ -7,7 +7,7 @@ namespace ft
 {
     /* Возвращает размер вектора */
     template <class T, class Alloc>
-    vector<T, Alloc>::size_type vector<T, Alloc>:: size() const
+    typename vector<T, Alloc>::size_type vector<T, Alloc>:: size() const
     {
         if (First == 0)
             return (0);
@@ -16,7 +16,7 @@ namespace ft
 
     /* Возвращет максимальный размер аллоцированной памяти */
     template <class T, class Alloc>
-    vector<T, Alloc>::size_type vector<T, Alloc>:: max_size() const
+    typename vector<T, Alloc>::size_type vector<T, Alloc>:: max_size() const
     {
         return (_base::Alval.max_size());
     }
@@ -39,7 +39,7 @@ namespace ft
 
     /* Возвращаемый размер выделенной памяти */
     template <class T, class Alloc>
-    vector<T, Alloc>::size_type vector<T, Alloc>::capacity() const
+    typename vector<T, Alloc>::size_type vector<T, Alloc>::capacity() const
     {
         if (First == 0)
 			return (0);
@@ -58,7 +58,8 @@ namespace ft
     void vector<T, Alloc>::reserve(size_type N)
     {
         if (max_size() < N) 
-            length_error(); // Исключение
+            std::cerr << "Error\n";
+            //length_error(); // Исключение
         else if (capacity() < N)
         {
             pointer Q = _base::Alval.allocate(N, (void *)0);

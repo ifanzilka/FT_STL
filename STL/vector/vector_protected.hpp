@@ -23,7 +23,7 @@ namespace ft
 
     /* Вызываю  N раз конструктор в области памяти Q и возвращаю указатель где вызывали Ufill */
     template<class T,  class Alloc>
-    vector<T, Alloc>::pointer vector<T, Alloc>::Call_construct(pointer Q, size_type N, const T& X)
+    typename vector<T, Alloc>::pointer vector<T, Alloc>::Call_construct(pointer Q, size_type N, const T& X)
     {
         pointer Qs = Q;
         try
@@ -42,7 +42,7 @@ namespace ft
     /* Копируем зачения от First до Last (Ucopy) */
     template<class T,  class Alloc>
     template<class It>
-    vector<T, Alloc>::pointer vector<T, Alloc>::ItCopy(It First, It Last, pointer Ptr)
+    typename vector<T, Alloc>::pointer vector<T, Alloc>::ItCopy(It First, It Last, pointer Ptr)
     {
         pointer CopyPtr = Ptr;
 

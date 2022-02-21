@@ -16,7 +16,7 @@ namespace ft
     template<class T,  class Alloc>
     vector<T, Alloc>::vector (const allocator_type& Al): _base(Al)
     {
-       Allocate_zero(0);
+        Allocate_zero(0);
     }
     
     /* Конструктор с размером  */
