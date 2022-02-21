@@ -2,6 +2,7 @@
 # define FT_VECTOR_CONSTRUCTOR
 
 #include "vector_header.hpp"
+#include "vector_protected.hpp"
 
 namespace ft
 {
@@ -54,7 +55,7 @@ namespace ft
     /* Конструкторы с итераторами */
     template<class T,  class Alloc>
     template<class It>
-    vector<T, Alloc>::vector (It First, It Last): _base()
+    vector<T, Alloc>::vector(It First, It Last): _base()
     {
         Construct(First, Last, ft::Iter_cat(First));
     }

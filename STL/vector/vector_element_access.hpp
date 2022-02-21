@@ -68,7 +68,7 @@ namespace ft
     template <class T, class Alloc>
     typename vector<T, Alloc>::const_reference  vector<T, Alloc>::back() const
     {
-        return (0);
+        return(*(end() - 1));
     }
 }
 

@@ -63,9 +63,9 @@ void test_vector()
 	ft::vector<char> v3(v1a.begin(), v1a.end());
 	assert(v3.size() == 6 && v3.front() =='x');
 
-	// /* Создали константный вектор на итераторов*/
-	// const ft::vector<char> v4 (v1a.begin(), v1a.end(), al);
-	// assert(v4.size() == 6 && v4.back() == 'x');
+	/* Создали константный вектор на итераторов*/
+	//const ft::vector<char> v4 (v1a.begin(), v1a.end(), al);
+	//assert(v4.size() == 6 && v4.back() == 'x');
 
 	// /* Приравнивание */
 	// v0 = v4;

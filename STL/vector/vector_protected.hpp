@@ -2,6 +2,7 @@
 # define FT_VECTOR_PROTECTED
 
 #include "vector_header.hpp"
+#include "vector_modifiers.hpp"
 
 namespace ft
 {
@@ -94,9 +95,34 @@ namespace ft
     void vector<T, Alloc>::Construct(It F, It L, input_iterator_tag)
     {
         Allocate_zero(0);
-        //insert(begin(), F, L);
+        insert(begin(), F, L);
     }
 
+    /* Вставление элементов из последовательности [F, L) */
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Insert(iterator P, It F, It L, Int_iterator_tag)
+    {
+
+    }
+
+    /* Вставление элементов из последовательности [F, L) */
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Insert(iterator P, It F, It L, input_iterator_tag)
+    {
+        //std::cout<<"2\n";
+    }
+
+    /* Вставление элементов из последовательности [F, L) */
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Insert(iterator P, It F, It L, forward_iterator_tag)
+    {
+        //std::cout<<"2\n";
+
+        //TO DO
+    }
 }
 
 #endif

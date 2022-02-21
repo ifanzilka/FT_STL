@@ -2,6 +2,8 @@
 # define FT_VECTOR_MODIFIERS
 
 #include "vector_header.hpp"
+// #include "vector_protected.hpp"
+// #include "vector_iterators.hpp"
 
 namespace ft
 {
@@ -16,10 +18,10 @@ namespace ft
     template <class T, class Alloc>
     void vector<T, Alloc>::assign(size_type N, const T& X)
     {
-        T Tx = X;
+        //T Tx = X;
 		
-        erase(begin(), end());
-		insert(begin(), N, Tx);
+        //erase(begin(), end());
+		//insert(begin(), N, Tx);
     }
 
     /* Добавить элемент в конeц */
@@ -38,9 +40,9 @@ namespace ft
 
     /* Вставление элемента X перед итератором P (возвращаю итератор на вставленный элемент) */
     template <class T, class Alloc>
-	vector<T, Alloc>::iterator vector<T, Alloc>::insert(iterator P, const T& X)
+	typename vector<T, Alloc>::iterator vector<T, Alloc>::insert(iterator P, const T& X)
     {
-        return (0);
+        //return (0);
     }
     
     /* Вставление элемента X перед итератором P  (M раз) (возвращаю итератор на вставленный элемент) */
@@ -52,14 +54,14 @@ namespace ft
 
     template <class T, class Alloc>
     template <class It>
-	void vector<T, Alloc>::insert (iterator P, It F, It L)
+	void vector<T, Alloc>::insert(iterator P, It F, It L)
     {
-
+        Insert(P, F, L, Iter_cat(F));
     }
 
     /* Стирание элемента P по итератору */
     template <class T, class Alloc>
-	vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator P)
+	typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator P)
     {
         /* копируем элементы с позции P + 1 (грубо говоря смещаем на одну позцицию)*/
         ft::copy(P + 1, end(), P);
@@ -70,7 +72,7 @@ namespace ft
 
     /* Стирание элемента в промежутке */
     template <class T, class Alloc>
-    vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator F, iterator L)
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator F, iterator L)
     {
         if (F != L)
         {

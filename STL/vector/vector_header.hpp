@@ -257,6 +257,15 @@ namespace ft
         /* Вызываю деструкторы и очищаю память */
 		void Clear();
         
+        /* Вставление элементов из последовательности [F, L) */
+        template <class It>
+		void Insert(iterator P, It F, It L, Int_iterator_tag);
+
+        template <class It>
+		void Insert (iterator P, It F, It L, input_iterator_tag);
+
+        template <class It>
+		void Insert (iterator P, It F, It L, forward_iterator_tag);
 
         /* Указатель на T .На начало , на полседний элемент , на конец */
         pointer First, Last, End;
