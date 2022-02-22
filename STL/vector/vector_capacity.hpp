@@ -1,7 +1,7 @@
 #ifndef FT_VECTOR_CAPACITY
 # define FT_VECTOR_CAPACITY
 
-#include "vector_header.hpp"
+#include "vector.hpp"
 
 namespace ft
 {
@@ -58,8 +58,7 @@ namespace ft
     void vector<T, Alloc>::reserve(size_type N)
     {
         if (max_size() < N) 
-            std::cerr << "Error\n";
-            //length_error(); // Исключение
+            throw RED"vector<T> too long"F_NONE;
         else if (capacity() < N)
         {
             pointer Q = _base::Alval.allocate(N, (void *)0);

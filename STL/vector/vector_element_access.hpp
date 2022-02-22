@@ -1,7 +1,7 @@
 #ifndef FT_VECTOR_ELEMENT_ACCESS
 # define FT_VECTOR_ELEMENT_ACCESS
 
-# include "vector_header.hpp"
+# include "vector.hpp"
 # include "vector_iterators.hpp"
 
 namespace ft
@@ -26,8 +26,7 @@ namespace ft
     typename vector<T, Alloc>::const_reference vector<T, Alloc>::at(size_type N) const
     {
         if (size() <= N)
-            std::cerr << "Error\n";
-            //out_range_error();
+            throw RED"vector<T> subscript"F_NONE;
 		return (*(begin() + N));
     }
 
@@ -36,8 +35,7 @@ namespace ft
     typename vector<T, Alloc>::reference vector<T, Alloc>::at(size_type N)
     {
         if (size() <= N)
-			std::cout << "Error\n";
-            //out_range_error(); // Исключение
+			throw RED"vector<T> subscript"F_NONE;
 		return (*(begin() + N));	
     }
 

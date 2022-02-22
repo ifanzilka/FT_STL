@@ -1,7 +1,7 @@
 #ifndef FT_VECTOR_MODIFIERS
 # define FT_VECTOR_MODIFIERS
 
-#include "vector_header.hpp"
+#include "vector.hpp"
 // #include "vector_protected.hpp"
 // #include "vector_iterators.hpp"
 
@@ -62,8 +62,7 @@ namespace ft
             ;
         else if (max_size() - size() < M)
         {
-            std::cout << "Hello\n";
-            //length_error();
+            throw RED"vector<T> too long"F_NONE;
         }
         else if (N < size() + M)
         {

@@ -1,7 +1,7 @@
 #ifndef FT_VECTOR_PROTECTED
 # define FT_VECTOR_PROTECTED
 
-#include "vector_header.hpp"
+#include "vector.hpp"
 #include "vector_modifiers.hpp"
 
 namespace ft
@@ -132,7 +132,7 @@ namespace ft
             ;
         else if (max_size() - size() < M)
         {
-            std::cout << "Error(Xlen)\n";
+            throw RED"vector<T> too long"F_NONE;
         }
         else if (N < size() + M) /* Если не хватает места под новые M элементов*/
         {
