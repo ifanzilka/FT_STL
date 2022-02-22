@@ -113,7 +113,7 @@ namespace ft
     template <class It>
     void vector<T, Alloc>::Insert(iterator P, It F, It L, input_iterator_tag)
     {
-        //std::cout<<"2\n";
+        
     }
 
     /* Вставление элементов из последовательности [F, L) в  итератор P */
@@ -196,6 +196,23 @@ namespace ft
             copy(F, L, P);
         }
     }
+
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Assign(It F, It L, Int_iterator_tag)
+    {
+        assign((size_type)F, (T)L);
+    }
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Assign(It F, It L, input_iterator_tag)
+    {
+        erase(begin(), end());
+        insert(begin(), F, L); 
+    }
+
 }
 
 #endif

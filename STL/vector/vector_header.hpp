@@ -267,10 +267,63 @@ namespace ft
         template <class It>
 		void Insert (iterator P, It F, It L, forward_iterator_tag);
 
+        template <class It>
+        void Assign(It F, It L, Int_iterator_tag);
+
+        template <class It>
+        void Assign(It F, It L, input_iterator_tag);    
+
         /* Указатель на T .На начало , на полседний элемент , на конец */
         pointer First, Last, End;
 
     };
+
+    /*****************************************************/
+    /*             Overload operators                    */
+    /*****************************************************/
+
+    template<class T, class allocator_type> inline
+	bool operator == (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+	    return (X.size() == Y.size() && ft::equal(X.begin(), X.end(), Y.begin()));
+	}
+
+	template<class T, class allocator_type> inline
+	bool operator != (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+	    return (!(X == Y));
+	}
+
+	template<class T, class allocator_type> inline
+	bool operator < (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+		return (ft::lexicographical_compare(X.begin(), X.end(), Y.begin(), Y.end()));
+	}
+	
+    template<class T, class allocator_type> inline
+	bool operator > (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+		return (Y < X);
+	}
+	
+    template<class T, class allocator_type> inline
+	bool operator >= (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+		return (!(X < Y));
+	}
+	
+    template<class T, class allocator_type> inline
+	bool operator <= (const vector<T, allocator_type>& X, const vector<T, allocator_type>& Y)
+    {
+		return (!(Y < X));
+	}
+	
+	template<class T, class allocator_type> inline
+	void swap (vector<T, allocator_type>& X, vector<T, allocator_type>& Y)
+    {
+		X.swap(Y);
+	}
+
 }
 
 # include "vector_rel.hpp"

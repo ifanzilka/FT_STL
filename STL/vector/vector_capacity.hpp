@@ -25,10 +25,10 @@ namespace ft
     template <class T, class Alloc>
     void vector<T, Alloc>::resize(size_type N, T X)
     {
-        // if (size() < N)
-		// 	insert(end(), N - size(), X);
-		// else if (N < size())
-		// 	erase(begin() + N, end());
+        if (size() < N)
+		    insert(end(), N - size(), X);
+		else if (N < size())
+			erase(begin() + N, end());
     }
 
     template <class T, class Alloc>
