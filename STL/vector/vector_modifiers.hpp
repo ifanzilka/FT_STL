@@ -128,11 +128,12 @@ namespace ft
         }   
     }
 
+    /* Вставление элементов в позицию P, от F до L */
     template <class T, class Alloc>
     template <class It>
-	void vector<T, Alloc>::insert(iterator P, It F, It L)
+	void vector<T, Alloc>::insert(iterator Position, It First, It Last)
     {
-        Insert(P, F, L, Iter_cat(F));
+        Insert(Position, First, Last, Iter_cat(First));
     }
 
     /* Стирание элемента P по итератору */

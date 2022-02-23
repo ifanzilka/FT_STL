@@ -4,14 +4,13 @@
 namespace ft
 {
 	/* Template function Distance */
+
 	template <class InIt> inline
 	typename ft::iterator_traits<InIt>::difference_type distance(InIt F, InIt L)
 	{
 		typename ft::iterator_traits<InIt>::difference_type N = 0;
-
 		Distance2(F, L, N, ft::Iter_cat(F));
 		return (N);
-
 	}
 
 	template <class InIt, class D> inline
@@ -50,11 +49,8 @@ namespace ft
 	template <class InIt, class D> inline
 	void Distance2(InIt F, InIt L, D & N, random_access_iterator_tag)
 	{
-		//std::cout << "Tyt\n";
 		N += L - F;
 	}
-	
-
 }
 
 #endif

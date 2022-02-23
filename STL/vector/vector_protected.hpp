@@ -100,7 +100,7 @@ namespace ft
         insert(begin(), F, L);
     }
 
-    /* Вставление элементов из последовательности [F, L) */
+    /* Вставление элементов в позицию P, F раз элемента L */
     template<class T,  class Alloc>
     template <class It>
     void vector<T, Alloc>::Insert(iterator P, It F, It L, Int_iterator_tag)

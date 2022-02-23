@@ -4,28 +4,28 @@
 # include "iterator.hpp"
 
 /* 
-** Эти функции нужны для понимаю какой из классов
+** Эти функции нужны для понимания какой из классов
 ** шаблонной функции пришел
 ** раньще называлась std::__iterator_category
 */
 
 namespace ft
 {
-	// template<class C, class T, class Dist> inline
-	// C Iter_cat (const ft::iterator<C, T, Dist> &)
-	// {
-	// 	C x;
-	// 	return (x);
-	// }
-
-
-	template <class It> inline
-	typename iterator_traits<It>::iterator_category Iter_cat(It)
+	template<class C, class T, class Dist, class Pt, class Rt> inline
+	C Iter_cat (const ft::iterator<C, T, Dist, Pt, Rt> &)
 	{
-		typename iterator_traits<It>::iterator_category x;
-
+		C x;
 		return (x);
 	}
+
+
+	// template <class It> inline
+	// typename iterator_traits<It>::iterator_category Iter_cat(It)
+	// {
+	// 	typename iterator_traits<It>::iterator_category x;
+
+	// 	return (x);
+	// }
 
 	template <class T> inline
 	ft::random_access_iterator_tag Iter_cat(const T*)

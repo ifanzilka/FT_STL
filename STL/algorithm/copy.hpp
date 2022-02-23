@@ -5,21 +5,22 @@ namespace ft
 {
 	/* Копируем в итератор X */
 	template <class InIt, class OutIt> inline
-	OutIt copy(InIt F, InIt L, OutIt X)
+	OutIt copy(InIt First, InIt Last, OutIt X)
 	{
-		for (; F != L; ++X, ++F)
+		for (; First != Last; ++X, ++First)
 		{
-			*X = *F;
+			*X = *First;
 		}
 		return (X);
 	}
 
+	/* Копируем в итератор X */
 	template <class BidIt1, class BidIt2> inline
-	BidIt2 copy_backward (BidIt1 F, BidIt1 L, BidIt2 X)
+	BidIt2 copy_backward(BidIt1 First, BidIt1 Last, BidIt2 X)
 	{
-		while (F != L)
+		while (First != Last)
 		{
-			*--X = *--L;
+			*--X = *--Last;
 		}
 		return (X);
 	}

@@ -150,6 +150,12 @@ void test_vector()
 
 	assert(itp->first == 4 && itp->second == 'a') ;
 
+
+	/* Тест на тег итератора (инт)*/
+	ft::vector<int> vec;
+	vec.insert(vec.begin(), 5, 0);
+
+	assert(vec.size() == 5);
 	try 
 	{
 		pair.at(10);

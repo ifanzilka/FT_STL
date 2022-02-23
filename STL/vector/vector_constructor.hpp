@@ -6,7 +6,7 @@
 
 namespace ft
 {
-        /* Constructor */
+    /* Constructor */
     template<class T,  class Alloc>
 	vector<T, Alloc>::vector(): _base()
     {

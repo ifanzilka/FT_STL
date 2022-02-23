@@ -12,7 +12,7 @@ namespace ft
 	template<class T, class Pr> inline
 	const T& max(const T& X, const T& Y, Pr P)
 	{
-		return (P(X,Y) ? Y : X);
+		return (P(X, Y) ? Y : X);
 	}
 }
 
