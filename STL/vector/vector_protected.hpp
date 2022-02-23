@@ -105,7 +105,7 @@ namespace ft
     template <class It>
     void vector<T, Alloc>::Insert(iterator P, It F, It L, Int_iterator_tag)
     {
-
+        insert(P, (size_type)F, (T)L);
     }
 
     /* Вставление элементов из последовательности [F, L) */
@@ -113,7 +113,10 @@ namespace ft
     template <class It>
     void vector<T, Alloc>::Insert(iterator P, It F, It L, input_iterator_tag)
     {
-        
+        for (; F != L; ++F, ++P)
+        {
+            P = insert(P, *F);
+        }
     }
 
     /* Вставление элементов из последовательности [F, L) в  итератор P */

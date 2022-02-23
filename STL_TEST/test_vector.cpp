@@ -156,8 +156,9 @@ void test_vector()
 		std::cerr << "No exception is thrown" << std::endl;
 		assert(false);
 	}
-	catch(...)
+	catch(const char *e)
 	{
+		std::cerr << e << std::endl;
 		assert(true);
 	}
 
