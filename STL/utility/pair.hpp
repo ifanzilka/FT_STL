@@ -55,7 +55,7 @@ namespace ft
 	}
     
 	template <class T, class U>
-	bool operator == (const pair<T, U>& x, const pair<T, U>& y)
+	bool  operator == (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return x.first == y.first && x.second == y.second ;
 	}

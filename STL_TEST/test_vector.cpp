@@ -11,7 +11,7 @@ void test_vector()
 
 	char ch, carr[] = "abc";
 
-	ft::vector<char>::allocator_type	*p_alloc	= (std::allocator<char> *)0;
+	ft::vector<char>::allocator_type	*p_alloc	= (ft::allocator<char> *)0;
 	ft::vector<char>::pointer			p_ptr		= (char *)0;
 	ft::vector<char>::const_pointer		p_cptr		= (const char *)0;
 	ft::vector<char>::reference			p_ref		= ch;
@@ -31,7 +31,7 @@ void test_vector()
 
 
 	ft::vector<char> v0;
-	std::allocator<char> al = v0.get_allocator();
+	ft::allocator<char> al = v0.get_allocator();
 	
 	//конструктор с другим аллокатором
 	ft::vector<char> v0a(al);
@@ -142,11 +142,11 @@ void test_vector()
 	assert(v0 != v1 && v1 < v0);
 	assert(v0 >= v1 && v1 <= v0 && v1 >= v1 && v0 <= v0);
 
-	ft::vector<ft::pair<int, char>, std::allocator<ft::pair<int, char> > > pair;
+	ft::vector<ft::pair<int, char>, ft::allocator<ft::pair<int, char> > > pair;
 
 	pair.insert(pair.begin(), ft::make_pair(4, 'a'));
 
-	ft::vector<ft::pair<int, char>, std::allocator<ft::pair<int, char> > >::iterator itp(pair.begin());
+	ft::vector<ft::pair<int, char>, ft::allocator<ft::pair<int, char> > >::iterator itp(pair.begin());
 
 	assert(itp->first == 4 && itp->second == 'a') ;
 

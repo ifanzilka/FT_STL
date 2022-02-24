@@ -34,7 +34,7 @@ namespace ft
         //   rebind<T>::other Alty;
         //Alty Alval;
         
-        typedef std::allocator<T> allocator_type;
+        typedef ft::allocator<T> allocator_type;
         allocator_type Alval;
     
         /*  Use function : 
@@ -46,7 +46,7 @@ namespace ft
 	};
 
     /* T - > тип данных в векторе All -> аллокатор  для выдеения памяти*/
-    template<class T, class Alloc = std::allocator<T> > 
+    template<class T, class Alloc = ft::allocator<T> > 
     class vector : public Vector_val <T, Alloc> 
     {
     public:
