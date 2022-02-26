@@ -15,6 +15,7 @@ namespace ft
         Assign(F, L, ft::Iter_cat(F));
     }
 
+    /* Присваивает вектору новое содержимое,  N раз элемент X */
     template <class T, class Alloc>
     void vector<T, Alloc>::assign(size_type N, const T& X)
     {
@@ -34,8 +35,9 @@ namespace ft
     /* Удалить последний элемент */
     template <class T, class Alloc>
     void vector<T, Alloc>::pop_back()
-    {
-         erase(end() -1);
+    {   
+        /* Стираем один элемент */
+        erase(end() -1);
     }
 
     /* Вставление элемента X перед итератором P (возвращаю итератор на вставленный элемент) */
@@ -147,7 +149,7 @@ namespace ft
         return (P);
     }
 
-    /* Стирание элемента в промежутке */
+    /* Стирание элемента в промежутке Вызывая леструктор */
     template <class T, class Alloc>
     typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator F, iterator L)
     {

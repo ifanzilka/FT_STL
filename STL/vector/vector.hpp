@@ -1,7 +1,7 @@
 #ifndef FT_VECTOR_HEADER
 # define FT_VECTOR_HEADER
 
-/* Page 151 */
+/* Page 351 */
 
 /* Подключаем для аллокатора */
 # include <memory>  
@@ -198,6 +198,7 @@ namespace ft
         template <class It>
 		void assign(It F, It L);
 
+        /* Присваивает вектору новое содержимое,  N раз элемент X */
         void assign(size_type N, const T& X);
 
         /* Добавить элемент в конeц */
