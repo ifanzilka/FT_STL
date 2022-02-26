@@ -70,6 +70,7 @@ namespace ft
 		Myt operator -- (int)
 		{
 			Myt Tmp = *this;
+			
 			--current;
 			return (Tmp);
 		}

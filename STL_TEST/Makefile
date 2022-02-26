@@ -29,3 +29,12 @@ $(VECTOR):
 start_vector: $(VECTOR)
 			@./$(VECTOR) || echo " "
 			@rm $(VECTOR) || echo " "
+
+STACK		= stack_test
+
+$(STACK):
+	$(CXX) $(CXXFLAGS) test_stack.cpp -o $(STACK)
+
+start_stack: $(STACK)
+			@./$(STACK) || echo " "
+			@rm $(STACK) || echo " "
