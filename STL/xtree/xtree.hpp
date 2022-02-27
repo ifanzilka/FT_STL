@@ -1,6 +1,10 @@
 #ifndef FT_XTREE
 # define FT_XTREE
 
+
+/* Итераторы */
+#include "../STL/iterator/iterator.hpp"
+
 /* Page 484 */
 /* Page 517 */
 
@@ -25,7 +29,7 @@ namespace ft
     // };
 
     template <class Tree_traits>
-    class Tree_nod : public Tr //Наследуем различные Параметры 
+    class Tree_nod : public Tree_traits //Наследуем различные Параметры 
     {
     protected:
         typedef typename Tree_traits::allocator_type    allocator_type;
@@ -86,6 +90,7 @@ namespace ft
 		typedef typename Tree_traits::allocator_type    allocator_type;
 		typedef typename Tree_traits::key_compare       key_compare;
         
+        /* Конуструктор */
         Tree_val(const key_compare& Parg, allocator_type Al): Tree_ptr<Tree_traits>(Parg, Al), Alval(Al)
         {
 
@@ -105,15 +110,34 @@ namespace ft
 		typedef typename Tree_traits::key_compare			    key_compare;
 		typedef typename Tree_traits::value_compare		        value_compare;
         typedef typename Tree_traits::value_type			    value_type;
-		typedef typename Tree_traits::allocator_type		    allocator_type;
+		
+        typedef typename Tree_traits::allocator_type		    allocator_type;
         typedef typename allocator_type::size_type              size_type;
-    
-        typedef typename allocator_type::template       rebind<Node>::other::pointer	Nodeptr;
+        typedef typename allocator_type::difference_type        difference_type;
+
+        typedef typename allocator_type::template       rebind<Node>::other::pointer                Nodeptr;
+        typedef typename allocator_type::template       rebind<value_type>::other::pointer	        Tptr;
+        typedef typename allocator_type::template       rebind<value_type>::other::const_pointer	Cptr;
+        typedef typename allocator_type::template       rebind<value_type>::other::reference        Reft;
+        
+        typedef Tptr pointer;
+        typedef Cptr const_pointer;
+        typedef Reft reference;
+        typedef typename allocator_type::template       rebind::<value_type>::other::const_reference;
+
+        /* Итерараторы */
+        typedef tree_const_iterator<Tree_traits>        const_iterator;
+		typedef tree_iterator<Tree_traits>	            iterator;
+
+		typedef ft::reverse_iterator<iterator>			reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
+
+
 
         /* Constructor */
         Tree(const key_compare &Parg, allocator_type Al);
 		
-        /* Constructor */
+        /* Constructor with iterator First and Last */
 		template <class It>
 		Tree(const key_compare & Parg, allocator_type Al, It F, It L);
 
@@ -121,6 +145,8 @@ namespace ft
 		~xtree();
 
     protected:
+        typedef typename Tree_nod <Tree_traits>::Node		Node;
+
 
     };
 }
