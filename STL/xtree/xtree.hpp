@@ -2,6 +2,8 @@
 # define FT_XTREE
 
 
+#include "../STL/utility/utility.hpp"
+
 /* Итераторы */
 #include "../STL/iterator/iterator.hpp"
 
@@ -182,10 +184,240 @@ namespace ft
         friend class iterator;
         class iterator: public Bidit<value_type, difference_type, Tptr, Reft>
         {   
-            /* TO DO*/
+            typedef Bidit<value_type, difference_type, Tptr, Reft>  Mybase;
+            typedef typename Mybase::iterator_category              iterator_category;
+            typedef typename Mybase::value_type                     value_type;
+            typedef typename Mybase::difference_type                difference_type;
+            typedef typename Mybase::pointer                        pointer;
+            typedef typename Mybase::reference                      reference;
+
+
+            /* Constructor */
+            iterator();
+
+            /* Constructor */
+            iterator(Nodeptr P);
+
+
+            /* Overload operator */
+            reference operator*() const;
+            
+            Tptr operator->() const;
+
+            iterator operator++();
+
+            iterator operator*(int);
+
+            iterator operator-();
+
+            iterator operator--(int);
+
+
+            bool operator==(const iterator X) const;
+
+            bool operator!=(const iterator X) const;
+
+            void Dec();
+
+            void Inc();
+
+            Nodeptr Mynode() const;
+
+        protected:
+            Nodeptr Ptr;    
         };
 
+        /* Class const Iterator */
+        class const_iterator;
+        friend class const_iterator;
+        class const_iterator: public Bidit<value_type, difference_type, Ctptr, const_reference>
+        {   
+            typedef Bidit<value_type, difference_type, Ctptr, const_reference>  Mybase;
+            typedef typename Mybase::iterator_category                          iterator_category;
+            typedef typename Mybase::value_type                                 value_type;
+            typedef typename Mybase::difference_type                            difference_type;
+            typedef typename Mybase::pointer                                    pointer;
+            typedef typename Mybase::reference                                  reference;
+
+
+            /* Constructor */
+            const_iterator();
+
+            /* Constructor */
+            const_iterator(Nodeptr P);
+
+            const_iterator(const typename Tree<Tree_traits>::iterator X);
+
+
+
+            /* Overload operator */
+            const_reference operator*() const;
+            
+            Ctptr operator->() const;
+
+            const_iterator &operator++();
+
+            const_iterator operator++(int);
+
+            const_iterator &operator--();
+
+            const_iterator operator--(int);
+
+
+            bool operator==(const const_iterator X) const;
+
+            bool operator!=(const const_iterator X) const;
+
+            void Dec();
+
+            void Inc();
+
+            Nodeptr Mynode() const;
+
+        protected:
+            Nodeptr Ptr;    
+        };
+
+        /* Reverse Iterator */
+
+        typedef ft::reverse_iterator<iterator>              reverse_iterator;
+        typedef ft::reverse_iterator<const_iterator>        const_reverse_iterator;
+
+        typedef ft::pair<iterator, bool>                    Pairib;
+        typedef ft::pair<iterator, iterator>                Pairii;
+        typedef ft::pair<const_iterator, const_iterator>    Paircc;
+
+
+
+        /*****************************************************/
+        /*                      Constructors                 */
+        /*****************************************************/
+
+
+        explicit Tree(const key_compare &Parg, const allocator_type& Al);
+
+        Tree(const value_type *F, const value_type *L,const key_compare& Parg, const allocator_type &Al);
+
+        Tree(const Myt & x);
+
+        ~Tree();
+
+        Myt&operator=(const Myt & x);
+
+        /*****************************************************/
+        /*                      Iterators                    */
+        /*****************************************************/
         
+        iterator begin();
+
+        const_iterator begin() const;
+
+        iterator end();
+
+        const_iterator end() const;
+
+        reverse_iterator rbegin();
+
+        const_reverse_iterator rbegin() const;
+
+        reverse_iterator rend();
+
+        const_reverse_iterator rend() const;
+
+        
+        /*****************************************************/
+        /*              Modifers                             */
+        /*****************************************************/
+        
+        
+        size_type size() const;
+
+        size_type max_size() const;
+
+        bool empty() const;
+
+
+        allocator_type get_allocator() const;
+
+        key_compare key_comp() const;
+
+        value_compare value_comp() const;
+
+        Pairib insert(const value_type & V);
+
+        iterator insert(iterator P, const value_type &V);
+
+        template<class It>
+        void insert(It F, It L);
+
+        iterator erase(iterator F, iterator L);
+
+        size_type erase(const key_type& X);
+
+        void erase(const key_type *F, const key_type *L);
+
+        void clear();
+
+        iterator find(const key_type & Kv);
+        const_iterator find(const key_type & Kv) const;
+
+        size_type count(const key_type & Kv) const;
+
+        iterator lower_bound(const key_type & Kv);
+        const_iterator lower_bound(const key_type & Kv) const;
+
+        iterator upper_bound(const key_type & Kv);
+        const_iterator upper_bound(const key_type & Kv) const;
+
+
+        Pairii equal_range(const key_type & Kv);
+
+        Paircc equal_range(const key_type & Kv) const;
+
+        void swap(Myt &X);
+
+    protected:
+        void Copy(const &X);
+
+        Nodeptr Copy(Nodeptr X, Nodeptr P);
+
+        void Erase(Nodeptr X);
+
+        void Init();
+
+        iterator Insert(bool Addleft, Nodeptr Y, const value_type &v);
+
+        Nodeptr Lbound(const key_type &Kv);
+
+        Nodeptr& Lmost();
+        Nodeptr& Lmost() const;
+
+        void Lrotate(Nodeptr X);
+
+        static Nodeptr Max(Nodeptr P);
+
+        static Nodeptr Min(Nodeptr P);
+
+        Nodeptr& Rmost();
+        Nodeptr& Rmost() const;
+
+        Nodeptr& Root();
+        Nodeptr& Root() const;
+
+        void Rrotate(Nodeptr X);
+
+        Nodeptr Ubound(const key_type& Kv) const;
+
+        Nodeptr Buynode(Nodeptr Parg, char Carg);
+
+        void Consval(Tptr P, const value_type& V);
+
+        void Destval(Tptr P);
+
+        void Freenode(Nodeptr S);
+
+        Nodeptr     Head;
+        size_type   Size;
 
     };
 }
