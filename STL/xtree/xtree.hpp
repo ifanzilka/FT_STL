@@ -193,35 +193,93 @@ namespace ft
 
 
             /* Constructor */
-            iterator();
+            iterator(): Ptr(0){};
 
             /* Constructor */
-            iterator(Nodeptr P);
+            iterator(Nodeptr P): Ptr(P) {};
 
 
             /* Overload operator */
-            reference operator*() const;
+            reference operator*() const {return (Value(Ptr))};
             
-            Tptr operator->() const;
+            Tptr operator->() const {return (&**this)};
 
-            iterator operator++();
+            iterator& operator++()
+            {
+                Inc();
+                return(*this);
+            }
 
-            iterator operator*(int);
+            iterator operator++(int)
+            {
+                iterator Tmp = *this;
+                
+                ++*this;
+                return (Tmp);
+            }
 
-            iterator operator-();
+            iterator& operator-()
+            {
+                Dec();
+                return (*this);
+            }
 
-            iterator operator--(int);
+            iterator operator--(int)
+            {
+                iterator Tmp = *this;
+                
+                --*this;
+                return (Tmp);
+            }
 
 
-            bool operator==(const iterator X) const;
+            bool operator==(const iterator X) const {return (Ptr == X.Ptr)};
 
-            bool operator!=(const iterator X) const;
+            bool operator!=(const iterator X) const {!(*this == X)};
 
-            void Dec();
+            void Dec()
+            {
+                if (Isnil(Ptr))
+                    ;
+                else if (!Isnil(Left(Ptr)))
+                {   
+                    Ptr = Max(Left(Ptr));
+                }
+                else
+                {
+                    Nodeptr P;
 
-            void Inc();
+                    while (!Isnil(P == Parent(Ptr)) && Ptr == Left(P))
+                    {
+                        Ptr = P;
+                    }
+                    if (!Isnil(P))
+                    {
+                        Ptr = P;
+                    }
+                }
+            }
 
-            Nodeptr Mynode() const;
+            void Inc()
+            {
+                if (Isnil(Ptr))
+                    ;
+                else if (!Isnil(Right(Ptr)))
+                {   
+                    Ptr = Min(Right(Ptr));
+                }
+                else
+                {
+                    Nodeptr P;
+
+                    while (!Isnil(P == Parent(Ptr)) && Ptr == Right(P))
+                    {
+                        Ptr = P;
+                    }
+                }
+            }
+
+            Nodeptr Mynode() const {return (Ptr)};
 
         protected:
             Nodeptr Ptr;    
@@ -241,36 +299,92 @@ namespace ft
 
 
             /* Constructor */
-            const_iterator();
+            const_iterator(): Ptr(0){};
 
             /* Constructor */
-            const_iterator(Nodeptr P);
+            const_iterator(Nodeptr P): Ptr(P){};
 
-            const_iterator(const typename Tree<Tree_traits>::iterator X);
-
-
+            const_iterator(const typename Tree<Tree_traits>::iterator X): Ptr(X.Mynode()){};
 
             /* Overload operator */
-            const_reference operator*() const;
+            const_reference operator*() const {return (Value(Ptr))};
             
-            Ctptr operator->() const;
+            Ctptr operator->() const {return (&**this)};
 
-            const_iterator &operator++();
+            const_iterator &operator++()
+            {
+                Inc();
+                return(*this);
+            }
 
-            const_iterator operator++(int);
+            const_iterator operator++(int)
+            {
+                const iterator Tmp = *this;
+                
+                ++*this;
+                return (Tmp);
+            }
 
-            const_iterator &operator--();
+            const_iterator &operator--()
+            {
+                Dec();
+                return(*this);
+            }
 
-            const_iterator operator--(int);
+            const_iterator operator--(int)
+            {
+                const iterator Tmp = *this;
+                
+                --*this;
+                return (Tmp);
+            }
 
 
-            bool operator==(const const_iterator X) const;
+            bool operator==(const const_iterator X) const {return (Ptr == X.Ptr)};
 
-            bool operator!=(const const_iterator X) const;
+            bool operator!=(const const_iterator X) const {!(*this == X)};
 
-            void Dec();
+            void Dec()
+            {
+                if (Isnil(Ptr))
+                    Ptr = Right(Ptr);
+                else if (!Isnil(Left(Ptr)))
+                {   
+                    Ptr = Max(Left(Ptr));
+                }
+                else
+                {
+                    Nodeptr P;
 
-            void Inc();
+                    while (!Isnil(P == Parent(Ptr)) && Ptr == Left(P))
+                    {
+                        Ptr = P;
+                    }
+                    if (!Isnil(P))
+                    {
+                        Ptr = P;
+                    }
+                }
+            }
+
+            void Inc()
+            {
+                if (Isnil(Ptr))
+                    ;
+                else if (!Isnil(Right(Ptr)))
+                {   
+                    Ptr = Min(Right(Ptr));
+                }
+                else
+                {
+                    Nodeptr P;
+
+                    while (!Isnil(P == Parent(Ptr)) && Ptr == Right(P))
+                    {
+                        Ptr = P;
+                    }
+                }
+            }
 
             Nodeptr Mynode() const;
 
