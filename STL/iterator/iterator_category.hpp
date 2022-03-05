@@ -38,7 +38,7 @@ namespace ft
 	template  <class T, class D, class Pt, class Rt>
 	struct Bidit: public iterator<bidirectional_iterator_tag, T, D, Pt, Rt>
 	{
-
+		
 	};
 
 	/* Наследуем свойства*/
