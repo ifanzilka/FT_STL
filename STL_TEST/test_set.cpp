@@ -30,11 +30,11 @@ void test_set()
     Mycont v0b(pred, al);
 
     assert(v0.empty());
-    //assert(v0.size() == 0);
-    // assert(v0a.size() == 0 && v0a.get_allocator() == al);
-    // assert(v0b.size() == 0 && v0b.get_allocator() == al);
+    assert(v0.size() == 0);
+    assert(v0a.size() == 0 && v0a.get_allocator() == al);
+    assert(v0b.size() == 0 && v0b.get_allocator() == al);
 
-    // Mycont v1(carr, carr + 3);
+    Mycont v1(carr, carr + 3); //REALIZATED insert
     // assert(v1.size() == 3 && *v1.begin() == 'a');
 
 

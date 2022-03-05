@@ -60,23 +60,19 @@ namespace ft
             Tree_ptr    Right;
 
             value_type  Value;
-            char Color, Isnil;
+            char Color;
+            char Isnil;
         };
 
-        // Tree_nod()
-        // {
-
-        // }
-
         /* Конуструктор */
-        Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnode(Al)
+        Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnod(Al)
         {
 
         }
         
         /* Делаеи тип  */
         typename allocator_type::
-            template rebind<Node>::other                Alnode;
+            template rebind<Node>::other                Alnod;
     };
     
     template <class Tree_traits>
@@ -89,22 +85,19 @@ namespace ft
 		
 
         typedef typename allocator_type::
-            template rebind<Node>::other::pointer	    nodeptr;
+            template rebind<Node>::other::pointer	    Nodeptr;
         
         typedef typename allocator_type::
             template rebind<Node>::other::const_pointer	const_nodeptr;
-
-
-        // Tree_ptr()
-        // {
-
-        // }
 
         /* Конуструктор */
 		Tree_ptr(const key_compare& Parg, allocator_type Al):Tree_nod<Tree_traits>(Parg, Al)
         {
 
         }
+        
+        typename allocator_type
+				::template rebind<Nodeptr>::other Alptr;
 	};
 
     /* Класс для хранения обьекта распределителя */
@@ -469,6 +462,7 @@ namespace ft
 
         size_type max_size() const;
 
+        /* True если size = 0 */
         bool empty() const;
 
         allocator_type get_allocator() const;
@@ -483,7 +477,10 @@ namespace ft
         /*****************************************************/
 
 
-        Pairib insert(const value_type & V);
+        Pairib insert(const value_type & V)
+        {
+            std::cout << V << std::endl; 
+        }
 
         iterator insert(iterator P, const value_type &V);
 
@@ -497,8 +494,6 @@ namespace ft
         void erase(const key_type *F, const key_type *L);
 
         void clear();
-
-
 
         iterator find(const key_type & Kv);
         const_iterator find(const key_type & Kv) const;
@@ -519,20 +514,39 @@ namespace ft
         void swap(Myt &X);
 
     protected:
+
+        /* Выделяет память под одну ноду и инициализирует */
+        void Init();
+
         void Copy(const Myt &X);
 
         Nodeptr Copy(Nodeptr X, Nodeptr P);
 
         void Erase(Nodeptr X);
 
-        void Init();
 
         iterator Insert(bool Addleft, Nodeptr Y, const value_type &v);
 
         Nodeptr Lbound(const key_type &Kv);
 
+        /* от Ноды возвращаю левую ветвь */
         Nodeptr& Lmost();
+
+        /* от Ноды возвращаю левую ветвь */
         Nodeptr& Lmost() const;
+
+        /* от Ноды возвращаю правую ветвь */
+        Nodeptr& Rmost();
+
+        /* от Ноды возвращаю правую ветвь */
+        Nodeptr& Rmost() const;
+
+        /* от Ноды возвращаю родительскую ветвь */
+        Nodeptr& Root();
+        
+        /* от Ноды возвращаю родительскую ветвь */
+        Nodeptr& Root() const;
+
 
         void Lrotate(Nodeptr X);
 
@@ -540,16 +554,11 @@ namespace ft
 
         static Nodeptr Min(Nodeptr P);
 
-        Nodeptr& Rmost();
-        Nodeptr& Rmost() const;
-
-        Nodeptr& Root();
-        Nodeptr& Root() const;
-
         void Rrotate(Nodeptr X);
 
         Nodeptr Ubound(const key_type& Kv) const;
 
+        /* Выделяет память под новую ноду, задает родителя и цвет ноде */
         Nodeptr Buynode(Nodeptr Parg, char Carg);
 
         void Consval(Tptr P, const value_type& V);
@@ -567,5 +576,8 @@ namespace ft
 #include "xtree_constructor.hpp"
 #include "xtree_get_allocator.hpp"
 #include "xtree_function.hpp"
+#include "xtree_init.hpp"
+#include "xtree_buynode.hpp"
+#include "xtree_Nodeptr_fun.hpp"
 
 #endif

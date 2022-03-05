@@ -25,8 +25,8 @@ void test_stack()
 
 int main()
 {
-
-    std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;
+	test_stack();
+    std::cout << GREEN <<"SUCCESS testing  <stack>" <<  F_NONE <<std::endl;
 
     return (0);
 }

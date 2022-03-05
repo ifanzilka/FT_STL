@@ -5,33 +5,34 @@
 
 namespace ft
 {   
-    template <class Tree_traits>
-    typename Tree<Tree_traits>::size_type Tree<Tree_traits>::size() const
+
+    /* Tr-> Tree_traits */
+    template <class Tr>
+    typename Tree<Tr>::size_type Tree<Tr>::size() const
     {
         return (Size);
     }
 
-    template <class Tree_traits>
-    typename Tree<Tree_traits>::size_type Tree<Tree_traits>::max_size() const
+    template <class Tr>
+    typename Tree<Tr>::size_type Tree<Tr>::max_size() const
     {
         return (Tree::Alval.max_size());
     }
 
-    template <class Tree_traits>
-    bool Tree<Tree_traits>::empty() const
+    template <class Tr>
+    bool Tree<Tr>::empty() const
     {
-        std::cout << size() << std::endl;
         return (size() == 0);
     }
 
-    template <class Tree_traits>
-    typename Tree<Tree_traits>::key_compare Tree<Tree_traits>::key_comp() const
+    template <class Tr>
+    typename Tree<Tr>::key_compare Tree<Tr>::key_comp() const
     {
-        return (Tree_traits::comp);
+        return (Tr::comp);
     }
 
-    template <class Tree_traits>
-    typename Tree<Tree_traits>::value_compare Tree<Tree_traits>::value_comp() const
+    template <class Tr>
+    typename Tree<Tr>::value_compare Tree<Tr>::value_comp() const
     {
         return (value_compare(key_comp()));
     }

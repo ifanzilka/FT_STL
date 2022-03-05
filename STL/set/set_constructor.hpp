@@ -29,7 +29,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            insert(*F);
+            this->insert(*F);
         }
     }
 
@@ -39,7 +39,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            insert(*F);
+            this->insert(*F);
         }
     }
 
@@ -49,7 +49,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            insert(*F);
+            this->insert(*F);
         }
     }
 

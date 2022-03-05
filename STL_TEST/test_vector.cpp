@@ -168,7 +168,6 @@ void test_vector()
 		assert(true);
 	}
 
-	std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;
 }
 
 

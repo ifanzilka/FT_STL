@@ -5,34 +5,35 @@
 
 namespace ft
 {
-    template <class Tree_traits>
-    Tree<Tree_traits>::Tree(const key_compare &Parg, const allocator_type& Al): Mybase(Parg, Al)
+    /* Tr -> Tree_traits*/
+    template <class Tr>
+    Tree<Tr>::Tree(const key_compare &Parg, const allocator_type& Al): Mybase(Parg, Al)
     {
-        //Init();
+        Init();
     }
 
-    template <class Tree_traits>
-    Tree<Tree_traits>::Tree(const value_type *First, const value_type *Last, const key_compare &Parg, const allocator_type &Al): Mybase(Parg, Al)
+    template <class Tr>
+    Tree<Tr>::Tree(const value_type *First, const value_type *Last, const key_compare &Parg, const allocator_type &Al): Mybase(Parg, Al)
     {
-        //Init();
+        Init();
         //insert(First, Last);
     }
 
-    template <class Tree_traits>
-    Tree<Tree_traits>::Tree(const Myt & X): Mybase(X.key_camp(), X.get_allocator())
+    template <class Tr>
+    Tree<Tr>::Tree(const Myt & X): Mybase(X.key_camp(), X.get_allocator())
     {
-        //Init();
+        Init();
 		//Copy(X);
     }
 
-    template <class Tree_traits>
-    Tree<Tree_traits>::~Tree()
+    template <class Tr>
+    Tree<Tr>::~Tree()
     {
 		// erase(begin(), end());
 		// FreeNode(Head);
 		
-        // Head = 0;
-        // Size = 0;
+        Head = 0;
+        Size = 0;
     }
 }
 

@@ -3,6 +3,8 @@ CXX			= clang++
 CXXFLAGS 	=  #-Wall -Wextra -Werror -std=c++98
 
 
+all: start_iterator start_memory start_vector start_stack start_set
+
 ITERATOR 	= iterator_test
 
 $(ITERATOR):
