@@ -2,10 +2,10 @@
 # define FT_XTREE
 
 
-#include "../STL/utility/utility.hpp"
+#include "../utility/utility.hpp"
 
 /* Итераторы */
-#include "../STL/iterator/iterator.hpp"
+#include "../iterator/iterator.hpp"
 
 /* Page 484 */
 /* Page 517 */
@@ -47,7 +47,9 @@ namespace ft
         typedef typename allocator_type::
             template rebind<void>::other::pointer	    Tree_ptr;
         
-
+        typedef typename allocator_type::
+            template rebind<void>::other::pointer       Genptr;
+        
         struct Node;
         friend struct Node;
         struct Node
@@ -60,6 +62,11 @@ namespace ft
             value_type  Value;
             char Color, Isnil;
         };
+
+        // Tree_nod()
+        // {
+
+        // }
 
         /* Конуструктор */
         Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnode(Al)
@@ -87,6 +94,12 @@ namespace ft
         typedef typename allocator_type::
             template rebind<Node>::other::const_pointer	const_nodeptr;
 
+
+        // Tree_ptr()
+        // {
+
+        // }
+
         /* Конуструктор */
 		Tree_ptr(const key_compare& Parg, allocator_type Al):Tree_nod<Tree_traits>(Parg, Al)
         {
@@ -102,6 +115,12 @@ namespace ft
 		typedef typename Tree_traits::allocator_type    allocator_type;
 		typedef typename Tree_traits::key_compare       key_compare;
         
+        // Tree_val()
+        // {
+
+        // }
+
+
         /* Конуструктор */
         Tree_val(const key_compare& Parg, allocator_type Al): Tree_ptr<Tree_traits>(Parg, Al), Alval(Al)
         {
@@ -126,42 +145,31 @@ namespace ft
         typedef typename Tree_traits::allocator_type		    allocator_type;
         typedef typename allocator_type::size_type              size_type;
         typedef typename allocator_type::difference_type        difference_type;
-
-        typedef typename allocator_type::
-            template       rebind<Node>::other::pointer                 Nodeptr;
         
-        typedef typename allocator_type::
-            template       rebind<value_type>::other::pointer	        Tptr;
-        
-        typedef typename allocator_type::
-            template       rebind<value_type>::other::const_pointer	    Cptr;
-        
-        typedef typename allocator_type::
-            template       rebind<value_type>::other::reference         Reft;
-        
-
 	protected:
-			
-        typedef typename Tree_nod<Tr>::Genptr	            Genptr;
-		typedef typename Tree_nod<Tr>::Node                 Node;
-
+        typedef typename Tree_nod<Tree_traits>::Genptr	    Genptr;
+        typedef typename Tree_nod<Tree_traits>::Node		Node;
+        
         enum Redbl 
         {
-            Red,
+            Red, 
             Black
         };
-
+        
         typedef typename allocator_type::template
-					rebind<Node>::other::pointer		    Nodeptr;
+                rebind<Node>::other::pointer				Nodeptr;
+        
         typedef typename allocator_type::template
                 rebind<Nodeptr>::other::reference			Nodepref;
+        
         typedef typename allocator_type::template
                 rebind<key_type>::other::const_reference	Keyref;
+        
         typedef typename allocator_type::template
                 rebind<char>::other::reference				Charref;
+        
         typedef typename allocator_type::template
                 rebind<value_type>::other::reference		Vref;
-    
 
         static Charref	Color(Nodeptr P)	{ return ((Charref)(*P).Color); }
         static Charref	Isnil(Nodeptr P) 	{ return ((Charref)(*P).Isnil); }
@@ -169,15 +177,25 @@ namespace ft
         static Nodepref Left(Nodeptr P)		{ return ((Nodepref)(*P).Left); }
         static Nodepref Parent(Nodeptr P)	{ return ((Nodepref)(*P).Parent); }
         static Nodepref Right(Nodeptr P)	{ return ((Nodepref)(*P).Right); }
-        static Vref		Value(Nodeptr P)	{ return ((Vref)(*P).Value); }    
+        static Vref		Value(Nodeptr P)	{ return ((Vref)(*P).Value); }  
 
     public:
-        typedef Tptr pointer;
-        typedef Cptr const_pointer;
-        typedef Reft reference;
+        typedef typename allocator_type::difference_type	Dift;
+        
+        typedef typename allocator_type::template
+				rebind<value_type>::other::pointer			    Tptr;
 
-        typedef typename allocator_type::
-            template rebind<value_type>::other::const_reference         const_reference;
+        typedef typename allocator_type::template
+            rebind<value_type>::other::const_pointer		Ctptr;
+        typedef typename allocator_type::template
+            rebind<value_type>::other::reference			Reft;
+        
+        typedef Tptr										pointer;
+        typedef Ctptr										const_pointer;
+        typedef Reft										reference;
+        
+        typedef typename allocator_type::template
+            rebind<value_type>::other::const_reference		const_reference;
 
         /* Class Iterator */
         class iterator;
@@ -200,9 +218,12 @@ namespace ft
 
 
             /* Overload operator */
-            reference operator*() const {return (Value(Ptr))};
+            reference operator*() const 
+            {
+                return (Value(Ptr));
+            }
             
-            Tptr operator->() const {return (&**this)};
+            Tptr operator->() const {return (&**this);}
 
             iterator& operator++()
             {
@@ -233,9 +254,9 @@ namespace ft
             }
 
 
-            bool operator==(const iterator X) const {return (Ptr == X.Ptr)};
+            bool operator==(const iterator X) const {return (Ptr == X.Ptr);}
 
-            bool operator!=(const iterator X) const {!(*this == X)};
+            bool operator!=(const iterator X) const {!(*this == X);}
 
             void Dec()
             {
@@ -279,7 +300,7 @@ namespace ft
                 }
             }
 
-            Nodeptr Mynode() const {return (Ptr)};
+            Nodeptr Mynode() const {return (Ptr);}
 
         protected:
             Nodeptr Ptr;    
@@ -307,9 +328,9 @@ namespace ft
             const_iterator(const typename Tree<Tree_traits>::iterator X): Ptr(X.Mynode()){};
 
             /* Overload operator */
-            const_reference operator*() const {return (Value(Ptr))};
+            const_reference operator*() const {return (Value(Ptr));}
             
-            Ctptr operator->() const {return (&**this)};
+            Ctptr operator->() const {return (&**this);}
 
             const_iterator &operator++()
             {
@@ -340,9 +361,9 @@ namespace ft
             }
 
 
-            bool operator==(const const_iterator X) const {return (Ptr == X.Ptr)};
+            bool operator==(const const_iterator X) const {return (Ptr == X.Ptr);}
 
-            bool operator!=(const const_iterator X) const {!(*this == X)};
+            bool operator!=(const const_iterator X) const {!(*this == X);}
 
             void Dec()
             {
@@ -402,15 +423,15 @@ namespace ft
         typedef ft::pair<const_iterator, const_iterator>    Paircc;
 
 
-
+    public:
         /*****************************************************/
         /*                      Constructors                 */
         /*****************************************************/
 
-
+        /* explict запрещает приведение */
         explicit Tree(const key_compare &Parg, const allocator_type& Al);
 
-        Tree(const value_type *F, const value_type *L,const key_compare& Parg, const allocator_type &Al);
+        Tree(const value_type *F, const value_type *L, const key_compare& Parg, const allocator_type &Al);
 
         Tree(const Myt & x);
 
@@ -440,7 +461,7 @@ namespace ft
 
         
         /*****************************************************/
-        /*              Modifers                             */
+        /*             Function                              */
         /*****************************************************/
         
         
@@ -450,12 +471,17 @@ namespace ft
 
         bool empty() const;
 
-
         allocator_type get_allocator() const;
 
         key_compare key_comp() const;
 
         value_compare value_comp() const;
+
+
+        /*****************************************************/
+        /*              Modifers                             */
+        /*****************************************************/
+
 
         Pairib insert(const value_type & V);
 
@@ -471,6 +497,8 @@ namespace ft
         void erase(const key_type *F, const key_type *L);
 
         void clear();
+
+
 
         iterator find(const key_type & Kv);
         const_iterator find(const key_type & Kv) const;
@@ -491,7 +519,7 @@ namespace ft
         void swap(Myt &X);
 
     protected:
-        void Copy(const &X);
+        void Copy(const Myt &X);
 
         Nodeptr Copy(Nodeptr X, Nodeptr P);
 
@@ -535,5 +563,9 @@ namespace ft
 
     };
 }
+
+#include "xtree_constructor.hpp"
+#include "xtree_get_allocator.hpp"
+#include "xtree_function.hpp"
 
 #endif

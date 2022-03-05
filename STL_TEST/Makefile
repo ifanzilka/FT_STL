@@ -38,3 +38,15 @@ $(STACK):
 start_stack: $(STACK)
 			@./$(STACK) || echo " "
 			@rm $(STACK) || echo " "
+
+
+SET		= set_test
+
+CPP_SET = test_set.cpp
+
+$(SET):
+	$(CXX) $(CXXFLAGS) $(CPP_SET) -o $(SET)
+
+start_set: $(SET)
+			@./$(SET) || echo " "
+			@rm $(SET) || echo " "
