@@ -7,18 +7,22 @@ namespace ft
 {   
 
     /* Tr-> Tree_traits */
+    
+    /* Кол-во элементов в дереве*/
     template <class Tr>
     typename Tree<Tr>::size_type Tree<Tr>::size() const
     {
         return (Size);
     }
 
+    /* Максимальное кол-во памяти в аллокаторе*/
     template <class Tr>
     typename Tree<Tr>::size_type Tree<Tr>::max_size() const
     {
         return (Tree::Alval.max_size());
     }
 
+    /* True если пустой */
     template <class Tr>
     bool Tree<Tr>::empty() const
     {

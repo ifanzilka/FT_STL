@@ -107,12 +107,6 @@ namespace ft
 	protected:
 		typedef typename Tree_traits::allocator_type    allocator_type;
 		typedef typename Tree_traits::key_compare       key_compare;
-        
-        // Tree_val()
-        // {
-
-        // }
-
 
         /* Конуструктор */
         Tree_val(const key_compare& Parg, allocator_type Al): Tree_ptr<Tree_traits>(Parg, Al), Alval(Al)
@@ -477,10 +471,7 @@ namespace ft
         /*****************************************************/
 
 
-        Pairib insert(const value_type & V)
-        {
-            std::cout << V << std::endl; 
-        }
+        Pairib insert(const value_type & V);
 
         iterator insert(iterator P, const value_type &V);
 
@@ -515,7 +506,7 @@ namespace ft
 
     protected:
 
-        /* Выделяет память под одну ноду и инициализирует */
+        /* Выделяет память под одну ноду и инициализируем */
         void Init();
 
         void Copy(const Myt &X);
@@ -523,7 +514,6 @@ namespace ft
         Nodeptr Copy(Nodeptr X, Nodeptr P);
 
         void Erase(Nodeptr X);
-
 
         iterator Insert(bool Addleft, Nodeptr Y, const value_type &v);
 
@@ -579,5 +569,6 @@ namespace ft
 #include "xtree_init.hpp"
 #include "xtree_buynode.hpp"
 #include "xtree_Nodeptr_fun.hpp"
+#include "xtree_modifers.hpp"
 
 #endif

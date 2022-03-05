@@ -22,6 +22,13 @@ namespace ft
         
         typedef typename Al::template rebind<value_type>::other allocator_type;
 
+        enum
+        {
+            /* False если set/map */
+            /* True если multiset/multimap */
+            Multi = Mfl
+        };
+
         Tset_traits(): comp(), v_comp() 
         {
 

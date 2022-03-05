@@ -5,6 +5,7 @@
 
 namespace ft
 {
+    /* Выделяем память под ноду и инициализируем */
     template <class Tree_traits>
     void Tree<Tree_traits>::Init()
     {
