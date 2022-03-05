@@ -47,6 +47,11 @@ namespace ft
             {
                 return (X);
             }
+
+            //Kfn k;
+            //k()
+            //key compare
+            //key type
         };
 
         key_compare     comp;
@@ -56,7 +61,7 @@ namespace ft
 
     /* Шаблоны для set Pr- для сравнивания A -> аллокатор */
     template<class K, class Pr = std::less<K>, class A = std::allocator<K> >
-    class set : public ft::Tree< Tset_traits<K, Pr, A, false > >
+    class set : public Tree< Tset_traits<K, Pr, A, false > >
     {
     public:
         typedef set<K, Pr, A>                           Myt;

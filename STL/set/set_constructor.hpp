@@ -2,6 +2,7 @@
 # define FT_SET_CONSTRUCTOR
 
 #include "set.hpp"
+#include "../xtree/xtree.hpp"
 
 namespace ft
 {
@@ -29,7 +30,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            this->insert(*F);
+            Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
         }
     }
 
@@ -39,7 +40,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            this->insert(*F);
+            Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
         }
     }
 
@@ -49,7 +50,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            this->insert(*F);
+            Tree< Tset_traits<K, Pr, A, false > >insert(*F);
         }
     }
 
