@@ -35,6 +35,14 @@ namespace ft
         Head = 0;
         Size = 0;
     }
+
+
+    template <class Tr>
+    /* По указателю вызываю конструктор и кладу значение */
+    void Tree<Tr>::Consval(Tptr P, const value_type &V)
+    {
+        this->Alval.construct(P, V);
+    }
 }
 
 #endif

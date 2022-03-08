@@ -60,11 +60,15 @@ namespace ft
             Tree_ptr    Right;
 
             value_type  Value;
+            
+            /* Цвет ноды (Черное-Красное)*/
             char Color;
+
+            /* Говорит нода NULL или нет*/
             char Isnil;
         };
 
-        /* Конуструктор */
+        /* Конструктор */
         Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnod(Al)
         {
 
@@ -158,13 +162,23 @@ namespace ft
         typedef typename allocator_type::template
                 rebind<value_type>::other::reference		Vref;
 
-        static Charref	Color(Nodeptr P)	{ return ((Charref)(*P).Color); }
-        static Charref	Isnil(Nodeptr P) 	{ return ((Charref)(*P).Isnil); }
-        static Keyref	Key(Nodeptr P)		{ return (Keyref()(Value(P))); }
-        static Nodepref Left(Nodeptr P)		{ return ((Nodepref)(*P).Left); }
-        static Nodepref Parent(Nodeptr P)	{ return ((Nodepref)(*P).Parent); }
-        static Nodepref Right(Nodeptr P)	{ return ((Nodepref)(*P).Right); }
-        static Vref		Value(Nodeptr P)	{ return ((Vref)(*P).Value); }  
+        /* Возвращает цвет ноды */
+        static Charref	Color(Nodeptr P);
+        
+        static Charref	Isnil(Nodeptr P);
+        
+        static Keyref	Key(Nodeptr P);
+
+        /* Возвращает левую ноду */
+        static Nodepref Left(Nodeptr P);
+
+        /* Возвращает родительскую ноду */
+        static Nodepref Parent(Nodeptr P);
+
+        /* Возвращает правую ноду */
+        static Nodepref Right(Nodeptr P);
+
+        static Vref		Value(Nodeptr P);
 
     public:
         typedef typename allocator_type::difference_type	Dift;
@@ -188,7 +202,8 @@ namespace ft
         class iterator;
         friend class iterator;
         class iterator: public Bidit<value_type, difference_type, Tptr, Reft>
-        {   
+        {
+        public:   
             typedef Bidit<value_type, difference_type, Tptr, Reft>  Mybase;
             typedef typename Mybase::iterator_category              iterator_category;
             typedef typename Mybase::value_type                     value_type;
@@ -226,7 +241,7 @@ namespace ft
                 return (Tmp);
             }
 
-            iterator& operator-()
+            iterator& operator--()
             {
                 Dec();
                 return (*this);
@@ -257,7 +272,7 @@ namespace ft
                 {
                     Nodeptr P;
 
-                    while (!Isnil(P == Parent(Ptr)) && Ptr == Left(P))
+                    while (!Isnil(P = Parent(Ptr)) && Ptr == Left(P))
                     {
                         Ptr = P;
                     }
@@ -472,6 +487,7 @@ namespace ft
 
 
         Pairib insert(const value_type & V);
+        //void insert(const value_type & V);
 
         iterator insert(iterator P, const value_type &V);
 
@@ -516,6 +532,7 @@ namespace ft
         void Erase(Nodeptr X);
 
         iterator Insert(bool Addleft, Nodeptr Y, const value_type &v);
+        // void Insert(bool Addleft, Nodeptr Y, const value_type &v);
 
         Nodeptr Lbound(const key_type &Kv);
 
@@ -540,24 +557,29 @@ namespace ft
 
         void Lrotate(Nodeptr X);
 
+        void Rrotate(Nodeptr X);
+
         static Nodeptr Max(Nodeptr P);
 
         static Nodeptr Min(Nodeptr P);
 
-        void Rrotate(Nodeptr X);
 
         Nodeptr Ubound(const key_type& Kv) const;
 
         /* Выделяет память под новую ноду, задает родителя и цвет ноде */
         Nodeptr Buynode(Nodeptr Parg, char Carg);
 
+        /* По указателю вызываю конструктор и кладу значение */
         void Consval(Tptr P, const value_type& V);
-
+        
         void Destval(Tptr P);
 
         void Freenode(Nodeptr S);
 
+
+        /* */
         Nodeptr     Head;
+        /* Размер дерева*/
         size_type   Size;
 
     };
@@ -570,5 +592,8 @@ namespace ft
 #include "xtree_buynode.hpp"
 #include "xtree_Nodeptr_fun.hpp"
 #include "xtree_modifers.hpp"
+#include "xtree_protected.hpp"
+#include "xtree_iterator_fun.hpp"
+#include "xtree_rotate.hpp"
 
 #endif

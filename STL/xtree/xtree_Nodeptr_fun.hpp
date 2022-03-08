@@ -48,6 +48,23 @@ namespace ft
     {
         return (Right(Head));
     }
+
+    template <class Tr>
+    typename Tree<Tr>::Nodeptr Tree<Tr>::Max(Nodeptr P)
+    {
+        while (!Isnil(Right(P)))
+			    P = Right(P);
+		return (P);
+    }
+
+    template <class Tr>
+    typename Tree<Tr>::Nodeptr Tree<Tr>::Min(Nodeptr P)
+    {
+        while (!Isnil(Left(P)))
+			P = Left(P);
+		return (P);        
+    }
+    
 }
 
 #endif

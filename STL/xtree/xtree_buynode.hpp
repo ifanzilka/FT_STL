@@ -6,7 +6,10 @@
 namespace ft
 {
     /* Carg -> Color */
+
+
     template <class Tree_traits>
+    /* Выделяет память под новую ноду, задает родителя и цвет ноде */
     typename Tree<Tree_traits>::Nodeptr Tree<Tree_traits>::Buynode(Nodeptr Parg, char Carg)
     {
         /* Выделили память под голову дерева */
@@ -26,7 +29,6 @@ namespace ft
 		Isnil(S) = false;
 		return (S);
     }
-
 }
 
 #endif

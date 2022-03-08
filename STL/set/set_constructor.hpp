@@ -50,7 +50,7 @@ namespace ft
     {
         for (; F != L; ++F)
         {
-            Tree< Tset_traits<K, Pr, A, false > >insert(*F);
+            Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
         }
     }
 
