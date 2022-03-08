@@ -256,9 +256,15 @@ namespace ft
             }
 
 
-            bool operator==(const iterator X) const {return (Ptr == X.Ptr);}
+            bool operator==(const iterator X) const 
+            {
+                return (Ptr == X.Ptr);
+            }
 
-            bool operator!=(const iterator X) const {!(*this == X);}
+            bool operator!=(const iterator X) const
+            {
+                return !(*this == X);
+            }
 
             void Dec()
             {
@@ -295,7 +301,7 @@ namespace ft
                 {
                     Nodeptr P;
 
-                    while (!Isnil(P == Parent(Ptr)) && Ptr == Right(P))
+                    while (!Isnil(P = Parent(Ptr)) && Ptr == Right(P))
                     {
                         Ptr = P;
                     }
@@ -312,7 +318,8 @@ namespace ft
         class const_iterator;
         friend class const_iterator;
         class const_iterator: public Bidit<value_type, difference_type, Ctptr, const_reference>
-        {   
+        {
+        public:   
             typedef Bidit<value_type, difference_type, Ctptr, const_reference>  Mybase;
             typedef typename Mybase::iterator_category                          iterator_category;
             typedef typename Mybase::value_type                                 value_type;
@@ -436,10 +443,11 @@ namespace ft
         Tree(const value_type *F, const value_type *L, const key_compare& Parg, const allocator_type &Al);
 
         Tree(const Myt & x);
+        
+        /* Overload operator ()=) */
+        Myt&operator=(const Myt & x);
 
         ~Tree();
-
-        Myt&operator=(const Myt & x);
 
         /*****************************************************/
         /*                      Iterators                    */
@@ -494,9 +502,10 @@ namespace ft
         template<class It>
         void insert(It F, It L);
 
-        iterator erase(iterator F, iterator L);
+        iterator    erase(iterator P);
+        iterator    erase(iterator F, iterator L);
 
-        size_type erase(const key_type& X);
+        size_type   erase(const key_type& X);
 
         void erase(const key_type *F, const key_type *L);
 
@@ -532,9 +541,6 @@ namespace ft
         void Erase(Nodeptr X);
 
         iterator Insert(bool Addleft, Nodeptr Y, const value_type &v);
-        // void Insert(bool Addleft, Nodeptr Y, const value_type &v);
-
-        Nodeptr Lbound(const key_type &Kv);
 
         /* от Ноды возвращаю левую ветвь */
         Nodeptr& Lmost();
@@ -562,8 +568,10 @@ namespace ft
         static Nodeptr Max(Nodeptr P);
 
         static Nodeptr Min(Nodeptr P);
-
-
+        
+        //
+        Nodeptr Lbound(const key_type &Kv);
+        //
         Nodeptr Ubound(const key_type& Kv) const;
 
         /* Выделяет память под новую ноду, задает родителя и цвет ноде */
@@ -572,10 +580,10 @@ namespace ft
         /* По указателю вызываю конструктор и кладу значение */
         void Consval(Tptr P, const value_type& V);
         
+        /* Вызываю деструктор по указателю */
         void Destval(Tptr P);
 
         void Freenode(Nodeptr S);
-
 
         /* */
         Nodeptr     Head;

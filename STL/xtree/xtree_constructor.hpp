@@ -29,8 +29,8 @@ namespace ft
     template <class Tr>
     Tree<Tr>::~Tree()
     {
-		// erase(begin(), end());
-		// FreeNode(Head);
+		erase(begin(), end());
+		Freenode(Head);
 		
         Head = 0;
         Size = 0;
@@ -42,6 +42,18 @@ namespace ft
     void Tree<Tr>::Consval(Tptr P, const value_type &V)
     {
         this->Alval.construct(P, V);
+    }
+
+    template <class Tr>
+    typename Tree<Tr>::Myt& Tree<Tr>::operator=(const Myt &x)
+    {
+        if (this != &x)
+        {
+            erase(begin(), end());  
+            Tr::comp = x.comp;
+            Copy(x);
+        }
+        return (*this);
     }
 }
 

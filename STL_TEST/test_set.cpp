@@ -41,7 +41,7 @@ void test_set()
 	typedef std::less<char> Mypred;
 	typedef ft::set<char, Mypred, Myal> Mycont;
 	char ch, str1[] = "abc", carr2[] = "def";
-
+    //std::cout << str1<<"\n";
 	Mycont::key_type        *p_key = (char *)0;
 	Mycont::key_compare     *p_komp = (Mypred *)0;
 	Mycont::value_type      *p_val = (char *)0;
@@ -72,19 +72,55 @@ void test_set()
 	Mycont v3(str1, str1 + 3, pred, al);
 	assert(v3.size() == 3 && *v3.begin() == 'a');
 
-	// const Mycont v4(str1, str1 + 3);
-	// v0 = v4;
-	// assert(v0.size() == 3 && *v0.begin() == 'a');
+	const Mycont v4(str1, str1 + 3);
+	v0 = v4;
+    // try
+    // {
+    //     v0 = v4;
+    // }
+    // catch(...)
+    // {
+        
+    // }
+    
+    //std::cout << v0.size() << "\n"; 
+	assert(v0.size() == 3); 
+    assert(*v0.begin() == 'a');
 
-//	Mycont::iterator p_it(v1.begin());
-//	Mycont::const_iterator p_cit(v4.begin());
-//	Mycont::reverse_iterator p_rit(v1.begin());
-//	Mycont::const_reverse_iterator p_crit(v4.begin());
+	Mycont::iterator p_it(v1.begin());
+	Mycont::const_iterator p_cit(v4.begin());
+	Mycont::reverse_iterator p_rit(v1.begin());
+	Mycont::const_reverse_iterator p_crit(v4.begin());
+
+	assert(*p_it == 'a');
+    assert(*--(p_it = v1.end()) == 'c');
+
+    // assert(*p_cit == 'a' && *--(p_cit = v4.end()) == 'c');
+	// assert(*p_rit == 'c' && *--(p_rit = v1.rend()) == 'a');
+	// assert(*p_crit == 'c' && *--(p_crit = v1.rend()) == 'a');
+
+	// v0.clear();
+	// ft::pair<Mycont::iterator, bool> pib = v0.insert('d');
+	// cout << *v0.begin() << endl;
+	// assert(*pib.first == 'd' && pib.second);
+	// assert(*--v0.end() == 'd');
+	// pib = v0.insert('d');
+	// assert(*pib.first == 'd' && !pib.second);
+	// assert(*v0.insert(v0.begin(), 'e') == 'e');
+	// v0.insert(str1, str1 + 3);
+	// assert(v0.size() == 5 && *v0.begin() == 'a');
+	// v0.insert(str2, str2 + 3);
+	// assert(v0.size() == 6 && *--v0.end() == 'f');
+	// cout << *--v0.end() << endl;
+	// cout << *--v0.begin() << endl;
+
+
+	assert(*v0.erase(v0.begin()) == 'b' && v0.size() == 5);
+
+//	assert(*v0.erase(v0.begin(), ++v0.begin()) == 'c' && v0.size() == 4);
+//	assert(v0.erase('x') == 0 && v0.erase('e') == 1);
 //
-//	assert(*p_it == 'a' && *--(p_it = v1.end()) == 'c');
-//	assert(*p_cit == 'a' && *--(p_cit = v4.end()) == 'c');
-//	assert(*p_rit == 'c' && *--(p_rit = v1.rend()) == 'a');
-//	assert(*p_crit == 'c' && *--(p_crit = v1.rend()) == 'a');
+//	v0.clear();
 
 }
 

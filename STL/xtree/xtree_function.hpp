@@ -40,6 +40,59 @@ namespace ft
     {
         return (value_compare(key_comp()));
     }
+
+    template <class Tr>
+    void Tree<Tr>::Copy(const Myt &X)
+    {
+		Root() = Copy(X.Root(), Head);
+		Size = X.size();
+		if (!Isnil(Root()))
+		{
+			Lmost() = Min(Root());
+			Rmost() = Max(Root());
+		}
+        else
+        {
+            Lmost() = Head;
+            Rmost() = Head;
+        }
+    }
+
+    template <class Tr>
+	typename Tree<Tr>::Nodeptr Tree<Tr>::Copy(Nodeptr X, Nodeptr P)
+	{
+		Nodeptr R = Head;
+		if (!Isnil(X))
+		{
+			Nodeptr Y = Buynode(P, Color(X));
+			try
+			{
+				Consval(&Value(Y), Value(X));
+			}
+			catch (...)
+			{
+				Freenode(Y);
+				Erase(R);
+				throw;
+			}
+			Left(Y) = Head, Right(Y) = Head;
+			if (Isnil(R))
+				R = Y;
+			try
+			{
+				Left(Y) = Copy(Left(X), Y);
+				Right(Y) = Copy(Right(X), Y);
+			}
+			catch (...)
+			{
+				Erase(R);
+				throw;
+			}
+		}
+		return (R);
+	}
+
+
 }
 
 #endif
