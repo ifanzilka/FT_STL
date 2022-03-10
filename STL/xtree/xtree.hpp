@@ -227,12 +227,14 @@ namespace ft
             
             Tptr operator->() const {return (&**this);}
 
+            /* ++iterator */
             iterator& operator++()
             {
                 Inc();
                 return(*this);
             }
-
+            
+            /* iterator++ */
             iterator operator++(int)
             {
                 iterator Tmp = *this;
@@ -241,12 +243,14 @@ namespace ft
                 return (Tmp);
             }
 
+            /* --iterator */
             iterator& operator--()
             {
                 Dec();
                 return (*this);
             }
 
+            /* iterator-- */
             iterator operator--(int)
             {
                 iterator Tmp = *this;
@@ -269,7 +273,7 @@ namespace ft
             void Dec()
             {
                 if (Isnil(Ptr))
-                    ;
+                    Ptr = Right(Ptr);
                 else if (!Isnil(Left(Ptr)))
                 {   
                     Ptr = Max(Left(Ptr));
@@ -305,6 +309,7 @@ namespace ft
                     {
                         Ptr = P;
                     }
+                    Ptr = P;
                 }
             }
 
@@ -373,7 +378,7 @@ namespace ft
             bool operator==(const const_iterator X) const {return (Ptr == X.Ptr);}
 
             bool operator!=(const const_iterator X) const {!(*this == X);}
-
+            
             void Dec()
             {
                 if (Isnil(Ptr))
@@ -386,7 +391,7 @@ namespace ft
                 {
                     Nodeptr P;
 
-                    while (!Isnil(P == Parent(Ptr)) && Ptr == Left(P))
+                    while (!Isnil(P = Parent(Ptr)) && Ptr == Left(P))
                     {
                         Ptr = P;
                     }
@@ -409,10 +414,11 @@ namespace ft
                 {
                     Nodeptr P;
 
-                    while (!Isnil(P == Parent(Ptr)) && Ptr == Right(P))
+                    while (!Isnil(P = Parent(Ptr)) && Ptr == Right(P))
                     {
                         Ptr = P;
                     }
+                    Ptr = P;
                 }
             }
 
@@ -474,14 +480,16 @@ namespace ft
         /*             Function                              */
         /*****************************************************/
         
-        
+        /* Количество элементов */
         size_type size() const;
 
+        /* максимальное кол-во элементов  */ 
         size_type max_size() const;
 
         /* True если size = 0 */
         bool empty() const;
 
+        /* Аллокатор */
         allocator_type get_allocator() const;
 
         key_compare key_comp() const;
@@ -494,37 +502,33 @@ namespace ft
         /*****************************************************/
 
 
-        Pairib insert(const value_type & V);
-        //void insert(const value_type & V);
-
-        iterator insert(iterator P, const value_type &V);
+        Pairib      insert(const value_type & V);
+        iterator    insert(iterator P, const value_type &V);
 
         template<class It>
         void insert(It F, It L);
 
+
         iterator    erase(iterator P);
         iterator    erase(iterator F, iterator L);
-
         size_type   erase(const key_type& X);
-
-        void erase(const key_type *F, const key_type *L);
+        void        erase(const key_type *F, const key_type *L);
 
         void clear();
 
-        iterator find(const key_type & Kv);
-        const_iterator find(const key_type & Kv) const;
+        iterator        find(const key_type & Kv);
+        const_iterator  find(const key_type & Kv) const;
 
-        size_type count(const key_type & Kv) const;
+        size_type       count(const key_type & Kv) const;
 
-        iterator lower_bound(const key_type & Kv);
-        const_iterator lower_bound(const key_type & Kv) const;
+        iterator        lower_bound(const key_type & Kv);
+        const_iterator  lower_bound(const key_type & Kv) const;
 
-        iterator upper_bound(const key_type & Kv);
-        const_iterator upper_bound(const key_type & Kv) const;
+        iterator        upper_bound(const key_type & Kv);
+        const_iterator  upper_bound(const key_type & Kv) const;
 
 
         Pairii equal_range(const key_type & Kv);
-
         Paircc equal_range(const key_type & Kv) const;
 
         void swap(Myt &X);

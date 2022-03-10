@@ -85,7 +85,10 @@ void test_set()
     
     //std::cout << v0.size() << "\n"; 
 	assert(v0.size() == 3); 
+	
     assert(*v0.begin() == 'a');
+
+	// std::cout << "start\n";
 
 	Mycont::iterator p_it(v1.begin());
 	Mycont::const_iterator p_cit(v4.begin());
@@ -93,11 +96,21 @@ void test_set()
 	Mycont::const_reverse_iterator p_crit(v4.begin());
 
 	assert(*p_it == 'a');
+
+	// p_it = v1.end();
+	// --p_it;
+
+	//std::cout << "!" << *(p_it) << "!" << std::endl;
+
     assert(*--(p_it = v1.end()) == 'c');
 
-    // assert(*p_cit == 'a' && *--(p_cit = v4.end()) == 'c');
-	// assert(*p_rit == 'c' && *--(p_rit = v1.rend()) == 'a');
-	// assert(*p_crit == 'c' && *--(p_crit = v1.rend()) == 'a');
+    assert(*p_cit == 'a' && *--(p_cit = v4.end()) == 'c');
+	
+	std::cout << *p_rit << "\n";
+	assert(*p_rit == 'c');
+	
+	assert(*--(p_rit = v1.rend()) == 'a');
+	assert(*p_crit == 'c' && *--(p_crit = v1.rend()) == 'a');
 
 	// v0.clear();
 	// ft::pair<Mycont::iterator, bool> pib = v0.insert('d');
@@ -114,8 +127,8 @@ void test_set()
 	// cout << *--v0.end() << endl;
 	// cout << *--v0.begin() << endl;
 
-
-	assert(*v0.erase(v0.begin()) == 'b' && v0.size() == 5);
+	
+	//assert(*v0.erase(v0.begin()) == 'b' && v0.size() == 5);
 
 //	assert(*v0.erase(v0.begin(), ++v0.begin()) == 'c' && v0.size() == 4);
 //	assert(v0.erase('x') == 0 && v0.erase('e') == 1);

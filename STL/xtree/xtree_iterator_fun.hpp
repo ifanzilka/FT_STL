@@ -35,25 +35,25 @@ namespace ft
     template <class Tr>
     typename Tree<Tr>::reverse_iterator  Tree<Tr>::rbegin()
     {
-        //
+        return (reverse_iterator(end()));
     }
 
     template <class Tr>
     typename Tree<Tr>::const_reverse_iterator  Tree<Tr>::rbegin() const
     {
-        //
+        return  (const_reverse_iterator(end()));
     }
 
     template <class Tr>
     typename Tree<Tr>::reverse_iterator  Tree<Tr>::rend()
     {
-        //
+        return (reverse_iterator(begin()));
     }
 
     template <class Tr>
     typename Tree<Tr>::const_reverse_iterator  Tree<Tr>::rend() const
     {
-        //
+        return (const_reverse_iterator(begin()));
     }
 
 }

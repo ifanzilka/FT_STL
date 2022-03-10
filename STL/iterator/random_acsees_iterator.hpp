@@ -23,7 +23,7 @@ namespace ft
 
 		random_acsees_iterator(const random_acsees_iterator<T, D, Pt, Rt, Pt2, Rt2> &X): current (X.base()) 
 		{
-
+			
 		}
 		
 		template <class _T, class _D, class _Pt, class _Rt, class _Pt2, class _Rt2>

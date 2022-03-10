@@ -34,7 +34,7 @@ namespace ft
 
 
 		template <class U>
-		reverse_iterator(const reverse_iterator<U> &x): current(x.base)
+		reverse_iterator(const reverse_iterator<U> &x): current(x.base())
 		{
 
 		}
