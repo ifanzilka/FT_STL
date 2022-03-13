@@ -371,19 +371,21 @@ namespace ft
 		return (P);
 	}
 
-
+	/* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::lower_bound(const key_type &Kv)
 	{
 		return (iterator(Lbound(Kv)));
 	}
 
+	/* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::const_iterator Tree<Tree_traits>::lower_bound(const key_type &Kv) const
 	{
 		return (const_iterator(Lbound(Kv)));
 	}
 
+	/* Для обнаружение первого элемента в поледовательности который  упорядочен после key*/
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::upper_bound(const key_type &Kv)
 	{

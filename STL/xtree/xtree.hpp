@@ -10,6 +10,8 @@
 /* lexicographical compare  */
 #include "../algorithm/algorithm.hpp"
 
+
+
 /* Page 484 */
 /* Page 517 */
 
@@ -34,6 +36,12 @@ namespace ft
     **        typedef T3  allocator_type;      Аллокатор 
     **    };
     */
+
+    template <class Tree_traits>
+    class tree_iterator;
+
+    template <class Tree_traits>
+    class const_tree_iterator;
 
     /* Page 516 */
     template <class Tree_traits>
@@ -201,247 +209,21 @@ namespace ft
         typedef typename allocator_type::template
             rebind<value_type>::other::const_reference		const_reference;
 
-        /* Class Iterator */
-        class iterator;
-        friend class iterator;
-        class iterator: public Bidit<value_type, difference_type, Tptr, Reft>
-        {
-        public:   
-            typedef Bidit<value_type, difference_type, Tptr, Reft>  Mybase;
-            typedef typename Mybase::iterator_category              iterator_category;
-            typedef typename Mybase::value_type                     value_type;
-            typedef typename Mybase::difference_type                difference_type;
-            typedef typename Mybase::pointer                        pointer;
-            typedef typename Mybase::reference                      reference;
 
+        /* ITERATORS */
+		typedef ft::tree_iterator<Tree_traits>          iterator;
+        friend class tree_iterator<Tree_traits>;
 
-            /* Constructor */
-            iterator(): Ptr(0){};
-
-            /* Constructor */
-            iterator(Nodeptr P): Ptr(P) {};
-
-
-            /* Overload operator */
-            reference operator*() const 
-            {
-                return (Value(Ptr));
-            }
-            
-            Tptr operator->() const {return (&**this);}
-
-            /* ++iterator */
-            iterator& operator++()
-            {
-                Inc();
-                return(*this);
-            }
-            
-            /* iterator++ */
-            iterator operator++(int)
-            {
-                iterator Tmp = *this;
-                
-                ++*this;
-                return (Tmp);
-            }
-
-            /* --iterator */
-            iterator& operator--()
-            {
-                Dec();
-                return (*this);
-            }
-
-            /* iterator-- */
-            iterator operator--(int)
-            {
-                iterator Tmp = *this;
-                
-                --*this;
-                return (Tmp);
-            }
-
-
-            bool operator==(const iterator X) const 
-            {
-                return (Ptr == X.Ptr);
-            }
-
-            bool operator!=(const iterator X) const
-            {
-                return !(*this == X);
-            }
-
-            void Dec()
-            {
-                if (Isnil(Ptr))
-                    Ptr = Right(Ptr);
-                else if (!Isnil(Left(Ptr)))
-                {   
-                    Ptr = Max(Left(Ptr));
-                }
-                else
-                {
-                    Nodeptr P;
-
-                    while (!Isnil(P = Parent(Ptr)) && Ptr == Left(P))
-                    {
-                        Ptr = P;
-                    }
-                    if (!Isnil(P))
-                    {
-                        Ptr = P;
-                    }
-                }
-            }
-
-            void Inc()
-            {
-                if (Isnil(Ptr))
-                    ;
-                else if (!Isnil(Right(Ptr)))
-                {   
-                    Ptr = Min(Right(Ptr));
-                }
-                else
-                {
-                    Nodeptr P;
-
-                    while (!Isnil(P = Parent(Ptr)) && Ptr == Right(P))
-                    {
-                        Ptr = P;
-                    }
-                    Ptr = P;
-                }
-            }
-
-            Nodeptr Mynode() const
-            {
-                return (Ptr);
-            }
-
-        protected:
-            Nodeptr Ptr;    
-        };
-
-        /* Class const Iterator */
-        class const_iterator;
-        friend class const_iterator;
-        class const_iterator: public Bidit<value_type, difference_type, Ctptr, const_reference>
-        {
-        public:   
-            typedef Bidit<value_type, difference_type, Ctptr, const_reference>  Mybase;
-            typedef typename Mybase::iterator_category                          iterator_category;
-            typedef typename Mybase::value_type                                 value_type;
-            typedef typename Mybase::difference_type                            difference_type;
-            typedef typename Mybase::pointer                                    pointer;
-            typedef typename Mybase::reference                                  reference;
-
-
-            /* Constructor */
-            const_iterator(): Ptr(0){};
-
-            /* Constructor */
-            const_iterator(Nodeptr P): Ptr(P){};
-
-            const_iterator(const typename Tree<Tree_traits>::iterator X): Ptr(X.Mynode()){};
-
-            /* Overload operator */
-            const_reference operator*() const {return (Value(Ptr));}
-            
-            Ctptr operator->() const {return (&**this);}
-
-            const_iterator &operator++()
-            {
-                Inc();
-                return(*this);
-            }
-
-            const_iterator operator++(int)
-            {
-                const iterator Tmp = *this;
-                
-                ++*this;
-                return (Tmp);
-            }
-
-            const_iterator &operator--()
-            {
-                Dec();
-                return(*this);
-            }
-
-            const_iterator operator--(int)
-            {
-                const iterator Tmp = *this;
-                
-                --*this;
-                return (Tmp);
-            }
-
-
-            bool operator==(const const_iterator X) const {return (Ptr == X.Ptr);}
-
-            bool operator!=(const const_iterator X) const {return !(*this == X);}
-            
-            void Dec()
-            {
-                if (Isnil(Ptr))
-                    Ptr = Right(Ptr);
-                else if (!Isnil(Left(Ptr)))
-                {   
-                    Ptr = Max(Left(Ptr));
-                }
-                else
-                {
-                    Nodeptr P;
-
-                    while (!Isnil(P = Parent(Ptr)) && Ptr == Left(P))
-                    {
-                        Ptr = P;
-                    }
-                    if (!Isnil(P))
-                    {
-                        Ptr = P;
-                    }
-                }
-            }
-
-            void Inc()
-            {
-                if (Isnil(Ptr))
-                    ;
-                else if (!Isnil(Right(Ptr)))
-                {   
-                    Ptr = Min(Right(Ptr));
-                }
-                else
-                {
-                    Nodeptr P;
-
-                    while (!Isnil(P = Parent(Ptr)) && Ptr == Right(P))
-                    {
-                        Ptr = P;
-                    }
-                    Ptr = P;
-                }
-            }
-
-            Nodeptr Mynode() const
-			{
-			    return (Ptr);
-			}
-
-        protected:
-            Nodeptr Ptr;    
-        };
+        /* CONST ITERATORS */
+        typedef ft::const_tree_iterator<Tree_traits>    const_iterator;
+        friend class const_tree_iterator<Tree_traits>;
 
         /* Reverse Iterator */
-
         typedef ft::reverse_iterator<iterator>              reverse_iterator;
         typedef ft::reverse_iterator<const_iterator>        const_reverse_iterator;
 
+
+        /* PAIR */
         typedef ft::pair<iterator, bool>                    Pairib;
         typedef ft::pair<iterator, iterator>                Pairii;
         typedef ft::pair<const_iterator, const_iterator>    Paircc;
@@ -529,12 +311,14 @@ namespace ft
         const_iterator  find(const key_type & Kv) const;
 
         size_type       count(const key_type & Kv) const;
-
+        
+        /* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
         iterator        lower_bound(const key_type & Kv);
         const_iterator  lower_bound(const key_type & Kv) const;
 
-        iterator        upper_bound(const key_type & Kv);
-        const_iterator  upper_bound(const key_type & Kv) const;
+        /* Для обнаружение первого элемента в поледовательности который  упорядочен после key*/
+        iterator        upper_bound(const key_type & key);
+        const_iterator  upper_bound(const key_type & key) const;
 
 
         Pairii equal_range(const key_type & Kv);
@@ -596,6 +380,7 @@ namespace ft
         /* Вызываю деструктор по указателю */
         void Destval(Tptr P);
 
+        /* Вызываю деструткоры у ноды и особождаю память */
         void Freenode(Nodeptr S);
 
         /* */
@@ -617,7 +402,7 @@ namespace ft
 	template <class Tr> inline
 	bool operator==(const Tree<Tr> &X, const Tree<Tr> &Y)
 	{
-		return (X.size() == Y.size() && equal(X.begin(), X.end(), Y.begin()));
+		return (X.size() == Y.size() && ft::equal(X.begin(), X.end(), Y.begin()));
 	}
 
     /* X != Y*/
@@ -655,7 +440,8 @@ namespace ft
 		return (!(X < Y));
 	}
 }
-
+#include "xtree_iterator.hpp"
+#include "xtree_const_iterator.hpp"
 #include "xtree_constructor.hpp"
 #include "xtree_get_allocator.hpp"
 #include "xtree_function.hpp"

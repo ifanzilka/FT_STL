@@ -1,72 +1,144 @@
-// #ifndef FT_XTREE_ITERATOR
-// # define FT_XTREE_ITERATOR
+#ifndef FT_XTREE_ITERATOR
+# define FT_XTREE_ITERATOR
 
-// #include "xtree.hpp"
+#include "xtree.hpp"
+#include "../iterator/iterator.hpp"
 
-// namespace ft
-// {
+namespace ft
+{
+    template <class tree_traits>
+    class tree_iterator: public Bidit< typename Tree<tree_traits>::value_type, 
+ 				typename Tree<tree_traits>::Dift,
+				typename Tree<tree_traits>::Tptr,
+				typename Tree<tree_traits>::Reft>
+	{
+    public:
 
-//     /* Конструктор */
-//     template <class Tree_traits>
-//     typename Tree<Tree_traits>::iterator(): Ptr(0)
-//     {
+        typedef typename Tree<tree_traits>::value_type  value_type;
+        typedef typename Tree<tree_traits>::Dift        difference_type;
+        typedef typename Tree<tree_traits>::Tptr        Tptr;
+        typedef typename Tree<tree_traits>::Reft        Reft;
+
+
+        typedef Bidit<value_type, difference_type, Tptr, Reft>  Mybase;
+        typedef typename Mybase::iterator_category              iterator_category;
+        typedef typename Mybase::pointer                        pointer;
+        typedef typename Mybase::reference                      reference;
+
+        typedef typename Tree<tree_traits>::Nodeptr			    Nodeptr;
+       
+        //typedef  Tree<tree_traits>::Value               Value;
+
+        /* Constructor */
+        tree_iterator(): Ptr(0){};
+
+        /* Constructor */
+        tree_iterator(Nodeptr P): Ptr(P) {};
+
+
+        /* Overload operator */
+        reference operator*() const 
+        {
+            return (Tree<tree_traits>::Value(Ptr));
+        }
         
-//     }
+        Tptr operator->() const {return (&**this);}
 
-//     /* Конструктор */
-//     template <class Tree_traits>
-//     typename Tree<Tree_traits>::iterator(Nodeptr P): Ptr(0)
-//     {
+        /* ++iterator */
+        tree_iterator& operator++()
+        {
+            Inc();
+            return(*this);
+        }
         
-//     }
+        /* iterator++ */
+        tree_iterator operator++(int)
+        {
+            tree_iterator Tmp = *this;
+            
+            ++*this;
+            return (Tmp);
+        }
 
-//     /* Class Iterator */
-//     class iterator;
-//     friend class iterator;
-//     class iterator: public Bidit<value_type, difference_type, Tptr, Reft>
-//     {   
-//         typedef Bidit<value_type, difference_type, Tptr, Reft>  Mybase;
-//         typedef typename Mybase::iterator_category              iterator_category;
-//         typedef typename Mybase::value_type                     value_type;
-//         typedef typename Mybase::difference_type                difference_type;
-//         typedef typename Mybase::pointer                        pointer;
-//         typedef typename Mybase::reference                      reference;
+        /* --iterator */
+        tree_iterator& operator--()
+        {
+            Dec();
+            return (*this);
+        }
 
-
-//         /* Constructor */
-//         iterator(): Ptr(0){};
-
-//         /* Constructor */
-//         iterator(Nodeptr P): Ptr(P) {};
-
-
-//         /* Overload operator */
-//         reference operator*() const {return (Value(Ptr))};
-        
-//         Tptr operator->() const;
-
-//         iterator& operator++();
-
-//         iterator operator*(int);
-
-//         iterator& operator-();
-
-//         iterator operator--(int);
+        /* iterator-- */
+        tree_iterator operator--(int)
+        {
+            tree_iterator Tmp = *this;
+            
+            --*this;
+            return (Tmp);
+        }
 
 
-//         bool operator==(const iterator X) const;
+        bool operator==(const tree_iterator X) const 
+        {
+            return (Ptr == X.Ptr);
+        }
 
-//         bool operator!=(const iterator X) const;
+        bool operator!=(const tree_iterator X) const
+        {
+            return !(*this == X);
+        }
 
-//         void Dec();
+        void Dec()
+        {
+            if (Tree<tree_traits>::Isnil(Ptr))
+                Ptr = Tree<tree_traits>::Right(Ptr);
+            else if (!Tree<tree_traits>::Isnil(Tree<tree_traits>::Left(Ptr)))
+            {   
+                Ptr = Tree<tree_traits>::Max(Tree<tree_traits>::Left(Ptr));
+            }
+            else
+            {
+                Nodeptr P;
 
-//         void Inc();
+                while (!Tree<tree_traits>::Isnil(P = Tree<tree_traits>::Parent(Ptr)) && Ptr == Tree<tree_traits>::Left(P))
+                {
+                    Ptr = P;
+                }
+                if (!Tree<tree_traits>::Isnil(P))
+                {
+                    Ptr = P;
+                }
+            }
+        }
 
-//         Nodeptr Mynode() const;
+        void Inc()
+        {
+            if (Tree<tree_traits>::Isnil(Ptr))
+                ;
+            else if (!Tree<tree_traits>::Isnil(Tree<tree_traits>::Right(Ptr)))
+            {   
+                Ptr = Tree<tree_traits>::Min(Tree<tree_traits>::Right(Ptr));
+            }
+            else
+            {
+                Nodeptr P;
 
-//     protected:
-//         Nodeptr Ptr;    
-//     };
-// }
+                while (!Tree<tree_traits>::Isnil(P = Tree<tree_traits>::Parent(Ptr)) && Ptr == Tree<tree_traits>::Right(P))
+                {
+                    Ptr = P;
+                }
+                Ptr = P;
+            }
+        }
 
-// #endif
+        Nodeptr Mynode() const
+        {
+            return (Ptr);
+        }
+
+    protected:
+        Nodeptr Ptr;   
+
+    };
+}
+
+#endif
