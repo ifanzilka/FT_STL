@@ -16,14 +16,14 @@ namespace ft
     Tree<Tr>::Tree(const value_type *First, const value_type *Last, const key_compare &Parg, const allocator_type &Al): Mybase(Parg, Al)
     {
         Init();
-        //insert(First, Last);
+        insert(First, Last);
     }
 
     template <class Tr>
-    Tree<Tr>::Tree(const Myt & X): Mybase(X.key_camp(), X.get_allocator())
+    Tree<Tr>::Tree(const Myt & X): Mybase(X.key_comp(), X.get_allocator())
     {
         Init();
-		//Copy(X);
+		Copy(X);
     }
 
     template <class Tr>

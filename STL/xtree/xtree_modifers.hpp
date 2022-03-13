@@ -7,6 +7,9 @@
 #include "xtree.hpp"
 #include "../set/set.hpp"
 
+#include "../iterator/iterator.hpp"
+#include "xtree_protected.hpp"
+
 namespace ft
 {
     /* Tr-> Tree_traits */
@@ -57,6 +60,45 @@ namespace ft
 				return (Pairib(P, false));
 		}
     }
+
+	template <class Tr>
+	typename Tree<Tr>::iterator Tree<Tr>::insert(iterator P, const value_type &V)
+	{
+		if (size() == 0)
+			return (Insert(true, Head, V));
+		else if (P == begin())
+		{
+			if (Tr::comp(Tr::GetKey(V), Key(P.Mynode())))
+				return (Insert(true, P.Mynode(), V));
+		}
+		else if (P == end())
+		{
+			if (Tr::comp(Key(Rmost()), Tr::GetKey(V)))
+				return (Insert(false, Rmost(), V));
+		}
+		else
+		{
+			iterator Pb = P;
+			//TODO: might be error! comp(Key((--Pb) - Mynode()
+			if (Tr::comp(Key((--Pb).Mynode()),
+					 Tr::GetKey(V)) && Tr::comp(Tr::GetKey(V), Key(P.Mynode())))
+			{
+				if (Isnil(Right(Pb.Mynode())))
+					return (Insert(false, Pb.Mynode(), V));
+				else
+					return (Insert(true, P.Mynode(), V));
+			}
+		}
+		return (insert(V).first);
+	}
+
+	template <class Tr>
+	template <class It>
+	void Tree<Tr>::insert(It F, It L)
+	{
+		for (; F != L; ++F)
+			insert(*F);
+	}
 
 
     template <class Tr>
@@ -182,7 +224,7 @@ namespace ft
 	template <class Tr>
 	typename Tree<Tr>::iterator Tree<Tr>::erase(iterator P)
 	{
-		std::cout << GREEN"Call iterator Tree<Tr>::erase(iterator P)\n"F_NONE;
+		//std::cout << GREEN"Call iterator Tree<Tr>::erase(iterator P)\n"F_NONE;
 		
 		if (Isnil(P.Mynode()))
 			throw std::out_of_range("map/set<T> iterator");
@@ -328,6 +370,125 @@ namespace ft
 			--Size;
 		return (P);
 	}
+
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::lower_bound(const key_type &Kv)
+	{
+		return (iterator(Lbound(Kv)));
+	}
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::const_iterator Tree<Tree_traits>::lower_bound(const key_type &Kv) const
+	{
+		return (const_iterator(Lbound(Kv)));
+	}
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::upper_bound(const key_type &Kv)
+	{
+		return (iterator(Ubound(Kv)));
+	}
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::const_iterator Tree<Tree_traits>::upper_bound(const key_type &Kv) const
+	{
+		return (iterator(Ubound(Kv)));
+	}
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::Pairii Tree<Tree_traits>::equal_range(const key_type &Kv)
+	{
+		return (Pairii(lower_bound(Kv), upper_bound(Kv)));
+	}
+
+	template <class Tree_traits>
+	typename Tree<Tree_traits>::Paircc Tree<Tree_traits>::equal_range(const key_type &Kv) const
+	{
+		return (Paircc(lower_bound(Kv), upper_bound(Kv)));
+	}
+
+	template <class Tr>
+	typename Tree<Tr>::size_type Tree<Tr>::erase(const key_type &X)
+	{
+		Pairii P = equal_range(X);
+		size_type N = 0;
+		ft::Distance(P.first, P.second, N);
+		erase(P.first, P.second);
+		return (N);
+	}
+
+
+	template <class Tr>
+	void Tree<Tr>::clear()
+	{
+		erase(begin(), end());
+	}
+
+
+	template <class Tr>
+	void Tree<Tr>::swap(Myt &X)
+	{
+		if (get_allocator() == X.get_allocator())
+		{
+			ft::swap(Tr::comp, X.comp);
+			ft::swap(Head, X.Head);
+			ft::swap(Size, X.Size);
+		}
+		else
+		{
+			Tree<Tr> tmp = *this;
+			*this = X;
+			X = tmp;
+		}
+	}
+
+	template <class Tr>
+	typename Tree<Tr>::iterator Tree<Tr>::find(const key_type &Kv)
+	{
+		iterator P = lower_bound(Kv);
+		
+		if (P == end() || Tr::comp(Kv, Key(P.Mynode())))
+		{
+			return end();
+		}
+		else
+		{
+			return P;
+		}
+
+		//return (P == end() || Tr::comp(Kv, Key(P.Mynode())) ? end() : P);
+	}
+
+	template <class Tr>
+	typename Tree<Tr>::const_iterator Tree<Tr>::find(const key_type &Kv) const
+	{
+		const_iterator P = lower_bound(Kv);
+		
+		if (P == end() || Tr::comp(Kv, Key(P.Mynode())))
+		{
+			return end();
+		}
+		else
+		{
+			return P;
+		}
+
+		//return (P == end() || Tr::comp(Kv, Key(P.Mynode())) ? end() : P);
+	}
+
+	//TODO: count always return 0
+	template <class Tr>
+	typename Tree<Tr>::size_type Tree<Tr>::count(const key_type &Kv) const
+	{
+		Paircc Ans = equal_range(Kv);
+		size_type N = 0;
+		
+		Distance(Ans.first, Ans.second, N);
+		return (N);
+	}
+
+
 
 	/*****************************************************/
 	/*              Protected                            */

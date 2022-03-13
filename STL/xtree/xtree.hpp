@@ -7,6 +7,9 @@
 /* Итераторы */
 #include "../iterator/iterator.hpp"
 
+/* lexicographical compare  */
+#include "../algorithm/algorithm.hpp"
+
 /* Page 484 */
 /* Page 517 */
 
@@ -313,7 +316,10 @@ namespace ft
                 }
             }
 
-            Nodeptr Mynode() const {return (Ptr);}
+            Nodeptr Mynode() const
+            {
+                return (Ptr);
+            }
 
         protected:
             Nodeptr Ptr;    
@@ -377,7 +383,7 @@ namespace ft
 
             bool operator==(const const_iterator X) const {return (Ptr == X.Ptr);}
 
-            bool operator!=(const const_iterator X) const {!(*this == X);}
+            bool operator!=(const const_iterator X) const {return !(*this == X);}
             
             void Dec()
             {
@@ -422,7 +428,10 @@ namespace ft
                 }
             }
 
-            Nodeptr Mynode() const;
+            Nodeptr Mynode() const
+			{
+			    return (Ptr);
+			}
 
         protected:
             Nodeptr Ptr;    
@@ -574,7 +583,7 @@ namespace ft
         static Nodeptr Min(Nodeptr P);
         
         //
-        Nodeptr Lbound(const key_type &Kv);
+        Nodeptr Lbound(const key_type &Kv) const;
         //
         Nodeptr Ubound(const key_type& Kv) const;
 
@@ -593,8 +602,58 @@ namespace ft
         Nodeptr     Head;
         /* Размер дерева*/
         size_type   Size;
-
     };
+    template <class Tree_traits> inline
+	void swap(Tree<Tree_traits> &X, Tree<Tree_traits> &Y)
+	{
+		X.swap(Y);
+	}
+
+    /*****************************************************/
+    /*       OVERLOAD OPERTORS                          */
+    /*****************************************************/
+
+    /* X == Y */
+	template <class Tr> inline
+	bool operator==(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (X.size() == Y.size() && equal(X.begin(), X.end(), Y.begin()));
+	}
+
+    /* X != Y*/
+    template <class Tr> inline
+	bool operator!=(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (!(X == Y));
+	}
+
+    /* X < Y */
+    template <class Tr> inline
+	bool operator<(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (ft::lexicographical_compare(X.begin(), X.end(), Y.begin(), Y.end(), X.value_comp()));
+	}
+
+    /* X > Y */
+    template <class Tr> inline
+	bool operator>(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (Y < X);
+	}
+
+    /* X <= Y */
+    template <class Tr> inline
+	bool operator<=(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (!(Y < X));
+	}
+
+    /* X >= Y */
+	template <class Tr> inline
+	bool operator>=(const Tree<Tr> &X, const Tree<Tr> &Y)
+	{
+		return (!(X < Y));
+	}
 }
 
 #include "xtree_constructor.hpp"

@@ -55,6 +55,36 @@ namespace ft
         return ((Vref)(*P).Value);        
     }
 
+    template <class Tree_traits>
+	typename Tree<Tree_traits>::Nodeptr Tree<Tree_traits>::Lbound(const key_type &Kv) const
+	{
+		Nodeptr X = Root();
+		Nodeptr Y = Head;
+		while (!(Isnil(X)))
+		{
+			if (Tree_traits::comp(Key(X), Kv))
+				X = Right(X);
+			else
+				Y = X, X = Left(X);
+		}
+		return (Y);
+	}
+
+    template <class Tr>
+	typename Tree<Tr>::Nodeptr Tree<Tr>::Ubound(const key_type &Kv) const
+	{
+		Nodeptr X = Root();
+		Nodeptr Y = Head;
+		while (!Isnil(X))
+		{
+			if (Tr::comp(Kv, Key(X)))
+				Y = X, X = Left(X);
+			else
+				X = Right(X);
+		}
+		return (Y);
+	}
+
 
     // static Charref	Color(Nodeptr P)	{ return ((Charref)(*P).Color); }
     // static Charref	Isnil(Nodeptr P) 	{ return ((Charref)(*P).Isnil); }
