@@ -24,7 +24,7 @@ namespace ft
     template <class Tr>
     typename Tree<Tr>::Keyref Tree<Tr>::Key(Nodeptr P)
     {
-        return (Value(P));      
+        return (Tr::GetKey(Value(P)));      
     }
 
     template <class Tr>
