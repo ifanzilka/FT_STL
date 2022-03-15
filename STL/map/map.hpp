@@ -20,51 +20,52 @@ namespace ft
     template <class K, class T, class Pr, class Ax, bool Mfl>
 	class Tmap_traits
 	{
+	public:
+		typedef K						key_type;
+		typedef ft::pair<const K, T>	value_type;
+		typedef Pr						key_compare;
+		typedef typename Ax::template rebind<value_type>::other
+				allocator_type;
+
+		enum
+		{
+			Multi = Mfl
+		};
+
+		Tmap_traits(): comp()
+		{
+
+		}
+
+		Tmap_traits(Pr Parg): comp(Parg)
+		{
+
+		}
+
+		class value_compare: public ft::binary_function<value_type, value_type, bool>
+		{
+
+		friend class Tmap_traits<K, T, Pr, Ax, Mfl>;
 		public:
-			typedef K						key_type;
-			typedef ft::pair<const K, T>	value_type;
-			typedef Pr						key_compare;
-			typedef typename Ax::template rebind<value_type>::other
-					allocator_type;
+			
+			bool operator()(const value_type &X, const value_type &Y) const
+			{
+				return(comp(X.first, Y.first));
+			}
 
-			enum {Multi = Mfl};
-
-			Tmap_traits()
-				: comp()
+			value_compare(key_compare Pred): comp(Pred)
 			{
 
 			}
 
-			Tmap_traits(Pr Parg)
-				: comp(Parg)
-			{
+		protected:
+				key_compare comp;
+		};
 
-			}
-
-			class value_compare: public ft::binary_function<value_type, value_type, bool>
-			{
-
-			friend class Tmap_traits<K, T, Pr, Ax, Mfl>;
-			public:
-				
-                bool operator()(const value_type &X, const value_type &Y) const
-				{
-					return(comp(X.first, Y.first));
-				}
-
-				value_compare(key_compare Pred): comp(Pred)
-                {
-
-                }
-
-			protected:
-					key_compare comp;
-			};
-
-			const static K &GetKey(const value_type &V)
-			{
-				return (V.first);
-			}
+		const static K &GetKey(const value_type &V)
+		{
+			return (V.first);
+		}
 //			struct Kfn
 //			{
 //				const K	&operator()(const value_type &X) const
@@ -72,7 +73,7 @@ namespace ft
 //					return(X.first);
 //				}
 //			};
-			Pr comp;
+		Pr comp;
 	};
 
 
