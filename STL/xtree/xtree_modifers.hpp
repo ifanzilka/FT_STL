@@ -16,7 +16,6 @@ namespace ft
     
     /* Page 528 */
     template <class Tr>
-    // typename Tree<Tr>::Pairib 
     typename Tree<Tr>::Pairib Tree<Tr>::insert(const value_type & V)
     {
         Nodeptr X = Root();

@@ -7,12 +7,14 @@
 #include "../STL/iterator/iterator.hpp"
 #include "../STL/utility/utility.hpp"
 
+/* Include less */
+#include "../STL/functional/functional.hpp"
 
 using namespace std;
 
 void test_map()
 {
-	typedef std::less<char>						Mypred;
+	typedef ft::less<char>						Mypred;
 	typedef ft::pair<const char, int>			Myval;
 	typedef std::allocator<Myval>				Myal;
 	typedef ft::map<char, int, Mypred, Myal>	Mycont;

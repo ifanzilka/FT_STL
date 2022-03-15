@@ -49,7 +49,7 @@ namespace ft
     {
     protected:
         typedef typename Tree_traits::allocator_type    allocator_type;
-		typedef typename Tree_traits::key_compare       key_compare;    /* Тип для сравнивания двух Node */
+		typedef typename Tree_traits::key_compare       key_compare;    /* Тип для сравнивания двух Node (это класс вызваем оператор ())*/
 		typedef typename Tree_traits::key_type	        key_type;       /* Тип ключ */
 		typedef typename Tree_traits::value_compare	    value_compare;  /* Тип для сравнивания по ключу */
 		typedef typename Tree_traits::value_type		value_type;     /* Тип значения */

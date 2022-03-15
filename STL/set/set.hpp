@@ -6,6 +6,8 @@
 /* Kernel root */
 #include "../xtree/xtree.hpp"
 
+/* Include less */
+#include "../functional/functional.hpp"
 
 /* 517 */
 namespace ft
@@ -71,7 +73,7 @@ namespace ft
 
 
     /* Шаблоны для set Pr- для сравнивания A -> аллокатор */
-    template<class K, class Pr = std::less<K>, class A = std::allocator<K> >
+    template<class K, class Pr = ft::less<K>, class A = std::allocator<K> >
     class set : public Tree< Tset_traits<K, Pr, A, false > >
     {
     public:

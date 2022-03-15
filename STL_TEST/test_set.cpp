@@ -2,6 +2,9 @@
 #include <iostream>
 #include <set>
 
+/* Include less */
+#include "../STL/functional/functional.hpp"
+
 //using namespace std:
 
 
@@ -9,7 +12,7 @@
 void test_set()
 {
 	typedef std::allocator<char> Myal;
-	typedef std::less<char> Mypred;
+	typedef ft::less<char> Mypred;
 	typedef ft::set<char, Mypred, Myal> Mycont;
 	char ch, str1[] = "abc", str2[] = "def";
 

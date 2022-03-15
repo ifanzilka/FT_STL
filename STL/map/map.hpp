@@ -1,12 +1,15 @@
 #ifndef FT_MAP
-#define FT_MAP
+# define FT_MAP
 
-#include <iostream>
+# include <iostream>
 
-#include "../utility/utility.hpp"
+# include "../utility/utility.hpp"
 
 /* Kernel Tree */
-#include "../xtree/xtree.hpp"
+# include "../xtree/xtree.hpp"
+
+/* BINARY FUNCTION */
+# include "../functional/functional.hpp"
 
 namespace ft
 {
@@ -38,7 +41,7 @@ namespace ft
 
 			}
 
-			class value_compare: public std::binary_function<value_type, value_type, bool>
+			class value_compare: public ft::binary_function<value_type, value_type, bool>
 			{
 
 			friend class Tmap_traits<K, T, Pr, Ax, Mfl>;
@@ -53,6 +56,7 @@ namespace ft
                 {
 
                 }
+
 			protected:
 					key_compare comp;
 			};
@@ -76,7 +80,7 @@ namespace ft
     /*****************************************************/
     /*                   MAP                             */
     /*****************************************************/
-    template <class K, class T, class Pr = std::less<K>, class A = std::allocator<ft::pair<const K, T> > >
+    template <class K, class T, class Pr = ft::less<K>, class A = std::allocator<ft::pair<const K, T> > >
 	class map
 		: public Tree<Tmap_traits<K, T, Pr, A, false> >
 	{
