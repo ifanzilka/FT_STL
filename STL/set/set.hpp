@@ -98,24 +98,48 @@ namespace ft
         /*                      Constructors                 */
         /*****************************************************/
 
-        set();
+        set(): Mybase(key_compare(), allocator_type())
+        {
 
-        explicit set(const key_compare& Pred);
+        }
 
-        set(const key_compare& Pred, const allocator_type &Al);
+        explicit set(const key_compare& Pred): Mybase(Pred, allocator_type())
+        {
+        
+        }
+
+        set(const key_compare& Pred, const allocator_type &Al): Mybase(Pred, Al)
+        {
+        
+        }
 
         template<class It>
-        set(It F, It L);
+        set(It F, It L): Mybase(key_compare(), allocator_type())
+        {
+            for (; F != L; ++F)
+            {
+                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+            }  
+        }
 
         template<class It>
-        set(It F, It L, const key_compare &Pred);
+        set(It F, It L, const key_compare &Pred): Mybase(Pred, allocator_type())
+        {
+            for (; F != L; ++F)
+            {
+                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+            }        
+        }
 
         template<class It>
-        set(It F, It L, const key_compare &Pred, const allocator_type &Al);
-
+        set(It F, It L, const key_compare &Pred, const allocator_type &Al): Mybase(Pred, Al)
+        {
+            for (; F != L; ++F)
+            {
+                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+            }    
+        }
     };
 }
-
-#include "set_constructor.hpp"
 
 #endif
