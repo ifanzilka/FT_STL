@@ -1,7 +1,10 @@
 #ifndef FT_SET
 # define FT_SET
 
-#include <iostream>
+//#include <iostream>
+
+/* Свойства */
+#include "tset_traits.hpp"
 
 /* Kernel root */
 #include "../xtree/xtree.hpp"
@@ -9,72 +12,14 @@
 /* Include less */
 #include "../functional/functional.hpp"
 
+
 /* 517 */
 namespace ft
 {
 
-    /* Traits позволяет не писаит длинный список параметров при инициалиазции Tree */
-    template <class K, class Pr, class Al, bool Mfl>
-	class Tset_traits
-    {
-    public:
-        typedef K   key_type;
-        typedef K   value_type;
-        typedef Pr  key_compare;
-        
-        typedef typename Al::template rebind<value_type>::other allocator_type;
-
-        enum
-        {
-            /* False если set/map */
-            /* True если multiset/multimap */
-            Multi = Mfl
-        };
-
-        Tset_traits(): comp(), v_comp() 
-        {
-
-        }
-        
-        Tset_traits(Pr Parg): comp (Parg), v_comp() 
-        {
-
-        }
-        
-        typedef key_compare value_compare;
-
-        // static key_type GetKey(const value_type &V)
-        // {
-        //     return (V);
-        // }
-        
-        const static K &GetKey(const value_type &V)
-		{
-				//static key_type Key = (key_type)V;
-				return (V);
-		}
-
-        struct Kfn
-        {
-            const K& operator() (const value_type & X ) const
-            {
-                return (X);
-            }
-
-            //Kfn k;
-            //k()
-            //key compare
-            //key type
-        };
-
-        key_compare     comp;
-        value_compare   v_comp;
-	};
-
-
     /* Шаблоны для set Pr- для сравнивания A -> аллокатор */
     template<class K, class Pr = ft::less<K>, class A = std::allocator<K> >
-    class set : public Tree< Tset_traits<K, Pr, A, false > >
+    class set : public Tree< ft::Tset_traits<K, Pr, A, false > >
     {
     public:
         typedef set<K, Pr, A>                           Myt;
@@ -100,7 +45,7 @@ namespace ft
 
         set(): Mybase(key_compare(), allocator_type())
         {
-
+        
         }
 
         explicit set(const key_compare& Pred): Mybase(Pred, allocator_type())
@@ -137,7 +82,7 @@ namespace ft
             for (; F != L; ++F)
             {
                 Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
-            }    
+            }
         }
     };
 }
