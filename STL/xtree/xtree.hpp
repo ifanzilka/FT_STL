@@ -50,7 +50,7 @@ namespace ft
     protected:
         typedef typename Tree_traits::allocator_type    allocator_type;
 		typedef typename Tree_traits::key_compare       key_compare;    /* Тип для сравнивания двух Node (это класс вызваем оператор ())*/
-		typedef typename Tree_traits::key_type	        key_type;       /* Тип ключ */
+		typedef typename Tree_traits::key_type	        key_type;       /* Тип обьекта ключа сортировки */
 		typedef typename Tree_traits::value_compare	    value_compare;  /* Тип для сравнивания по ключу */
 		typedef typename Tree_traits::value_type		value_type;     /* Тип значения */
 
@@ -250,20 +250,17 @@ namespace ft
         /*                      Iterators                    */
         /*****************************************************/
         
+        /* Возвращает двухнаправленный итератор на начало или след элемент после end() */
         iterator begin();
-
         const_iterator begin() const;
 
         iterator end();
-
         const_iterator end() const;
 
         reverse_iterator rbegin();
-
         const_reverse_iterator rbegin() const;
 
         reverse_iterator rend();
-
         const_reverse_iterator rend() const;
 
         
@@ -282,7 +279,8 @@ namespace ft
 
         /* Аллокатор */
         allocator_type get_allocator() const;
-
+        
+        /* Представляет собой (для определения порядка) bool operator (key x, key y) */
         key_compare key_comp() const;
 
         value_compare value_comp() const;
@@ -292,35 +290,44 @@ namespace ft
         /*              Modifers                             */
         /*****************************************************/
 
-
+        /* Если нету элемента инициализирует  и возвращет true с итератором если false и итератор на него  */
         Pairib      insert(const value_type & V);
+
+        /* Вставка после итератора (ускоряеем благодаря этому ) */
         iterator    insert(iterator P, const value_type &V);
 
         template<class It>
         void insert(It F, It L);
 
-
+        /* Удаляет элемент на который указывает итератор */
         iterator    erase(iterator P);
+
+        /* Удаляет элементы в диапозоне */
         iterator    erase(iterator F, iterator L);
+
+        /* Удаление элемента с совпадающим ключевым значением  возвращает кол во удалений*/
         size_type   erase(const key_type& X);
         void        erase(const key_type *F, const key_type *L);
 
+        /* call erase(begin,end) */
         void clear();
 
+        /* Обнаружение элемента с совпадающим ключом (end() если не нашли) */
         iterator        find(const key_type & Kv);
         const_iterator  find(const key_type & Kv) const;
 
+        /* Подсчет элементов с эквивлентным ключом  */
         size_type       count(const key_type & Kv) const;
         
-        /* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
+        /* Обнаружение первого элемента с эквивалентным или большим ключевым значением */
         iterator        lower_bound(const key_type & Kv);
         const_iterator  lower_bound(const key_type & Kv) const;
 
-        /* Для обнаружение первого элемента в поледовательности который  упорядочен после key*/
+        /* Обнаружение последнего элемента с эквивалентным или меньшим ключевым значением */
         iterator        upper_bound(const key_type & key);
         const_iterator  upper_bound(const key_type & key) const;
 
-
+        /* Обнаржуение последовательноссти с эквивалентным ключом */
         Pairii equal_range(const key_type & Kv);
         Paircc equal_range(const key_type & Kv) const;
 

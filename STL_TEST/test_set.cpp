@@ -9,8 +9,6 @@
 
 //using namespace std:
 
-
-
 void test_set()
 {
 	typedef std::allocator<char> Myal;

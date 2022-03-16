@@ -21,6 +21,8 @@ namespace ft
     template<class K, class Pr = ft::less<K>, class A = std::allocator<K> >
     class set : public Tree< ft::Tset_traits<K, Pr, A, false > >
     {
+    /* Вызываем key_comp() для сравнения */
+    /* Каждый ключ уникален */
     public:
         typedef set<K, Pr, A>                           Myt;
         typedef Tree< Tset_traits<K, Pr, A, false> >    Mybase;

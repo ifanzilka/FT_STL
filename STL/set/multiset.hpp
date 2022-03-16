@@ -107,8 +107,6 @@ namespace ft
                 insert(*F);
             }
         }
-
-
     };
 }
 

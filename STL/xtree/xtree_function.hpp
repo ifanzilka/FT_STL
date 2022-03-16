@@ -29,6 +29,7 @@ namespace ft
         return (size() == 0);
     }
 
+    /* Представляет собой (для определения порядка) bool operator (key x, key y) */
     template <class Tr>
     typename Tree<Tr>::key_compare Tree<Tr>::key_comp() const
     {

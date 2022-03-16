@@ -7,13 +7,14 @@ namespace ft
 {
     /* Tr-> Tree_traits */
     
+    /* Возвращает двухнаправленный итератор на начало или след элемент после end() */
     template <class Tr>
     typename Tree<Tr>::iterator  Tree<Tr>::begin()
     {
         return (iterator(Lmost()));
     }
 
-
+    /* Возвращает двухнаправленный итератор на начало или след элемент после end() */
     template <class Tr>
     typename Tree<Tr>::const_iterator  Tree<Tr>::begin() const
     {

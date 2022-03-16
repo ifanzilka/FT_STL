@@ -15,6 +15,8 @@ namespace ft
     /* Tr-> Tree_traits */
     
     /* Page 528 */
+
+	/* Если нету элемента инициализирует  и возвращет true с итератором если false и итератор на него  */
     template <class Tr>
     typename Tree<Tr>::Pairib Tree<Tr>::insert(const value_type & V)
     {
@@ -60,6 +62,7 @@ namespace ft
 		}
     }
 
+	/* Вставка после итератора (ускоряеем благодаря этому ) */
 	template <class Tr>
 	typename Tree<Tr>::iterator Tree<Tr>::insert(iterator P, const value_type &V)
 	{
@@ -198,6 +201,7 @@ namespace ft
 		return (iterator(Z));
 	}
 
+	/* Удаляет элементы в диапозоне */
 	template <class Tr>
 	typename Tree<Tr>::iterator Tree<Tr>::erase(iterator F, iterator L)
 	{
@@ -220,6 +224,7 @@ namespace ft
 		}
 	}
 
+	/* Удаляет элемент на который указывает итератор */
 	template <class Tr>
 	typename Tree<Tr>::iterator Tree<Tr>::erase(iterator P)
 	{
@@ -370,7 +375,7 @@ namespace ft
 		return (P);
 	}
 
-	/* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
+	 /* Обнаружение первого элемента с эквивалентным или большим ключевым значением */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::lower_bound(const key_type &Kv)
 	{
@@ -384,7 +389,7 @@ namespace ft
 		return (const_iterator(Lbound(Kv)));
 	}
 
-	/* Для обнаружение первого элемента в поледовательности который  упорядочен после key*/
+	/* Обнаружение последнего элемента с эквивалентным или меньшим ключевым значением */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::upper_bound(const key_type &Kv)
 	{
@@ -397,18 +402,21 @@ namespace ft
 		return (iterator(Ubound(Kv)));
 	}
 
+	/* Обнаржуение последовательноссти с эквивалентным ключом */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::Pairii Tree<Tree_traits>::equal_range(const key_type &Kv)
 	{
 		return (Pairii(lower_bound(Kv), upper_bound(Kv)));
 	}
 
+	/* Обнаржуение последовательноссти с эквивалентным ключом */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::Paircc Tree<Tree_traits>::equal_range(const key_type &Kv) const
 	{
 		return (Paircc(lower_bound(Kv), upper_bound(Kv)));
 	}
 
+	/* Удаление элемента с совпадающим ключевым значением  возвращает кол во удалений*/
 	template <class Tr>
 	typename Tree<Tr>::size_type Tree<Tr>::erase(const key_type &X)
 	{
@@ -419,7 +427,7 @@ namespace ft
 		return (N);
 	}
 
-
+	 /* call erase(begin,end) */
 	template <class Tr>
 	void Tree<Tr>::clear()
 	{
@@ -444,6 +452,7 @@ namespace ft
 		}
 	}
 
+	/* Обнаружение элемента с совпадающим ключом (end() если не нашли) */
 	template <class Tr>
 	typename Tree<Tr>::iterator Tree<Tr>::find(const key_type &Kv)
 	{
@@ -455,12 +464,11 @@ namespace ft
 		}
 		else
 		{
-			return P;
+			return (P);
 		}
-
-		//return (P == end() || Tr::comp(Kv, Key(P.Mynode())) ? end() : P);
 	}
 
+	/* Обнаружение элемента с совпадающим ключом (end() если не нашли) */
 	template <class Tr>
 	typename Tree<Tr>::const_iterator Tree<Tr>::find(const key_type &Kv) const
 	{
@@ -472,13 +480,11 @@ namespace ft
 		}
 		else
 		{
-			return P;
+			return (P);
 		}
-
-		//return (P == end() || Tr::comp(Kv, Key(P.Mynode())) ? end() : P);
 	}
 
-	//TODO: count always return 0
+	/* Подсчет элементов с эквивлентным ключом  */
 	template <class Tr>
 	typename Tree<Tr>::size_type Tree<Tr>::count(const key_type &Kv) const
 	{
