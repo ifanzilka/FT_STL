@@ -129,7 +129,7 @@ namespace ft
 
         /* Меняем М до (F - L) */
         ft::Distance(F, L, M);
-        size_type N = capacity();
+        size_type N = capacity();                                        
         
         if (M == 0)
             ;

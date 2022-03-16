@@ -1,4 +1,6 @@
 #include "../STL/set/set.hpp"
+#include "../STL/set/multiset.hpp"
+
 #include <iostream>
 #include <set>
 
@@ -96,6 +98,12 @@ void test_set()
 	ft::pair<Mycont::const_iterator, Mycont::const_iterator> pcc = v4.equal_range('a');
 	assert(*pcc.first == 'a' && *pcc.second == 'b');
 }
+
+void test_multiset()
+{
+
+}
+
 #include <iostream>
 #include <set>
 int main()
