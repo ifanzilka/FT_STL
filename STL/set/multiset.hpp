@@ -77,7 +77,7 @@ namespace ft
         }
 
         template<class It>
-        set(It F, It L, const key_compare &Pred, const allocator_type &Al): Mybase(Pred, Al)
+        multiset(It F, It L, const key_compare &Pred, const allocator_type &Al): Mybase(Pred, Al)
         {
             for (; F != L; ++F)
             {

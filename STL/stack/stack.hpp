@@ -86,15 +86,15 @@ namespace ft
 		void swap(stack & x);
 
 	protected:
-		container_type _container;
-
+		//container_type 		_container;
+		container_type		c;
 	};
 
 	/* Определяем операторы */
     template <class Type, class Container>
 	bool operator == (const stack<Type, Container> & x, const stack<Type, Container> & y)
 	{
-	    return (x._container == y._container);
+	    return (x.c== y.c);
 	};
 
 	template <class Type, class Container>

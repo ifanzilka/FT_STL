@@ -26,7 +26,8 @@ namespace ft
     typename vector<T, Alloc>::const_reference vector<T, Alloc>::at(size_type N) const
     {
         if (size() <= N)
-            throw RED"vector<T> subscript"F_NONE;
+            throw std::length_error("vector<T> too long");
+            //throw RED"vector<T> subscript"F_NONE;
 		return (*(begin() + N));
     }
 
@@ -35,7 +36,8 @@ namespace ft
     typename vector<T, Alloc>::reference vector<T, Alloc>::at(size_type N)
     {
         if (size() <= N)
-			throw RED"vector<T> subscript"F_NONE;
+			throw std::length_error("vector<T> subscript");
+            //throw RED"vector<T> subscript"F_NONE;
 		return (*(begin() + N));	
     }
 

@@ -11,8 +11,7 @@ F_GREEN		= \033[32m
 F_CYAN		= \033[36m
 F_BLUE		= \033[34m 
 
-all: start_iterator start_memory start_vector start_stack start_set start_map
-
+all: start_iterator start_memory start_vector start_stack start_set start_map start_subject
 ITERATOR 	= iterator_test
 
 $(ITERATOR):
@@ -72,6 +71,17 @@ $(MAP):
 start_map: $(MAP)
 			@./$(MAP) || echo " "
 			@rm $(MAP) || echo " "
+
+subject		= subject_test
+
+CPP_subject = test_subject.cpp
+
+$(subject):
+	$(CXX) $(CXXFLAGS) $(CPP_subject) -o $(subject)
+
+start_subject: $(subject)
+			@./$(subject) 42 || echo " "
+			@rm $(subject) || echo " "
 
 code:
 	@echo " ~~~~~~~~~~~~~~~~"

@@ -7,14 +7,14 @@ namespace ft
 {
     /* Конструктор */
     template <class Type_stack, class Container_stack>
-    stack<Type_stack, Container_stack>::stack(): _container(container_type())
+    stack<Type_stack, Container_stack>::stack(): c(container_type())
     {
 
     }
     
     /* Конструктор с контейнером */
     template <class Type_stack, class Container_stack>
-	stack<Type_stack, Container_stack>::stack(const container_type & Cont): _container(Cont)
+	stack<Type_stack, Container_stack>::stack(const container_type & Cont): c(Cont)
     {
 
     }
@@ -24,13 +24,13 @@ namespace ft
     template <class Type_stack, class Container_stack>
 	stack<Type_stack, Container_stack>& stack<Type_stack, Container_stack>::operator = (const stack& copy)
     {
-        _container = copy._container;
+        c = copy._container;
         return *this;
     }
 
     /* Констсруктор копирования  */
     template <class Type_stack, class Container_stack>
-	stack<Type_stack, Container_stack>::stack(const stack& copy): _container(copy._container)
+	stack<Type_stack, Container_stack>::stack(const stack& copy): c(copy.c)
     {
 
     }
