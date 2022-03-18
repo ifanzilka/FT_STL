@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enable_if.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 18:14:07 by bmarilli          #+#    #+#             */
+/*   Updated: 2022/03/18 18:14:07 by bmarilli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_ENABLE_IF
 # define FT_ENABLE_IF
 
@@ -25,7 +37,7 @@
 //     return !bool(i % 2);
 // }
 
-// int main()
+// int main()z
 // {
 //     short int i = 1;    // code does not compile if type of i is not integral
 

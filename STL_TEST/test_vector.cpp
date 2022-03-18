@@ -8,7 +8,6 @@
 
 void test_vector()
 {
-
 	char ch, carr[] = "abc";
 
 	ft::vector<char>::allocator_type	*p_alloc	= (std::allocator<char> *)0;
@@ -162,9 +161,9 @@ void test_vector()
 		std::cerr << "No exception is thrown" << std::endl;
 		assert(false);
 	}
-	catch(const char *e)
+	catch(std::exception &e)
 	{
-		std::cerr << e << std::endl;
+		std::cerr << e.what() << std::endl;
 		assert(true);
 	}
 

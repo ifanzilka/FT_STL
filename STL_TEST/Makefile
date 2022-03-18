@@ -11,7 +11,7 @@ F_GREEN		= \033[32m
 F_CYAN		= \033[36m
 F_BLUE		= \033[34m 
 
-all: start_iterator start_memory start_vector start_stack start_set start_map start_subject
+all: start_iterator start_memory start_vector start_stack start_set start_map start_subject start_time start_time_map
 ITERATOR 	= iterator_test
 
 $(ITERATOR):
@@ -82,6 +82,28 @@ $(subject):
 start_subject: $(subject)
 			@./$(subject) 42 || echo " "
 			@rm $(subject) || echo " "
+
+time	= time_test
+
+CPP_time = test_time_STL.cpp
+
+$(time):
+	$(CXX) $(CXXFLAGS) $(CPP_time) -o $(time)
+
+start_time: $(time)
+			@./$(time)	|| echo " "
+			@rm $(time) || echo " "
+
+time_map	= time_test_map
+
+CPP_time_map = test_time_map.cpp
+
+$(time_map):
+	$(CXX) $(CXXFLAGS) $(CPP_time_map) -o $(time_map)
+
+start_time_map: $(time_map)
+				@./$(time_map)	|| echo " "
+				@rm $(time_map) || echo " "
 
 code:
 	@echo " ~~~~~~~~~~~~~~~~"
