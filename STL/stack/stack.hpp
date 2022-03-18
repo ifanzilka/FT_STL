@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:56 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:56 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:30:47 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,43 +97,43 @@ namespace ft
 		/* Обменивает содержимое адаптера контейнера (*this) на содержимое x. */
 		void swap(stack & x);
 
-	protected:
-		//container_type 		_container;
 		container_type		c;
+	protected:
+		
 	};
 
 	/* Определяем операторы */
-    template <class Type, class Container>
+    template <class Type, class Container> inline
 	bool operator == (const stack<Type, Container> & x, const stack<Type, Container> & y)
 	{
-	    return (x.c== y.c);
+	    return (x.c == y.c);
 	};
 
-	template <class Type, class Container>
+	template <class Type, class Container> inline
 	bool operator != (const stack<Type, Container> & x, const stack<Type, Container> & y)
 	{
 		return (!(x == y));
 	};
 
-	template <class Type, class Container>
+	template <class Type, class Container> inline
     bool operator < (const stack<Type, Container> & x, const stack<Type, Container> & y)
     {
         return (x.c < y.c);
     };
 
-	template <class Type, class Container>
+	template <class Type, class Container> inline
     bool operator > (const stack<Type, Container> & x, const stack<Type, Container> & y)
     {
         return (y < x);
     };
 
-	template <class Type, class Container>
+	template <class Type, class Container> inline 
     bool operator >= (const stack<Type, Container> & x, const stack<Type, Container> & y)
     {
         return (!(x < y));
     };
 
-	template <class Type, class Container>
+	template <class Type, class Container> inline
     bool operator <= (const stack<Type, Container> & x, const stack<Type, Container> & y)
     {
         return (!(y < x));

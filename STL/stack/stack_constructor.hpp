@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:49 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:50 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:29:58 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
     template <class Type_stack, class Container_stack>
 	stack<Type_stack, Container_stack>& stack<Type_stack, Container_stack>::operator = (const stack& copy)
     {
-        c = copy._container;
+        this->c = copy.c;
         return *this;
     }
 
