@@ -6,12 +6,14 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:12:39 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:12:40 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:19:22 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ITER_DISTANCE
 #define FT_ITER_DISTANCE
+
+#include "iterator.hpp"
 
 namespace ft
 {
@@ -59,7 +61,7 @@ namespace ft
 	}
 
 	template <class InIt, class D> inline
-	void Distance2(InIt F, InIt L, D & N, random_access_iterator_tag)
+	void Distance2(InIt F, InIt L, D & N, ft::random_access_iterator_tag)
 	{
 		N += L - F;
 	}

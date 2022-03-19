@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:02 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 12:50:51 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:15:14 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ namespace ft
         typedef const_pointer				                Ctptr;		      // Const Pointer	
 
     
-        typedef random_acsees_iterator<value_type, difference_type, Tptr, reference, Tptr, reference> 
+        typedef ft::random_access_iterator<value_type, difference_type, Tptr, reference, Tptr, reference> 
         iterator;
         
-        typedef random_acsees_iterator<value_type, difference_type, Ctptr, const_reference, Tptr, reference> 
+        typedef ft::random_access_iterator<value_type, difference_type, Ctptr, const_reference, Tptr, reference> 
         const_iterator;
 		
         typedef ft::reverse_iterator<iterator> 

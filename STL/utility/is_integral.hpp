@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:09 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 01:42:00 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:52:29 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ namespace ft
     template<>
     struct is_integral_base<wchar_t>:            public true_type {};
     
-    //#include <iostream>
-    // INCLUDE IOSTREAM!!!
-    //template<>
-    //struct is_integral_base<char16_t>:           public true_type {};
+    // #include <iostream>
+    // //INCLUDE IOSTREAM!!!
+    // template<>
+    // struct is_integral_base<char16_t>:           public true_type {};
     
-    //template<>
-    //struct is_integral_base<char32_t>:           public true_type {};
+    // template<>
+    // struct is_integral_base<char32_t>:           public true_type {};
     
     template<>
     struct is_integral_base<short>:              public true_type {};
@@ -104,7 +104,7 @@ namespace ft
     template<>
     struct is_integral_base<__uint128_t>:        public true_type {};
 
-
+    
     /* Сюда приходит T который мы хотим понять число это или итератор*/
     template < class T >
     struct is_integral : public is_integral_base<typename remove_const<T>::type>

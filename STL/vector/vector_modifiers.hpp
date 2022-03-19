@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:40 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 13:00:56 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:52:29 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ namespace ft
         {
             /* Если не хватает места под новые M элементов*/
 
-            if ((max_size() - N / 2) < N)
+            // if ((max_size() - N / 2) < N)
+            if ((max_size() - N) < N)
                 N = 0;
             else
             {
@@ -88,10 +89,14 @@ namespace ft
                 N = N + N;
             }
             
+            // while (N < size() + M)
+            //     N = N + N;
+
             if (N < size() + M)
                 N = size() + M;
 
-            pointer S = _base::Alval.allocate(N, (void *) 0);
+            // pointer S = _base::Alval.allocate(N, (void *) 0);
+            pointer S = _base::Alval.allocate(N);
             pointer Q;
             try
             {

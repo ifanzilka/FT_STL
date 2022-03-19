@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   random_acsees_iterator.hpp                         :+:      :+:    :+:   */
+/*   random_access_iterator.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:05 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:06 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:16:14 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,28 @@ namespace ft
 		// TEMPLATE CLASS random_acsees_iterator (Ptrit)
 
 	template <class T, class D, class Pt, class Rt, class Pt2, class Rt2>
-	class random_acsees_iterator : public iterator<random_access_iterator_tag, T, D, Pt, Rt> 
+	class random_access_iterator : public iterator<random_access_iterator_tag, T, D, Pt, Rt> 
 	{
 	public:
-		typedef random_acsees_iterator<T, D, Pt, Rt, Pt2, Rt2> Myt;
+		typedef random_access_iterator<T, D, Pt, Rt, Pt2, Rt2> Myt;
 		
-		random_acsees_iterator() 
+		random_access_iterator() 
 		{
 
 		};
 		
-		explicit random_acsees_iterator(Pt P): current (P) 
+		explicit random_access_iterator(Pt P): current (P) 
 		{
 
 		}
 
-		random_acsees_iterator(const random_acsees_iterator<T, D, Pt, Rt, Pt2, Rt2> &X): current (X.base()) 
+		random_access_iterator(const random_access_iterator<T, D, Pt, Rt, Pt2, Rt2> &X): current (X.base()) 
 		{
 			
 		}
 		
 		template <class _T, class _D, class _Pt, class _Rt, class _Pt2, class _Rt2>
-		random_acsees_iterator(const random_acsees_iterator<_T, _D, _Pt, _Rt, _Pt2, _Rt2> &X): current (X.base()) 
+		random_access_iterator(const random_access_iterator<_T, _D, _Pt, _Rt, _Pt2, _Rt2> &X): current (X.base()) 
 		{
 
 		}
@@ -158,7 +158,7 @@ namespace ft
 	};
 	
 	template <class T, class D, class Pt, class Rt, class Pt2, class Rt2, class D0> inline
-	random_acsees_iterator <T, D, Pt, Rt, Pt2, Rt2> operator + (D0 N, const random_acsees_iterator<T, D, Pt, Rt, Pt2, Rt2>& Y)
+	random_access_iterator <T, D, Pt, Rt, Pt2, Rt2> operator + (D0 N, const random_access_iterator<T, D, Pt, Rt, Pt2, Rt2>& Y)
 	{ 
 		return (Y + static_cast<D>(N));
 	}

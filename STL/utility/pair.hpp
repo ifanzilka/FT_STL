@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:12 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:12 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:39:12 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,37 +67,37 @@ namespace ft
 	}
     
 	template <class T, class U>
-	bool  operator == (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool  operator == (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return x.first == y.first && x.second == y.second ;
 	}
 
 	template <class T, class U>
-	bool operator != (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool operator != (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return !(x == y);
 	}
 
 	template <class T, class U>
-	bool operator < (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool operator < (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return x.first < y.first || (!(y.first < x.first) && x.second < y.second);
 	}
 
 	template <class T, class U>
-	bool operator > (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool operator > (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return y < x;
 	}
 
 	template <class T, class U>
-	bool operator <= (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool operator <= (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return !(y < x);
 	}
 
 	template <class T, class U>
-	bool operator >= (const pair<T, U>& x, const pair<T, U>& y)
+	inline bool operator >= (const pair<T, U>& x, const pair<T, U>& y)
     {
 	    return !(x < y);
 	}

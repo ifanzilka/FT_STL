@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:31 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 05:30:51 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:18:24 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 namespace ft
 {
     template <class tree_traits>
-    class tree_iterator: public Bidit< typename Tree<tree_traits>::value_type, 
+    class tree_iterator: public ft::Bidit< typename Tree<tree_traits>::value_type, 
  				typename Tree<tree_traits>::Dift,
 				typename Tree<tree_traits>::Tptr,
 				typename Tree<tree_traits>::Reft>

@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 16:11:28 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:51:30 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ namespace ft
             return (false);
         else
         {
-            First = _base::Alval.allocate(N, (void *)0);
+            // First = _base::Alval.allocate(N, (void *)0);
+            First = _base::Alval.allocate(N);
             Last = First;
             End = First + N;
             return (true);
@@ -172,13 +173,17 @@ namespace ft
         }
         else if (N < size() + M) /* Если не хватает места под новые M элементов*/
         {
-            if ((max_size() - N / 2) < N)
+            // if ((max_size() - N / 2) < N)
+            if ((max_size() - N) < N)
                 N = 0;
             else
             {
                 //N = N + N / 2;
                 N = N + N;
             }
+            
+            // while (N < size() + M)
+            //     N *= 2;
             if (N < size() + M)
                 N = size() + M;
 

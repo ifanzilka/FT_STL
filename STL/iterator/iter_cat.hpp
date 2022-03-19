@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:12:36 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 16:09:16 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:26:52 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@ namespace ft
 	// }
 
 	template <class T> inline
-	ft::random_access_iterator_tag Iter_cat(const T)
+	ft::random_access_iterator_tag Iter_cat(const T*)
 	{
 		ft::random_access_iterator_tag x;
 		return (x);
 	}
+
+	// template <class T> inline
+	// ft::random_access_iterator_tag Iter_cat(const T)
+	// {
+	// 	ft::random_access_iterator_tag x;
+	// 	return (x);
+	// }
 
 	inline ft::Int_iterator_tag Iter_cat(bool)
 	{
