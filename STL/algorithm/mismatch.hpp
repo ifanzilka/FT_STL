@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mismatch.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:11:15 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:11:17 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 01:38:17 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FT_MISMATCH
 
 # include "algorithm.hpp"
+
+/* PAIR */
+# include "../utility/pair.hpp"
 
 namespace ft
 {

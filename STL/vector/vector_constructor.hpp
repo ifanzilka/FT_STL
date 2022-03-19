@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:24 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:25 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 03:23:43 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ namespace ft
     vector<T, Alloc>::vector(It First, It Last): _base()
     {
         Construct(First, Last, ft::Iter_cat(First));
+        /* Use enable if */
+        //Construct2(First, Last, &First);
     }
     
     /* Конструкторы с итераторами  и аллокатором */
@@ -78,6 +80,8 @@ namespace ft
     vector<T, Alloc>::vector (It First, It Last, const allocator_type& Al) : _base(Al)
     {
         Construct(First, Last, ft::Iter_cat(First));
+        /* Use enable if */
+        //Construct2(First, Last, &First);
     }
 
     /* Деструктор */

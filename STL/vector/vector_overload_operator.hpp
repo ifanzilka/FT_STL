@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:48 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 12:53:26 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ namespace ft
         else if (X.size() <= size())
         {
             /* Если наш вектор больше чем тот откуда присваивание */
-            Clear();
 
-            pointer Q = ItCopy(X.begin(), X.end(), First);
-            
+            pointer Q = ft::copy(X.begin(), X.end(), First);
             Destroy(Q, Last);
             Last = First + X.size();
         }
         else
         {
-            /* Если размер нового ветора больше */
+            /* Если размер нового вектора больше */
             Destroy(First, Last);
             
             _base::Alval.deallocate(First, End - First);

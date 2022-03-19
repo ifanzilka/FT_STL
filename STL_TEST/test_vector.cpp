@@ -169,19 +169,41 @@ void test_vector()
 
 }
 
+#include <vector>
 
 int main()
 {
-    test_vector();
-	std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;
+    // std::vector<int> v;
+	// ft::vector<int> vector;
+
 	
-    //std::vector<int> v1(8, 10);
-    //ft::vector<int> v2(8, 10);
-    //ft::vector<int> v3(v2.begin(), v2.end());
+    // for (int i = 0; i < 50; ++i)
+	// {
+	// 	std::cout << "ft_size::" << vector.size() << std::endl;
+	// 	std::cout << "std_size::" << v.size() << std::endl;
+	// 	std::cout << "ft_capacity::" << vector.capacity() << std::endl;
+	// 	std::cout << "std_capacity::" << v.capacity() << std::endl;
+	// 	std::cout << "\n\n";
+	// 	vector.push_back(i);
+	// 	v.push_back(i);
 
 
-    //ft::vector<int> v3(1,2);
-    //ft::vector<int> v4(v1.begin(), v1.end());
+	// }
+
+	int _ratio = 1000;
+	
+	ft::vector<int> vector;
+	std::vector<int> v;
+    ft::vector<int> tmp;
+    tmp.assign(2600 * _ratio, 1);
+    vector.assign(4200 * _ratio, 1);
+    vector.insert(vector.end() - 1000 * _ratio, tmp.begin(), tmp.end());
+    v.push_back(vector[3]);
+    v.push_back(vector.size());
+    v.push_back(vector.capacity());
+	test_vector();
+
+	std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;
 
     return (0);
 }

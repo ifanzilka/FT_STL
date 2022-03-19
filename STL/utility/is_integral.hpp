@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:09 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:10 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 01:42:00 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,24 @@ namespace ft
         typedef T type; 
     };
 
+    // struct true_type
+    // {
+    //     static const int value = 1;
+    // };
+
+    // struct false_type
+    // {
+    //     static const int value = 0;
+    // };
+
     struct true_type
     {
-        static const int value = 1;
+	    static const bool value = true;
     };
 
     struct false_type
     {
-        static const int value = 0;
-    };
-
-    struct int_type
-    {
-        static const int value = 42;
-
+	    static const bool value = false;
     };
 
     /* Если не получилось приравнять к станадртным типам */
@@ -77,7 +81,7 @@ namespace ft
     struct is_integral_base<unsigned short>:     public true_type {};
     
     template<>
-    struct is_integral_base<int>:                public int_type {};
+    struct is_integral_base<int>:                public true_type {};
     
     template<>
     struct is_integral_base<unsigned int>:       public true_type {};

@@ -6,13 +6,14 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:54 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 12:42:25 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_PROTECTED
 # define FT_VECTOR_PROTECTED
 
+#include "../utility/utility.hpp"
 #include "vector.hpp"
 #include "vector_modifiers.hpp"
 
@@ -58,7 +59,7 @@ namespace ft
     typename vector<T, Alloc>::pointer vector<T, Alloc>::ItCopy(It First, It Last, pointer Ptr)
     {
         pointer CopyPtr = Ptr;
-
+        
         try
         {
             for(; First != Last; ++Ptr, ++First)
@@ -112,6 +113,26 @@ namespace ft
         insert(begin(), F, L);
     }
 
+
+    /********** ENABLE IF ***********/
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Construct2(It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type*)
+    {
+        size_type N = (size_type)F;
+        if (Allocate_zero(N))
+            Last = Call_construct(First, N, (T)L);
+    }
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Construct2(It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type* )
+    {
+        Allocate_zero(0);
+        insert(begin(), F, L);
+    }
+
     /* Вставление элементов в позицию P, F раз элемента L */
     template<class T,  class Alloc>
     template <class It>
@@ -154,8 +175,10 @@ namespace ft
             if ((max_size() - N / 2) < N)
                 N = 0;
             else
-                N = N + N / 2;
-            
+            {
+                //N = N + N / 2;
+                N = N + N;
+            }
             if (N < size() + M)
                 N = size() + M;
 
@@ -209,6 +232,25 @@ namespace ft
             Last = ItCopy(Oend - M, Oend, Last);
             ft::copy_backward(P, Oend - M, Oend);
             copy(F, L, P);
+        }
+    }
+
+    /*****************************/    
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Insert2(iterator P, It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type*)
+    {
+        insert(P, (size_type)F, (T)L);
+    }
+
+    template<class T,  class Alloc>
+    template <class It>
+    void vector<T, Alloc>::Insert2(iterator P, It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type*)
+    {
+        for (; F != L; ++F, ++P)
+        {
+            P = insert(P, *F);
         }
     }
 

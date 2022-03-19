@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:02 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:03 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 12:50:51 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ namespace ft
         //   rebind<T>::other Alty;
         //Alty Alval;
         
-        typedef std::allocator<T> allocator_type;
-        allocator_type Alval;
+        typedef typename A::template
+            rebind<T>::other Alty;
+        
+        Alty Alval;
     
         /*  Use function : 
         **  Alval.allocate / Alval.deallocate
@@ -202,6 +204,7 @@ namespace ft
         /* Возвращает последний элемент */
         const_reference back() const;
 
+        pointer data(){return (First);}
         /*****************************************************/
         /*                    Modifiers                      */
         /*****************************************************/
@@ -264,6 +267,13 @@ namespace ft
         template <class It>
         void Construct(It F, It L, input_iterator_tag);
 
+        /***** ENABLE IF**********/
+        template <class It>
+        void Construct2(It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type * = nullptr);
+        template <class It>
+        void Construct2(It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type * = nullptr);
+
+
         /* Вызываем деструкторы  */
         void Destroy(pointer F, pointer L);
         
@@ -279,6 +289,14 @@ namespace ft
 
         template <class It>
 		void Insert (iterator P, It F, It L, forward_iterator_tag);
+
+        /***** ENABLE IF**********/
+        template <class It>
+		void Insert2(iterator P, It F, It L, typename ft::enable_if<ft::is_integral<It>::value, It>::type * = nullptr);        
+        template <class It>
+		void Insert2(iterator P, It F, It L, typename ft::enable_if<!ft::is_integral<It>::value, It>::type * = nullptr);
+
+
 
         template <class It>
         void Assign(It F, It L, Int_iterator_tag);
@@ -331,11 +349,11 @@ namespace ft
 		return (!(Y < X));
 	}
 	
-	template<class T, class allocator_type> inline
-	void swap (vector<T, allocator_type>& X, vector<T, allocator_type>& Y)
-    {
-		X.swap(Y);
-	}
+	// template<class T, class allocator_type> inline
+	// void swap (vector<T, allocator_type>& X, vector<T, allocator_type>& Y)
+    // {
+	// 	X.swap(Y);
+	// }
 
 }
 

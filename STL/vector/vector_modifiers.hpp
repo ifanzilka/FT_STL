@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:40 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:14:40 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 13:00:56 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FT_VECTOR_MODIFIERS
 
 #include "vector.hpp"
-// #include "vector_protected.hpp"
-// #include "vector_iterators.hpp"
 
 namespace ft
 {
@@ -81,10 +79,15 @@ namespace ft
         else if (N < size() + M)
         {
             /* Если не хватает места под новые M элементов*/
+
             if ((max_size() - N / 2) < N)
                 N = 0;
             else
-                N = N + N / 2;
+            {
+                //N = N + N / 2;
+                N = N + N;
+            }
+            
             if (N < size() + M)
                 N = size() + M;
 
@@ -148,6 +151,7 @@ namespace ft
 	void vector<T, Alloc>::insert(iterator Position, It First, It Last)
     {
         Insert(Position, First, Last, Iter_cat(First));
+        //Insert2(Position, First, Last, &First);
     }
 
     /* Стирание элемента P по итератору */
@@ -178,10 +182,13 @@ namespace ft
     template <class T, class Alloc>
     void vector<T, Alloc>::swap(vector &X)
     {
+        // std::swap(First, X.First);
+        // std::swap(Last, X.Last);
+        // std::swap(End, X.End);
+        
         /* Если совпали алокаторы*/
         if (_base::Alval == X.Alval)
-        {
-            // ДОДЕЛАТЬ!
+        {    
             ft::swap(First, X.First);
             ft::swap(Last, X.Last);
             ft::swap(End, X.End);
@@ -189,7 +196,8 @@ namespace ft
         else
         {
             vector Tmp = *this;
-            *this = X, X = Tmp;
+            *this = X;
+            X = Tmp;
         }
     }
 
