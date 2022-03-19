@@ -2,6 +2,13 @@ CXX			= clang++
 
 CXXFLAGS 	=  #-Wall -Wextra -Werror -std=c++98
 
+#define VECTOR			"/Users/bmarilli/Documents/FT_STL/STL/vector/vector.hpp"
+#define STACK			"/Users/bmarilli/Documents/FT_STL/STL/stack/stack.hpp"
+#define MAP			  	"/Users/bmarilli/Documents/FT_STL/STL/map/map.hpp"
+#define SET			  	"/Users/bmarilli/Documents/FT_STL/STL/set/set.hpp"
+#define UTILITIES		"/Users/bmarilli/Documents/FT_STL/STL/utility/utility.hpp"
+
+
 F_NONE		= \033[37m
 F_BOLD		= \033[1m
 F_RED		= \033[31m

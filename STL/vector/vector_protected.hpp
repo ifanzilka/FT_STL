@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:53 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 12:42:25 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:11:28 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ namespace ft
             /* Последние элементы смещаю назад*/
             ItCopy(P, end(), P.base() + M);
             It Mid = F;
-            advance(Mid, end() - P);
+            ft::advance(Mid, end() - P);
 
             try
             {
@@ -224,14 +224,14 @@ namespace ft
                 throw;
             }
             Last += M;
-            copy(F, Mid, P);
+            ft::copy(F, Mid, P);
         }
         else if (0 < M)
         {
             iterator Oend = end();
             Last = ItCopy(Oend - M, Oend, Last);
             ft::copy_backward(P, Oend - M, Oend);
-            copy(F, L, P);
+            ft::copy(F, L, P);
         }
     }
 
