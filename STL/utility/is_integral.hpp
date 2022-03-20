@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:09 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/20 10:28:21 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/20 10:31:51 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace ft
 {
-    template<class T, bool v>
+	template<class T, bool v>
 	struct integral_constant
 	{
 		static const bool value = v;
@@ -25,9 +25,9 @@ namespace ft
 		typedef T                   value_type;
 		typedef integral_constant   type;
 		operator value_type() const
-        {
-            return (value);
-        }
+		{
+			return (value);
+		}
 	};
 	
 	/* Если смогли принять шаблонный параметр */
