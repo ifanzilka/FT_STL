@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/20 23:27:16 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/21 00:19:26 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ namespace ft
 		typedef typename Tree_traits::value_type		value_type;     /* Тип значения */
 
         /* Берем аллокатор из tree_traits, из этого аллокатора делаем аллокатор на void и делаем ссылку */
-        typedef typename allocator_type::
-            template rebind<void>::other::pointer	    Tree_ptr;
+        // typedef typename allocator_type::
+        //     template rebind<void>::other::pointer	    Tree_ptr;
         
         typedef typename allocator_type::
             template rebind<Tree_traits>::other::pointer Genptr;
@@ -80,9 +80,9 @@ namespace ft
         struct Node
         {
             /* Указатель на родителя, на левую часть, и на правую */
-            Tree_ptr    Left;
-            Tree_ptr    Parent;
-            Tree_ptr    Right;
+            Genptr    Left;
+            Genptr    Parent;
+            Genptr    Right;
 
             value_type  Value;
             
