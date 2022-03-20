@@ -3,39 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   is_integral.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:14:09 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 17:52:29 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 10:28:21 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_IS_INTEGRAL
 # define FT_IS_INTEGRAL
 
+#include <iostream>
+
 namespace ft
+{
+    template<class T, bool v>
+	struct integral_constant
+	{
+		static const bool value = v;
+        
+		typedef T                   value_type;
+		typedef integral_constant   type;
+		operator value_type() const
+        {
+            return (value);
+        }
+	};
+	
+	/* Если смогли принять шаблонный параметр */
+	template <class T>
+    struct	is_integral:				public integral_constant<T, false> {};
+	
+    template <>
+    struct	is_integral<bool>:			public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<char>:			public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<signed char>:	public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<unsigned char>:	public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<wchar_t>:		public integral_constant<bool, true> {};
+	
+    template <>
+    struct is_integral<char16_t> : 		public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<short>:			public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<unsigned short>:public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<int>:			public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<unsigned int>:	public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<long>: 			public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<unsigned long>: public integral_constant<bool, true> {};
+	
+    template <>
+    struct	is_integral<long long>: 	public integral_constant<bool, true> {};
+	
+    template <>
+	struct	is_integral<unsigned long long>: public integral_constant<bool, true> {};
+}
+
+namespace ft_old
 {
 	template< class T > 
     struct remove_const
     { 
         typedef T type;
+        //operator value_type() const { return type;}
     };
     
     template< class T > 
     struct remove_const<const T>
     { 
-        typedef T type; 
+        typedef T type;
+        //operator value_type() const { return type;}
     };
-
-    // struct true_type
-    // {
-    //     static const int value = 1;
-    // };
-
-    // struct false_type
-    // {
-    //     static const int value = 0;
-    // };
 
     struct true_type
     {
@@ -48,7 +104,8 @@ namespace ft
     };
 
     /* Если не получилось приравнять к станадртным типам */
-    template <typename> struct is_integral_base : public false_type {};
+    template <typename>
+	struct is_integral_base : public false_type {};
 
     /* Пытаемся приравнять к одному из классов ниже*/
     template<> 
