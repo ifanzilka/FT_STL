@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:56 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 19:30:47 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:13:40 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ namespace ft
 		explicit stack(const container_type & Cont);
 
 	
-		// template <class Alloc>
-		// explicit stack (const Alloc& alloc);
+		template <class Alloc>
+		explicit stack (const Alloc& alloc);
 		
-		// template <class Alloc>
-		// stack (const container_type& ctnr, const Alloc& alloc);
+		template <class Alloc>
+		stack (const container_type& ctnr, const Alloc& alloc);
 		
-		// template <class Alloc>
-		// stack (container_type&& ctnr, const Alloc& alloc);
+		template <class Alloc>
+		stack (container_type& ctnr, const Alloc& alloc);
 
-		// template <class Alloc>
-		// stack (const stack& x, const Alloc& alloc);
+		template <class Alloc>
+		stack (const stack& x, const Alloc& alloc);
 
-		// template <class Alloc>
-		// stack (stack&& x, const Alloc& alloc);
+		template <class Alloc>
+		stack (stack& x, const Alloc& alloc);
 
 		/* Деструктор */
 		~stack();

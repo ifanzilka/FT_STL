@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:49 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:27:16 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ namespace ft
     template <class Tree_traits>
     class Tree_nod : public Tree_traits //Наследуем различные Параметры 
     {
-    protected:
+    public:
         typedef typename Tree_traits::allocator_type    allocator_type;
 		typedef typename Tree_traits::key_compare       key_compare;    /* Тип для сравнивания двух Node (это класс вызваем оператор ())*/
 		typedef typename Tree_traits::key_type	        key_type;       /* Тип обьекта ключа сортировки */
@@ -71,7 +71,9 @@ namespace ft
             template rebind<void>::other::pointer	    Tree_ptr;
         
         typedef typename allocator_type::
-            template rebind<void>::other::pointer       Genptr;
+            template rebind<Tree_traits>::other::pointer Genptr;
+            //rebind<void>::other::pointer       Genptr;
+            
         
         struct Node;
         friend struct Node;

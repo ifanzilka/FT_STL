@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_modifers.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:34 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 18:18:31 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/21 00:02:44 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -503,7 +503,8 @@ namespace ft
 		Paircc Ans = equal_range(Kv);
 		size_type N = 0;
 		
-		Distance(Ans.first, Ans.second, N);
+		//Distance(Ans.first, Ans.second, N);
+		ft::Distance_Tree(Ans.first, Ans.second, N);
 		return (N);
 	}
 

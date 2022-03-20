@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iterator_category.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:12:46 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:12:47 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 10:52:48 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ namespace ft
       typedef _Distance  difference_type;
       typedef _Pointer   pointer;
       typedef _Reference reference;
+	  typedef _Tp        iterator_type;
     };
 
     /* Наследуем свойства */

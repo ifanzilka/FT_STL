@@ -170,13 +170,15 @@ void test_vector()
 }
 
 #include <vector>
+//#define	_vector 			ft::vector
+#include <string>
+
 
 int main()
 {
     // std::vector<int> v;
 	// ft::vector<int> vector;
 
-	
     // for (int i = 0; i < 50; ++i)
 	// {
 	// 	std::cout << "ft_size::" << vector.size() << std::endl;
@@ -186,21 +188,80 @@ int main()
 	// 	std::cout << "\n\n";
 	// 	vector.push_back(i);
 	// 	v.push_back(i);
-
-
 	// }
 
-	int _ratio = 1000;
+	std::vector<std::string> res;
+// 	std::vector<std::string> res2;
+
+
+// 	res.push_back(typeid(std::vector<int>::iterator::value_type).name());
+// 	std::cout << typeid(std::vector<int>::iterator::value_type).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::value_type).name() << std::endl;
 	
-	ft::vector<int> vector;
-	std::vector<int> v;
-    ft::vector<int> tmp;
-    tmp.assign(2600 * _ratio, 1);
-    vector.assign(4200 * _ratio, 1);
-    vector.insert(vector.end() - 1000 * _ratio, tmp.begin(), tmp.end());
-    v.push_back(vector[3]);
-    v.push_back(vector.size());
-    v.push_back(vector.capacity());
+// 	res.push_back(typeid(std::vector<int>::iterator::difference_type).name());
+// 	std::cout << typeid(std::vector<int>::iterator::difference_type).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::difference_type).name() << std::endl;
+
+// //
+// 	res.push_back(typeid(std::vector<int>::iterator::iterator_type).name());
+// 	std::cout << typeid(std::vector<int>::iterator::iterator_type).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::iterator_type).name() << std::endl;
+
+// 	res.push_back(typeid(std::vector<int>::iterator::pointer).name());
+// 	std::cout << typeid(std::vector<int>::iterator::pointer).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::pointer).name() << std::endl;
+
+// 	res.push_back(typeid(std::vector<int>::iterator::reference).name());
+// 	std::cout << typeid(std::vector<int>::iterator::reference).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::reference).name() << std::endl;
+
+// 	//
+// 	res.push_back(typeid(std::vector<int>::reverse_iterator::iterator_category).name());
+// 		std::cout << typeid(std::vector<int>::iterator::iterator_category).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::iterator_category).name() << std::endl;
+
+// 	res.push_back(typeid(std::vector<int>::reverse_iterator::value_type).name());
+// 	std::cout << typeid(std::vector<int>::iterator::value_type).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::value_type).name() << std::endl;
+
+// 	res.push_back(typeid(std::vector<int>::reverse_iterator::difference_type).name());
+// 	std::cout << typeid(std::vector<int>::iterator::difference_type).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::difference_type).name() << std::endl;
+	
+// 	res.push_back(typeid(std::vector<int>::reverse_iterator::pointer).name());
+// 	std::cout << typeid(std::vector<int>::iterator::pointer).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::pointer).name() << std::endl;
+	
+// 	res.push_back(typeid(std::vector<int>::reverse_iterator::reference).name());
+// 	std::cout << typeid(std::vector<int>::iterator::reference).name() << std::endl;
+// 	std::cout << typeid(_vector<int>::iterator::reference).name() << std::endl;
+
+// 	res2.push_back(typeid(_vector<int>::iterator::iterator_category).name());
+// 	res2.push_back(typeid(_vector<int>::iterator::value_type).name());
+// 	res2.push_back(typeid(_vector<int>::iterator::difference_type).name());
+// 	//res2.push_back(typeid(_vector<int>::iterator::iterator_type).name());
+// 	res2.push_back(typeid(_vector<int>::iterator::pointer).name());
+// 	res2.push_back(typeid(_vector<int>::iterator::reference).name());
+// 	res2.push_back(typeid(_vector<int>::reverse_iterator::iterator_category).name());
+// 	res2.push_back(typeid(_vector<int>::reverse_iterator::value_type).name());
+// 	res2.push_back(typeid(_vector<int>::reverse_iterator::difference_type).name());
+// 	res2.push_back(typeid(_vector<int>::reverse_iterator::pointer).name());
+// 	res2.push_back(typeid(_vector<int>::reverse_iterator::reference).name());
+
+
+	// int _ratio = 1000;
+	
+	// ft::vector<int> vector;
+	// std::vector<int> v;
+    // ft::vector<int> tmp;
+    // tmp.assign(2600 * _ratio, 1);
+    // vector.assign(4200 * _ratio, 1);
+    // vector.insert(vector.end() - 1000 * _ratio, tmp.begin(), tmp.end());
+    // v.push_back(vector[3]);
+    // v.push_back(vector.size());
+    // v.push_back(vector.capacity());
+	
+	
 	test_vector();
 
 	std::cout << GREEN <<"SUCCESS testing  <vector>" <<  F_NONE <<std::endl;

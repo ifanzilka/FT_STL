@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_iterator.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:07 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:08 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 10:43:02 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,8 +207,10 @@ namespace ft
 			explicit reverse_iterator(RanIt x) : current(x) {}
 
 			template <class U>
-			reverse_iterator(const reverse_iterator<U> &x)
-				: current(x.base()) {}
+			reverse_iterator(const reverse_iterator<U> &x): current(x.base())
+			{
+				
+			}
 
 			RanIt base() const { return (current); }
 			Ref operator*() const { RanIt tmp = current; return (*--tmp); }

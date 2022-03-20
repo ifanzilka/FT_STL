@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter_distance.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:12:39 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 18:19:22 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/21 00:02:03 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,19 @@ namespace ft
 	{
 		N += L - F;
 	}
+
+
+	/*********FROM TREE ******/
+
+	template <class InIt, class D> inline
+	void Distance_Tree(InIt F, InIt L, D & N)
+	{
+		for (; F != L; ++F)
+		{
+			++N;
+		}
+	}
+	
 }
 
 #endif

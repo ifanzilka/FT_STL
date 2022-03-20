@@ -150,13 +150,12 @@ std::vector<int> loh(_set<T> st) {
     return v;
 }
 
-
+#include <memory>
 int main()
 {
-	ft::set<int> s;
-	loh(s);
+	//ft::set<int, std::less<int>, Alloc<int> > st;
+	//loh(s);
 
-	
 	std::cout << "asd" << std::endl;
     //test_set();
     //std::cout << GREEN <<"SUCCESS testing  <set>" <<  F_NONE <<std::endl;

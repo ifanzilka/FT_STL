@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_buynode.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:09 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:10 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:19:39 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ namespace ft
     typename Tree<Tree_traits>::Nodeptr Tree<Tree_traits>::Buynode(Nodeptr Parg, char Carg)
     {
         /* Выделили память под голову дерева */
-        Nodeptr S = Tree::Alnod.allocate(1, (void *)0);
+        Nodeptr S = Tree::Alnod.allocate(1);
 
         /* Взяли левый элемент дерева и вызвали конструктор с null */
         Tree::Alptr.construct(&Left(S), nullptr);
