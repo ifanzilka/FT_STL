@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/21 00:19:26 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/22 23:02:02 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ namespace ft
 		typedef typename Tree_traits::value_compare	    value_compare;  /* Тип для сравнивания по ключу */
 		typedef typename Tree_traits::value_type		value_type;     /* Тип значения */
 
+
         /* Берем аллокатор из tree_traits, из этого аллокатора делаем аллокатор на void и делаем ссылку */
         // typedef typename allocator_type::
         //     template rebind<void>::other::pointer	    Tree_ptr;
         
+        /* Указатель на тип Tree_traits */
         typedef typename allocator_type::
             template rebind<Tree_traits>::other::pointer Genptr;
             //rebind<void>::other::pointer       Genptr;
             
-        
         struct Node;
         friend struct Node;
         struct Node
@@ -83,7 +84,8 @@ namespace ft
             Genptr    Left;
             Genptr    Parent;
             Genptr    Right;
-
+            
+            /* Значение в node*/
             value_type  Value;
             
             /* Цвет ноды (Черное-Красное)*/
@@ -93,65 +95,36 @@ namespace ft
             char Isnil;
         };
 
+        /* Обьект класса аллокатор */
+        allocator_type Alval;
+
+        /* Делаем типы */
+        
+        /* Обьект класса аллокатор на Node */
+        typename allocator_type::
+            template rebind<Node>::other                Alnod;
+
+        /* Обьект класса аллокатор на (*Node) */
+        typedef typename allocator_type::
+            template rebind<Node>::other::pointer	    Nodeptr;
+        
+        /* Обьект класса аллокатор на (Nodeptr) или (*Node) */
+        typename allocator_type::
+            template rebind<Nodeptr>::other             Alptr;
+
         /* Конструктор */
         Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnod(Al)
         {
 
         }
-        
-        /* Делаеи тип  */
-        typename allocator_type::
-            template rebind<Node>::other                Alnod;
     };
     
     template <class Tree_traits>
-	class Tree_ptr : public Tree_nod<Tree_traits>
-    {
-    protected:
-		typedef typename Tree_nod<Tree_traits>::Node    Node;
-		typedef typename Tree_traits::allocator_type    allocator_type;
-		typedef typename Tree_traits::key_compare		key_compare;
-		
-
-        typedef typename allocator_type::
-            template rebind<Node>::other::pointer	    Nodeptr;
-        
-        typedef typename allocator_type::
-            template rebind<Node>::other::const_pointer	const_nodeptr;
-
-        /* Конуструктор */
-		Tree_ptr(const key_compare& Parg, allocator_type Al):Tree_nod<Tree_traits>(Parg, Al)
-        {
-
-        }
-        
-        typename allocator_type
-				::template rebind<Nodeptr>::other Alptr;
-	};
-
-    /* Класс для хранения обьекта распределителя */
-    template <class Tree_traits>
-	class Tree_val : public Tree_ptr<Tree_traits>
-    {
-	protected:
-		typedef typename Tree_traits::allocator_type    allocator_type;
-		typedef typename Tree_traits::key_compare       key_compare;
-
-        /* Конуструктор */
-        Tree_val(const key_compare& Parg, allocator_type Al): Tree_ptr<Tree_traits>(Parg, Al), Alval(Al)
-        {
-
-        }
-		
-        allocator_type Alval;
-	};
-
-    template <class Tree_traits>
-    class Tree : public Tree_val<Tree_traits>
+    class Tree : public Tree_nod<Tree_traits>
     {
     public:
         typedef Tree<Tree_traits>                               Myt;
-        typedef Tree_val<Tree_traits>                           Mybase;
+        typedef Tree_nod<Tree_traits>                           Mybase;
 
         typedef typename Tree_traits::key_type				    key_type;
 		typedef typename Tree_traits::key_compare			    key_compare;

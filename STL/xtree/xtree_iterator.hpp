@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_iterator.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:31 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 20:10:24 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/22 00:08:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ namespace ft
 
         /* Constructor */
         tree_iterator(Nodeptr P): Ptr(P) {};
-
+        
+        // tree_iterator &operator=(const tree_iterator &obj)
+        // {
+        //     node = obj.node;
+            
+        //     return *this; 
+        // }
 
         /* Overload operator */
         reference operator*() const 

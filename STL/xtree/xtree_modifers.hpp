@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:34 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/21 00:02:44 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/22 22:27:23 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -434,7 +434,7 @@ namespace ft
 	{
 		Pairii P = equal_range(X);
 		size_type N = 0;
-		ft::Distance(P.first, P.second, N);
+		ft::Distance_Tree(P.first, P.second, N);
 		erase(P.first, P.second);
 		return (N);
 	}
