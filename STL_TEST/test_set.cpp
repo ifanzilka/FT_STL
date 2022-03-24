@@ -99,74 +99,75 @@ void test_set()
 	assert(*pcc.first == 'a' && *pcc.second == 'b');
 }
 
-// #define _set ft::set
+#define _set ft::set
 
-// template <class T>
-// std::vector<int> test_iter(_set<T> st)
-// {
-//     std::vector<int> v;
-//     // fillSet(st);
+template <class T>
+std::vector<int> test_iter(_set<T> st)
+{
+    std::vector<int> v;
+    // fillSet(st);
     
-//     ft::set<int, std::greater<int> > st_1;
+    ft::set<int, std::greater<int> > st_1;
 
-//     typename _set<T>::iterator it = st_1.begin();
-
-//     for (typename _set<T>::iterator it = st.begin(); it != st.end(); it++) { v.push_back(*it); }
-//     for (typename _set<T>::iterator it = --st.end(); it != st.begin(); it--) { v.push_back(*it); }
-//     _set<int, std::greater<int> > st1;
+	std::cout << "proba1\n";
+    typename _set<T>::iterator it = st_1.begin();
+	std::cout << "proba2\n";
+    // for (typename _set<T>::iterator it = st.begin(); it != st.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st.end(); it != st.begin(); it--) { v.push_back(*it); }
+    // _set<int, std::greater<int> > st1;
     
-//     v.push_back(*(st1.begin()));
-//     st1.erase(41);
-//     v.push_back(*(st1.begin()));
-//     st1.erase(29);
-//     v.push_back(*(st1.begin()));
-//     _set<int, std::greater<int> > st2;
-//     st2.insert(3);
-//     v.push_back(*(st2.begin()));
-//     st2.erase(3);
-//     if (st2.begin() == st2.end())
-//         v.push_back(1);
-//     _set<int, std::greater<int> > st3;
+    // v.push_back(*(st1.begin()));
+    // st1.erase(41);
+    // v.push_back(*(st1.begin()));
+    // st1.erase(29);
+    // v.push_back(*(st1.begin()));
+    // _set<int, std::greater<int> > st2;
+    // st2.insert(3);
+    // v.push_back(*(st2.begin()));
+    // st2.erase(3);
+    // if (st2.begin() == st2.end())
+    //     v.push_back(1);
+    // _set<int, std::greater<int> > st3;
 
-//     for (typename _set<T>::iterator it = st3.begin(); it != st3.end(); it++) { v.push_back(*it); }
-//     for (typename _set<T>::iterator it = --st3.end(); it != st3.begin(); it--) { v.push_back(*it); }
-//     // _set<int, std::minus<int> > st4;
+    // for (typename _set<T>::iterator it = st3.begin(); it != st3.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st3.end(); it != st3.begin(); it--) { v.push_back(*it); }
+    // _set<int, std::minus<int> > st4;
 
-//     // for (typename _set<T>::iterator it = st4.begin(); it != st4.end(); it++) { v.push_back(*it); }
-//     // for (typename _set<T>::iterator it = --st4.end(); it != st4.begin(); it--) { v.push_back(*it); }
-//     // _set<int, std::greater_equal<int> > st5;
-//     // fillSet(st5);
-//     // for (typename _set<T>::iterator it = st5.begin(); it != st5.end(); it++) { v.push_back(*it); }
-//     // for (typename _set<T>::iterator it = --st5.end(); it != st5.begin(); it--) { v.push_back(*it); }
-//     // _set<int, std::multiplies<int> > st6;
-//     // fillSet(st6);
-//     // for (typename _set<T>::iterator it = st6.begin(); it != st6.end(); it++) { v.push_back(*it); }
-//     // for (typename _set<T>::iterator it = --st6.end(); it != st6.begin(); it--) { v.push_back(*it); }
-//     // _set<int, std::bit_xor<int> > st7;
-//     // fillSet(st7);
-//     // for (typename _set<T>::iterator it = st7.begin(); it != st7.end(); it++) { v.push_back(*it); }
-//     // for (typename _set<T>::iterator it = --st7.end(); it != st7.begin(); it--) { v.push_back(*it); }
-//     // std::set<int, std::logical_and<int> > st8;
-//     // fillSet(st8);
-//     // for (typename std::set<T>::iterator it = st8.begin(); it != st8.end(); it++) { v.push_back(*it); }
-//     // for (typename std::set<T>::iterator it = --st8.end(); it != st8.begin(); it--) { v.push_back(*it); }
-//     // g_start1 = timer();
-//     // g_end1 = timer();
-//     // v.push_back(st1.size());
+    // for (typename _set<T>::iterator it = st4.begin(); it != st4.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st4.end(); it != st4.begin(); it--) { v.push_back(*it); }
+    // _set<int, std::greater_equal<int> > st5;
+    // fillSet(st5);
+    // for (typename _set<T>::iterator it = st5.begin(); it != st5.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st5.end(); it != st5.begin(); it--) { v.push_back(*it); }
+    // _set<int, std::multiplies<int> > st6;
+    // fillSet(st6);
+    // for (typename _set<T>::iterator it = st6.begin(); it != st6.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st6.end(); it != st6.begin(); it--) { v.push_back(*it); }
+    // _set<int, std::bit_xor<int> > st7;
+    // fillSet(st7);
+    // for (typename _set<T>::iterator it = st7.begin(); it != st7.end(); it++) { v.push_back(*it); }
+    // for (typename _set<T>::iterator it = --st7.end(); it != st7.begin(); it--) { v.push_back(*it); }
+    // std::set<int, std::logical_and<int> > st8;
+    // fillSet(st8);
+    // for (typename std::set<T>::iterator it = st8.begin(); it != st8.end(); it++) { v.push_back(*it); }
+    // for (typename std::set<T>::iterator it = --st8.end(); it != st8.begin(); it--) { v.push_back(*it); }
+    // g_start1 = timer();
+    // g_end1 = timer();
+    // v.push_back(st1.size());
 
-//     return v;
-// }
+    return v;
+}
 
 #include <memory>
 int main()
 {
-	//ft::set<int> st;
-	//test_iter(st);
+	ft::set<int> st;
+	test_iter(st);
 
 	//std::cout << "asd" << std::endl;
     
-    test_set();
-    std::cout << GREEN <<"SUCCESS testing  <set>" <<  F_NONE <<std::endl;
+    //test_set();
+    //std::cout << GREEN <<"SUCCESS testing  <set>" <<  F_NONE <<std::endl;
 
     return (0);
 }
