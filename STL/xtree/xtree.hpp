@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/22 23:02:02 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/30 17:04:32 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -410,7 +410,8 @@ namespace ft
     template <class Tr> inline
 	bool operator<(const Tree<Tr> &X, const Tree<Tr> &Y)
 	{
-		return (ft::lexicographical_compare(X.begin(), X.end(), Y.begin(), Y.end(), X.value_comp()));
+        return (ft::lexicographical_compare(X.begin(), X.end(), Y.begin(), Y.end()));
+		// return (ft::lexicographical_compare(X.begin(), X.end(), Y.begin(), Y.end(), X.value_comp()));
 	}
 
     /* X > Y */

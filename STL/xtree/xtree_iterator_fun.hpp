@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_iterator_fun.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:28 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:29 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:47:11 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

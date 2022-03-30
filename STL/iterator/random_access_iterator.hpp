@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   random_access_iterator.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:05 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/19 18:16:14 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:59:28 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ namespace ft
 		Pt base() const
 		{
 			return (current);
+		}
+
+		random_access_iterator	&operator=(const random_access_iterator &obj)
+		{
+			if (this != &obj)
+				this->current = obj.current;
+			return (*this);
 		}
 		
 		Rt operator * () const

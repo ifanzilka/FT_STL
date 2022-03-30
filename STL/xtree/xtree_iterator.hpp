@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:31 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/24 10:49:29 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/30 16:49:39 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ namespace ft
         tree_iterator(): Ptr(0){};
 
         /* Constructor */
-        tree_iterator(Nodeptr P): Ptr(P) {};
+        tree_iterator(Nodeptr P): Ptr(P) 
+        {
+        
+        };
 
         /*Констркутор с другим итератором */
-        template<class Tree_traits>
-        tree_iterator(const tree_iterator<Tree_traits> & other)//: Ptr(other.Ptr)
-        {
-            //this->Ptr = other.Ptr;
-            std::cout << "tyt\n";
-        };
+        // template<class Tree_traits>
+        // tree_iterator(const tree_iterator<Tree_traits> & other)//: Ptr(other.Ptr)
+        // {
+        //     this->Ptr = other.Ptr;
+        
+        //     //this->Ptr = other.Ptr;
+        //     std::cout << "tyt\n";
+        // };
             
         // tree_iterator &operator=(const tree_iterator &obj)
         // {

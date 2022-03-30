@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:15 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:16 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:12:35 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,20 @@ namespace ft
 					this->insert(*F);
 			}
 
+			mapped_type &at(const key_type &Kv)
+			{
+				iterator P = this->find(Kv);
+
+				if (P == this->end())
+					throw std::out_of_range("key not found");
+				else
+					return ((*P).second);
+			}
+
+			mapped_type &at(const key_type &Kv) const
+			{
+				return static_cast<const mapped_type>(at(Kv));
+			}
             /*****************************************************/
             /*              Overload operator                    */
             /*****************************************************/

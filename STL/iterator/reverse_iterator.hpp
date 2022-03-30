@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:07 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/20 10:43:02 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/29 14:01:58 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,9 @@ namespace ft
 			{
 				
 			}
-
+			
+			
+			
 			RanIt base() const { return (current); }
 			Ref operator*() const { RanIt tmp = current; return (*--tmp); }
 			Ptr operator->() const { return (&**this); }
