@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:34 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 16:29:44 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/03/30 17:35:44 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ namespace ft
 
         //std::cout << "Call insert(const value_type & V)\n";
 
-        Keyref A = Key(X);
-
-		Addleft = this->comp(this->GetKey(V), Key(X));
         while (!Isnil(X))
         {
 			Y = X;

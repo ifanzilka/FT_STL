@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:43 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:43 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:32:19 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ namespace ft
         {
             for (; F != L; ++F)
             {
-                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+                this->insert(*F);
             }  
         }
 
@@ -86,7 +86,7 @@ namespace ft
         {
             for (; F != L; ++F)
             {
-                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+                this->::insert(*F);
             }        
         }
 
@@ -95,7 +95,7 @@ namespace ft
         {
             for (; F != L; ++F)
             {
-                Tree< Tset_traits<K, Pr, A, false > >::insert(*F);
+                this->::insert(*F);
             }
         }
     };
