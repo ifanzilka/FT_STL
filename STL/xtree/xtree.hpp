@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 17:04:32 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/02 21:26:32 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ namespace ft
         /* Возвращает цвет ноды */
         static Charref	Color(Nodeptr P);
         
+        /* Проверка на то - является ли текущее звено концом ветви */
         static Charref	Isnil(Nodeptr P);
         
         static Keyref	Key(Nodeptr P);

@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:43 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 17:32:19 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 00:30:25 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ namespace ft
         {
             for (; F != L; ++F)
             {
-                this->::insert(*F);
+                this->insert(*F);
             }        
         }
 
@@ -95,7 +95,7 @@ namespace ft
         {
             for (; F != L; ++F)
             {
-                this->::insert(*F);
+                this->insert(*F);
             }
         }
     };

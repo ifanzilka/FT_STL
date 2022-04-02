@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:31 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 16:49:39 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/02 21:48:08 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 namespace ft
 {
     template <class tree_traits>
-    class tree_iterator: public ft::Bidit< typename Tree<tree_traits>::value_type, 
- 				typename Tree<tree_traits>::Dift,
-				typename Tree<tree_traits>::Tptr,
-				typename Tree<tree_traits>::Reft>
+    class tree_iterator
 	{
     public:
+        //tree_traits tr;
 
         typedef typename Tree<tree_traits>::value_type  value_type;
         typedef typename Tree<tree_traits>::Dift        difference_type;
@@ -39,34 +37,30 @@ namespace ft
 
         typedef typename Tree<tree_traits>::Nodeptr			    Nodeptr;
        
-        //typedef  Tree<tree_traits>::Value               Value;
+
+       
 
         /* Constructor */
-        tree_iterator(): Ptr(0){};
+        tree_iterator(): Ptr(0)
+        {
+            
+        };
 
         /* Constructor */
         tree_iterator(Nodeptr P): Ptr(P) 
         {
         
         };
-
-        /*Констркутор с другим итератором */
-        // template<class Tree_traits>
-        // tree_iterator(const tree_iterator<Tree_traits> & other)//: Ptr(other.Ptr)
-        // {
-        //     this->Ptr = other.Ptr;
         
-        //     //this->Ptr = other.Ptr;
-        //     std::cout << "tyt\n";
-        // };
-            
-        // tree_iterator &operator=(const tree_iterator &obj)
-        // {
-        //     node = obj.node;
-            
-        //     return *this; 
-        // }
-
+        /*Констркутор с другим итератором */
+        template<class Other_tree_traits>
+        tree_iterator(const tree_iterator<Other_tree_traits> & other)//: Ptr(other.Ptr)
+        {
+            Ptr = reinterpret_cast<Nodeptr> (other.Ptr);
+           // *this =  reinterpret_cast<tree_iterator<Other_tree_traits>> (*this);
+           // std::cout << "1\n";
+        };
+    
         /* Overload operator */
         reference operator*() const 
         {
@@ -166,7 +160,7 @@ namespace ft
             return (Ptr);
         }
 
-    protected:
+    public:
         Nodeptr Ptr;   
 
     };

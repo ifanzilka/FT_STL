@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_protected.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:41 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:42 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/02 21:25:03 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ namespace ft
     template <class Tr>
 	typename Tree<Tr>::Nodeptr Tree<Tr>::Ubound(const key_type &Kv) const
 	{
-		Nodeptr X = Root();
+	    Nodeptr X = Root();
 		Nodeptr Y = Head;
+        
 		while (!Isnil(X))
 		{
 			if (Tr::comp(Kv, Key(X)))
