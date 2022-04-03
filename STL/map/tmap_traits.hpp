@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tmap_traits.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:18 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/04/02 21:32:56 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 19:41:37 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ namespace ft
 	{
 	public:
 		typedef K						key_type;
+		/* Что хранится в ноде */
 		typedef ft::pair<const K, T>	value_type;
 		typedef Pr						key_compare;
 		typedef typename Ax::template rebind<value_type>::other
@@ -53,34 +54,30 @@ namespace ft
 		class value_compare: public ft::binary_function<value_type, value_type, bool>
 		{
 
-		friend class Tmap_traits<K, T, Pr, Ax, Mfl>;
-		public:
-			
-			bool operator()(const value_type &X, const value_type &Y) const
-			{
-				return(comp(X.first, Y.first));
-			}
+			friend class Tmap_traits<K, T, Pr, Ax, Mfl>;
+			public:
+				
+				bool operator()(const value_type &X, const value_type &Y) const
+				{
+					return(comp(X.first, Y.first));
+				}
 
-			value_compare(key_compare Pred): comp(Pred)
-			{
+				value_compare(key_compare Pred): comp(Pred)
+				{
 
-			}
+				}
 
-		protected:
-				key_compare comp;
+			protected:
+					/* Класс  сравнения */
+					key_compare comp;
 		};
 
+		/* Получаем ключ */
 		const static K &GetKey(const value_type &V)
 		{
 			return (V.first);
 		}
-//			struct Kfn
-//			{
-//				const K	&operator()(const value_type &X) const
-//				{
-//					return(X.first);
-//				}
-//			};
+
 		Pr comp;
 	};
 }

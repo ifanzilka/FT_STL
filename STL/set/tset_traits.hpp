@@ -6,7 +6,7 @@
 /*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:45 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:13:46 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/03 19:43:28 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ namespace ft
     {
     public:
         typedef K   key_type;
+
+        /* Что хранится в ноде */
         typedef K   value_type;
         typedef Pr  key_compare;
         
@@ -47,7 +49,6 @@ namespace ft
         
         const static K &GetKey(const value_type &V)
 		{
-				//static key_type Key = (key_type)V;
 				return (V);
 		}
 
@@ -57,13 +58,9 @@ namespace ft
             {
                 return (X);
             }
-
-            //Kfn k;
-            //k()
-            //key compare
-            //key type
         };
 
+        /* Класс  сравнения */
         key_compare     comp;
         value_compare   v_comp;
 	};

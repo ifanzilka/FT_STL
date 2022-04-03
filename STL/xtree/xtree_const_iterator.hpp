@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_const_iterator.hpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:13 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/04/03 02:51:53 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 19:10:47 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ namespace ft
         typedef typename Mybase::reference                      reference;
 
         typedef typename Tree<tree_traits>::Nodeptr			    Nodeptr;
-       
-        //typedef  Tree<tree_traits>::Value               Value;
 
         /* Constructor */
         const_tree_iterator(): Ptr(0){};
@@ -57,8 +55,6 @@ namespace ft
         const_tree_iterator(const const_tree_iterator<Other_tree_traits> & other)//: Ptr(other.Ptr)
         {
             Ptr = reinterpret_cast<Nodeptr> (other.Ptr);
-           // *this =  reinterpret_cast<tree_iterator<Other_tree_traits>> (*this);
-           // std::cout << "1\n";
         };
 
         /* Overload operator */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:13:15 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 16:12:35 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 19:49:42 by bmarilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ namespace ft
 					this->insert(*F);
 			}
 
+			~map()
+			{
+				Mybase::clear();
+			}
+
 			mapped_type &at(const key_type &Kv)
 			{
 				iterator P = this->find(Kv);
@@ -115,9 +120,12 @@ namespace ft
 			{
 				return static_cast<const mapped_type>(at(Kv));
 			}
+
+			
             /*****************************************************/
             /*              Overload operator                    */
             /*****************************************************/
+			
 			mapped_type &operator[](const key_type &Kv)
 			{
 				iterator P = this->insert(value_type(Kv, mapped_type())).first;
