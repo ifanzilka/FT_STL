@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_const_iterator.hpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:13 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:14 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/03 02:51:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ namespace ft
         const_tree_iterator(const typename Tree<tree_traits>::iterator X): Ptr(X.Mynode())
         {
             
+        };
+
+        /*Констркутор с другим итератором */
+        template<class Other_tree_traits>
+        const_tree_iterator(const const_tree_iterator<Other_tree_traits> & other)//: Ptr(other.Ptr)
+        {
+            Ptr = reinterpret_cast<Nodeptr> (other.Ptr);
+           // *this =  reinterpret_cast<tree_iterator<Other_tree_traits>> (*this);
+           // std::cout << "1\n";
         };
 
         /* Overload operator */

@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:31 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/04/02 21:48:08 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 02:59:33 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ namespace ft
                 Ptr = Tree<tree_traits>::Right(Ptr);
             else if (!Tree<tree_traits>::Isnil(Tree<tree_traits>::Left(Ptr)))
             {   
+                /* Крайний правый элемент  левого поддерева*/
                 Ptr = Tree<tree_traits>::Max(Tree<tree_traits>::Left(Ptr));
             }
             else
@@ -139,14 +140,17 @@ namespace ft
         {
             if (Tree<tree_traits>::Isnil(Ptr))
                 ;
+                
             else if (!Tree<tree_traits>::Isnil(Tree<tree_traits>::Right(Ptr)))
             {   
+                /* Крайний левый элемент правого поддерева*/
                 Ptr = Tree<tree_traits>::Min(Tree<tree_traits>::Right(Ptr));
             }
             else
             {
                 Nodeptr P;
 
+                /* ищем роддительский узел правого поддерева */
                 while (!Tree<tree_traits>::Isnil(P = Tree<tree_traits>::Parent(Ptr)) && Ptr == Tree<tree_traits>::Right(P))
                 {
                     Ptr = P;

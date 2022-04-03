@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_function.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:20 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:21 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/03 03:10:13 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ namespace ft
         return (value_compare(key_comp()));
     }
 
+    /*  */
     template <class Tr>
     void Tree<Tr>::Copy(const Myt &X)
     {
 		Root() = Copy(X.Root(), Head);
 		Size = X.size();
+        
 		if (!Isnil(Root()))
 		{
 			Lmost() = Min(Root());
@@ -71,14 +73,17 @@ namespace ft
         }
     }
 
+    /* копирую дерево х в дерево parent */
     template <class Tr>
 	typename Tree<Tr>::Nodeptr Tree<Tr>::Copy(Nodeptr X, Nodeptr P)
 	{
 		Nodeptr R = Head;
+        
 		if (!Isnil(X))
 		{
 			Nodeptr Y = Buynode(P, Color(X));
-			try
+			
+            try
 			{
 				Consval(&Value(Y), Value(X));
 			}
@@ -88,7 +93,9 @@ namespace ft
 				Erase(R);
 				throw;
 			}
-			Left(Y) = Head, Right(Y) = Head;
+
+			Left(Y) = Head;
+            Right(Y) = Head;
 			if (Isnil(R))
 				R = Y;
 			try
@@ -104,7 +111,6 @@ namespace ft
 		}
 		return (R);
 	}
-
 
 }
 

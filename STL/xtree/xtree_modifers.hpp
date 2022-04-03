@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:34 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/30 17:35:44 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 03:13:35 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ namespace ft
 		else
 		{
 			iterator P = iterator(Y);
+
 			if (!Addleft)
 				;
 			else if (P == begin())
@@ -64,6 +65,7 @@ namespace ft
 			}
 			else
 				--P;
+				
 			if (Tr::comp(Key(P.Mynode()), Tr::GetKey(V)))
 				return (Pairib(Insert(Addleft, Y, V), true));
 			else;
@@ -233,157 +235,6 @@ namespace ft
 		}
 	}
 
-	/* Удаляет элемент на который указывает итератор */
-	// template <class Tr>
-	// typename Tree<Tr>::iterator Tree<Tr>::erase(iterator P)
-	// {
-	// 	//std::cout << GREEN"Call iterator Tree<Tr>::erase(iterator P)\n"F_NONE;
-		
-	// 	if (Isnil(P.Mynode()))
-	// 		throw std::out_of_range("map/set<T> iterator");
-		
-	// 	Nodeptr X, XPar;
-	// 	Nodeptr Y = (P++).Mynode();
-	// 	Nodeptr Z = Y;
-
-	// 	if (Isnil(Left(Y)))
-	// 		X = Right(Y);
-	// 	else if (Isnil(Right(Y)))
-	// 		X = Left(Y);
-	// 	else
-	// 		Y = Min(Right(Y)), X = Right(Y);
-	// 	if (Y == Z)
-	// 	{
-	// 		XPar = Parent(Z);
-	// 		if (!Isnil(X))
-	// 			Parent(X) = XPar;
-
-	// 		if (Root() == Z)
-	// 			Root() = X;
-	// 		else if (Left(XPar) == Z)
-	// 			Left(XPar) = X;
-	// 		else
-	// 			Right(XPar) = X;
-
-	// 		if (Lmost() != Z)
-	// 			;
-	// 		else if (Isnil(Right(Z)))
-	// 			Lmost() = XPar;
-	// 		else
-	// 			Lmost() = Min(X);
-
-	// 		if (Rmost() != Z)
-	// 			;
-	// 		else if (Isnil(Left(Z)))
-	// 			Rmost() = XPar;
-	// 		else
-	// 			Rmost() = Max(X);
-	// 	}
-	// 	else
-	// 	{
-	// 		Parent(Left(Z)) = Y;
-	// 		Left(Y) = Left(Z);
-	// 		if (Y == Right(Z))
-	// 			XPar = Y;
-	// 		else
-	// 		{
-	// 			XPar = Parent(Y);
-	// 			if (!Isnil(X))
-	// 				Parent(X) = XPar;
-	// 			Left(XPar) = X;
-	// 			Right(Y) = Right(Z);
-	// 			Parent(Right(Z)) = Y;
-	// 		}
-	// 		if (Root() == Z)
-	// 			Root() = Y;
-	// 		else if (Left(Parent(Z)) == Z)
-	// 			Left(Parent(Z)) = Y;
-	// 		else
-	// 			Right(Parent(Z)) = Y;
-	// 		Parent(Y) = Parent(Z);
-	// 		//Tree<Tr> &X
-	// 		ft::swap(Color(Y), Color(Z));
-	// 	}
-	// 	if (Color(Z) == Black)
-	// 	{
-	// 		for (; X != Root() && Color(X) == Black; XPar = Parent(X))
-	// 			if (X == Left(XPar))
-	// 			{
-	// 				Nodeptr W = Right(XPar);
-	// 				if (Color(W) == Red)
-	// 				{
-	// 					Color(W) = Black;
-	// 					Color(XPar) = Red;
-	// 					Lrotate(XPar);
-	// 					W = Right(XPar);
-	// 				}
-	// 				if (Isnil(W))
-	// 					X = XPar;
-	// 					// shouldn't happen
-	// 				else if (Color(Left(W)) == Black && Color(Right(W)) == Black)
-	// 				{
-	// 					Color(W) = Red;
-	// 					X = XPar;
-	// 				}
-	// 				else
-	// 				{
-	// 					if (Color(Right(W)) == Black)
-	// 					{
-	// 						Color(Left(W)) = Black;
-	// 						Color(W) = Red;
-	// 						Rrotate(W);
-	// 						W = Right(XPar);
-	// 					}
-	// 					Color(W) = Color(XPar);
-	// 					Color(XPar) = Black;
-	// 					Color(Right(W)) = Black;
-	// 					Lrotate(XPar);
-	// 					break;
-	// 				}
-	// 			}
-	// 			else
-	// 			{
-	// 				Nodeptr W = Left(XPar);
-	// 				if (Color(W) == Red)
-	// 				{
-	// 					Color(W) = Black;
-	// 					Color(XPar) = Red;
-	// 					Rrotate(XPar);
-	// 					W = Left(XPar);
-	// 				}
-	// 				if (Isnil(W))
-	// 					X = XPar;
-	// 					// shouldn't happen
-	// 				else if (Color(Right(W)) == Black && Color(Left(W)) == Black)
-	// 				{
-	// 					Color(W) = Red;
-	// 					X = XPar;
-	// 				}
-	// 				else
-	// 				{
-	// 					if (Color(Left(W)) == Black)
-	// 					{
-	// 						Color(Right(W)) = Black;
-	// 						Color(W) = Red;
-	// 						Lrotate(W);
-	// 						W = Left(XPar);
-	// 					}
-	// 					Color(W) = Color(XPar);
-	// 					Color(XPar) = Black;
-	// 					Color(Left(W)) = Black;
-	// 					Rrotate(XPar);
-	// 					break;
-	// 				}
-	// 			}
-	// 		Color(X) = Black;
-	// 	}
-	// 	Destval(&Value(Z));
-	// 	Freenode(Z);
-	// 	if (0 < Size)
-	// 		--Size;
-	// 	return (P);
-	// }
-
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::erase(iterator P)
 	{
@@ -532,21 +383,21 @@ namespace ft
 	}
 
 
-	 /* Обнаружение первого элемента с эквивалентным или большим ключевым значением */
+	/* Первый элемент котоырй больше  значения иначе end() */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::lower_bound(const key_type &Kv)
 	{
 		return (iterator(Lbound(Kv)));
 	}
 
-	/* Для обнаружение первого элемента в поледовательности который не упорядочен перед key*/
+	/* Первый элемент котоырй больше  значения иначе end() */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::const_iterator Tree<Tree_traits>::lower_bound(const key_type &Kv) const
 	{
 		return (const_iterator(Lbound(Kv)));
 	}
 
-	/* Обнаружение последнего элемента с эквивалентным или меньшим ключевым значением */
+	/* Первый элемент котоырй больше  или равен значения иначе end() */
 	template <class Tree_traits>
 	typename Tree<Tree_traits>::iterator Tree<Tree_traits>::upper_bound(const key_type &Kv)
 	{

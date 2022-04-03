@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:48 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/04/02 21:26:32 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 03:03:30 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,6 @@ namespace ft
 		typedef typename Tree_traits::key_type	        key_type;       /* Тип обьекта ключа сортировки */
 		typedef typename Tree_traits::value_compare	    value_compare;  /* Тип для сравнивания по ключу */
 		typedef typename Tree_traits::value_type		value_type;     /* Тип значения */
-
-
-        /* Берем аллокатор из tree_traits, из этого аллокатора делаем аллокатор на void и делаем ссылку */
-        // typedef typename allocator_type::
-        //     template rebind<void>::other::pointer	    Tree_ptr;
         
         /* Указатель на тип Tree_traits */
         typedef typename allocator_type::
@@ -109,9 +104,14 @@ namespace ft
             template rebind<Node>::other::pointer	    Nodeptr;
         
         /* Обьект класса аллокатор на (Nodeptr) или (*Node) */
+        
+        
+        
+        /* То есть сама нода */
         typename allocator_type::
             template rebind<Nodeptr>::other             Alptr;
 
+        
         /* Конструктор */
         Tree_nod(const key_compare& Parg, allocator_type Al): Tree_traits(Parg),  Alnod(Al)
         {
@@ -225,8 +225,10 @@ namespace ft
         /* explict запрещает приведение */
         explicit Tree(const key_compare &Parg, const allocator_type& Al);
 
+        /* конструктор с двумя итераторами */
         Tree(const value_type *F, const value_type *L, const key_compare& Parg, const allocator_type &Al);
 
+        /* Конструтор с другим деревом */
         Tree(const Myt & x);
         
         /* Overload operator ()=) */
@@ -284,6 +286,7 @@ namespace ft
         /* Вставка после итератора (ускоряеем благодаря этому ) */
         iterator    insert(iterator P, const value_type &V);
 
+        /*  Добавление по итераторам */
         template<class It>
         void insert(It F, It L);
 
@@ -307,11 +310,11 @@ namespace ft
         /* Подсчет элементов с эквивлентным ключом  */
         size_type       count(const key_type & Kv) const;
         
-        /* Обнаружение первого элемента с эквивалентным или большим ключевым значением */
+        /* Первый элемент котоырй больше значения иначе end() */
         iterator        lower_bound(const key_type & Kv);
         const_iterator  lower_bound(const key_type & Kv) const;
 
-        /* Обнаружение последнего элемента с эквивалентным или меньшим ключевым значением */
+        /* Первый элемент котоырй больше  или равен значения иначе end() */
         iterator        upper_bound(const key_type & key);
         const_iterator  upper_bound(const key_type & key) const;
 
@@ -326,8 +329,10 @@ namespace ft
         /* Выделяет память под одну ноду и инициализируем */
         void Init();
 
+        /* */
         void Copy(const Myt &X);
 
+        /* */
         Nodeptr Copy(Nodeptr X, Nodeptr P);
 
         void Erase(Nodeptr X);
@@ -352,18 +357,22 @@ namespace ft
         /* от Ноды возвращаю родительскую ветвь */
         Nodeptr& Root() const;
 
-
+        /* Берет правое поддерево х и подставляет его вместо х  (х становится левым)*/
         void Lrotate(Nodeptr X);
 
+        /* Берет левое поддерево х и подставляет его вместо х  (х становится правым)*/
         void Rrotate(Nodeptr X);
 
+        /* Возвращаем максимально правую ноду*/
         static Nodeptr Max(Nodeptr P);
-
+        
+         /* Возвращаем максимально левую ноду*/
         static Nodeptr Min(Nodeptr P);
         
-        //
+        /* возвращаю новую голову после балансировки  (ишу первый элемент который больше)*/
         Nodeptr Lbound(const key_type &Kv) const;
-        //
+        
+        /* возвращаю новую голову после балансировки  (ишу первый элемент который меньше)*/
         Nodeptr Ubound(const key_type& Kv) const;
 
         /* Выделяет память под новую ноду, задает родителя и цвет ноде */
@@ -378,8 +387,11 @@ namespace ft
         /* Вызываю деструткоры у ноды и особождаю память */
         void Freenode(Nodeptr S);
 
-        /* */
+        /* Вершина дерева */
+        /* Левый элемент это первый */
+        /* Правй элемент это последний */
         Nodeptr     Head;
+        
         /* Размер дерева*/
         size_type   Size;
     };

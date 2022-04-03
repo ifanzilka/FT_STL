@@ -6,7 +6,7 @@
 /*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:41 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/04/02 21:25:03 by ifanzilka        ###   ########.fr       */
+/*   Updated: 2022/04/03 02:16:56 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,37 @@ namespace ft
         return ((Vref)(*P).Value);        
     }
 
+
+    /* возвращаю новую голову после балансировки  (ишу первый элемент который больше) */
     template <class Tree_traits>
 	typename Tree<Tree_traits>::Nodeptr Tree<Tree_traits>::Lbound(const key_type &Kv) const
 	{
+        /* Беру родителя головы */
 		Nodeptr X = Root();
 		Nodeptr Y = Head;
+
+        /*  Пока не пустое поддерево  */
 		while (!(Isnil(X)))
 		{
+            /* если меньше наш корень меньше */
 			if (Tree_traits::comp(Key(X), Kv))
+            {
 				X = Right(X);
-			else
-				Y = X, X = Left(X);
+            }
+            else
+            {
+                /* если больше наш корень больше */
+                /* то присваеваем новую голову */
+				Y = X;
+                X = Left(X);
+            }
 		}
+        
+        /* возвращаю новую голову */
 		return (Y);
 	}
 
+    /* возвращаю новую голову после балансировки  (ишу первый элемент который меньше) */
     template <class Tr>
 	typename Tree<Tr>::Nodeptr Tree<Tr>::Ubound(const key_type &Kv) const
 	{
@@ -91,10 +107,17 @@ namespace ft
 		while (!Isnil(X))
 		{
 			if (Tr::comp(Kv, Key(X)))
-				Y = X, X = Left(X);
-			else
+            {
+				Y = X;
+                X = Left(X);
+            }
+            else
+            {
 				X = Right(X);
+            }
 		}
+        
+        /* возвращаю новую голову */
 		return (Y);
 	}
 

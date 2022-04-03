@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_constructor.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:15 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:16 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/03 01:36:54 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ namespace ft
         Init();
     }
 
+    /* Конструтор с двумя итераторами  */
     template <class Tr>
     Tree<Tr>::Tree(const value_type *First, const value_type *Last, const key_compare &Parg, const allocator_type &Al): Mybase(Parg, Al)
     {
@@ -31,6 +32,7 @@ namespace ft
         insert(First, Last);
     }
 
+    /* Конструтор с другим деревом  */
     template <class Tr>
     Tree<Tr>::Tree(const Myt & X): Mybase(X.key_comp(), X.get_allocator())
     {

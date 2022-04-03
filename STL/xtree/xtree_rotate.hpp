@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtree_rotate.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmarilli <bmarilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifanzilka <ifanzilka@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:15:45 by bmarilli          #+#    #+#             */
-/*   Updated: 2022/03/18 18:15:45 by bmarilli         ###   ########.fr       */
+/*   Updated: 2022/04/03 03:03:53 by ifanzilka        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ namespace ft
 {
     /* Tr -> Tree Traits */
     
+    /* Берет правое поддерево х и подставляет его вместо х  (х становится левым)*/
     template <class Tr>
     void Tree<Tr>::Lrotate(Nodeptr X)
     {
@@ -42,6 +43,7 @@ namespace ft
         Parent(X) = Y;
     }
 
+    /* Берет левое поддерево х и подставляет его вместо х  (х становится правым)*/
     template <class Tr>
     void Tree<Tr>::Rrotate(Nodeptr X)
     {
